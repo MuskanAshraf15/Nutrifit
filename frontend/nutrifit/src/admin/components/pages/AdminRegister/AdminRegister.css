@@ -1,0 +1,322 @@
+.admin-register-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: #f4f8f4;
+  box-sizing: border-box;
+}
+
+.admin-register-card {
+  width: 100%;
+  max-width: 470px;
+  background: white;
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.admin-register-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.admin-register-icon {
+  font-size: 42px;
+  margin-bottom: 5px;
+}
+
+.admin-register-header h1 {
+  margin: 0;
+  color: #2f5d33;
+  font-size: 30px;
+}
+
+.admin-register-header p {
+  margin: 5px 0 0;
+  color: #777;
+}
+
+.admin-register-title {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.admin-register-title h2 {
+  margin: 0 0 8px;
+  color: #333;
+}
+
+.admin-register-title p {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+
+.admin-form-group {
+  margin-bottom: 18px;
+}
+
+.admin-form-group label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+  color: #333;
+}
+
+.admin-form-group input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #d5d5d5;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.admin-form-group input:focus {
+  border-color: #2f5d33;
+}
+
+.admin-password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.admin-password-wrapper input {
+  padding-right: 48px;
+}
+
+.password-eye-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px;
+}
+
+.password-eye-button:hover {
+  opacity: 0.7;
+}
+
+.admin-error {
+  background: #ffeaea;
+  color: #c62828;
+  padding: 10px 12px;
+  border-radius: 7px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.admin-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 10px 12px;
+  border-radius: 7px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.admin-register-button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #2f5d33;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-register-button:hover {
+  background: #244a28;
+}
+
+.admin-register-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.admin-register-login {
+  text-align: center;
+  margin-top: 22px;
+}
+
+.admin-register-login p {
+  margin: 0 0 8px;
+  color: #777;
+  font-size: 14px;
+}
+
+.admin-register-login button {
+  border: none;
+  background: transparent;
+  color: #2f5d33;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-register-login button:hover {
+  text-decoration: underline;
+}
+
+.admin-register-footer {
+  text-align: center;
+  margin-top: 25px;
+  color: #999;
+  font-size: 12px;
+}
+/* ============================= */
+/* RESPONSIVE - TABLET */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+  .admin-register-page {
+    padding: 30px 18px;
+  }
+
+  .admin-register-card {
+    max-width: 450px;
+    padding: 35px 30px;
+  }
+
+  .admin-register-header h1 {
+    font-size: 28px;
+  }
+
+  .admin-register-icon {
+    font-size: 40px;
+  }
+}
+
+
+/* ============================= */
+/* RESPONSIVE - MOBILE */
+/* ============================= */
+
+@media (max-width: 480px) {
+
+  .admin-register-page {
+    padding: 20px 15px;
+  }
+
+  .admin-register-card {
+    width: 100%;
+    padding: 28px 20px;
+    border-radius: 14px;
+  }
+
+  .admin-register-header {
+    margin-bottom: 20px;
+  }
+
+  .admin-register-icon {
+    font-size: 36px;
+  }
+
+  .admin-register-header h1 {
+    font-size: 25px;
+  }
+
+  .admin-register-header p {
+    font-size: 13px;
+  }
+
+  .admin-register-title {
+    margin-bottom: 20px;
+  }
+
+  .admin-register-title h2 {
+    font-size: 21px;
+  }
+
+  .admin-register-title p {
+    font-size: 13px;
+  }
+
+  .admin-form-group {
+    margin-bottom: 16px;
+  }
+
+  .admin-form-group label {
+    font-size: 14px;
+  }
+
+  .admin-form-group input {
+    padding: 12px 13px;
+    font-size: 14px;
+  }
+
+  .admin-password-wrapper input {
+    padding-right: 45px;
+  }
+
+  .password-eye-button {
+    right: 8px;
+    font-size: 17px;
+    padding: 4px;
+  }
+
+  .admin-register-button {
+    padding: 13px;
+    font-size: 14px;
+  }
+
+  .admin-register-login {
+    margin-top: 20px;
+  }
+
+  .admin-register-footer {
+    margin-top: 20px;
+  }
+}
+
+
+/* ============================= */
+/* RESPONSIVE - SMALL MOBILE */
+/* ============================= */
+
+@media (max-width: 360px) {
+
+  .admin-register-page {
+    padding: 15px 10px;
+  }
+
+  .admin-register-card {
+    padding: 25px 16px;
+  }
+
+  .admin-register-icon {
+    font-size: 34px;
+  }
+
+  .admin-register-header h1 {
+    font-size: 23px;
+  }
+
+  .admin-register-title h2 {
+    font-size: 20px;
+  }
+
+  .admin-register-title p {
+    font-size: 12px;
+  }
+
+  .admin-form-group input {
+    font-size: 13px;
+  }
+
+  .admin-register-button {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,601 @@
+/* ===== WhyNutriFit.css ===== */
+
+.why-section {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  padding: 95px 6% 105px;
+  background:
+    radial-gradient(circle at 10% 15%, rgba(184, 221, 154, 0.18), transparent 28%),
+    radial-gradient(circle at 90% 85%, rgba(220, 239, 201, 0.35), transparent 30%),
+    #fbfaf6;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.why-section::before,
+.why-section::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.why-section::before {
+  width: 280px;
+  height: 280px;
+  top: -130px;
+  left: -120px;
+  background: rgba(184, 221, 154, 0.12);
+}
+
+.why-section::after {
+  width: 360px;
+  height: 360px;
+  right: -180px;
+  bottom: -170px;
+  background: rgba(220, 239, 201, 0.2);
+}
+
+/* ===== Header ===== */
+
+.why-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 62px;
+}
+
+.why-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 15px;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  background: #e8f5dd;
+  border: 1px solid #d4e9c5;
+  font-size: 12px;
+  font-weight: 700;
+  color: #4f8a43;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.why-heading {
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 800;
+  color: #2f5d33;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.7px;
+}
+
+.why-heading::after {
+  content: "";
+  display: block;
+  width: 55px;
+  height: 4px;
+  margin: 17px auto 0;
+  border-radius: 10px;
+  background: #9acb75;
+}
+
+/* ===== Grid ===== */
+
+.why-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+/* ===== Cards ===== */
+
+.why-card {
+  position: relative;
+  min-height: 330px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e4ecde;
+  border-radius: 22px;
+  padding: 34px 25px 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(47, 93, 51, 0.05);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.why-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  transform: translateX(-50%);
+  background: #6ba84f;
+  border-radius: 0 0 10px 10px;
+  transition: width 0.3s ease;
+}
+
+.why-card:hover {
+  transform: translateY(-9px);
+  background: #ffffff;
+  border-color: #c6dfb4;
+  box-shadow: 0 20px 40px rgba(47, 93, 51, 0.12);
+}
+
+.why-card:hover::before {
+  width: 55%;
+}
+
+/* ===== Icon ===== */
+
+.why-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 21px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #e8f5dc, #c3e3a8);
+  border: 1px solid #d1e8bd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0 8px 18px rgba(107, 168, 79, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.why-card:hover .why-icon {
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: 0 12px 25px rgba(107, 168, 79, 0.2);
+}
+
+/* ===== Title ===== */
+
+.why-title {
+  font-size: 18px;
+  font-weight: 750;
+  color: #243c26;
+  margin: 0 0 11px;
+  line-height: 1.35;
+}
+
+/* ===== Description ===== */
+
+.why-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #707070;
+  margin: 0 0 22px;
+  max-width: 260px;
+}
+
+/* ===== Learn More ===== */
+
+.why-learn-more-btn {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 125px;
+  background: transparent;
+  border: 1.5px solid #5d944d;
+  color: #4d8543;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.why-learn-more-btn:hover {
+  background: #3f7a3f;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(63, 122, 63, 0.2);
+}
+
+.why-learn-more-btn:active {
+  transform: translateY(0);
+}
+
+/* ===== Modal Overlay ===== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 43, 26, 0.58);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+  animation: overlayFade 0.25s ease;
+}
+
+@keyframes overlayFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== Modal ===== */
+
+.modal-box {
+  position: relative;
+  width: 560px;
+  max-width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #e4ecde;
+  border-radius: 26px;
+  padding: 45px 42px 38px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  box-sizing: border-box;
+  animation: modalPop 0.3s ease;
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===== Close ===== */
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  background: #f4f7f1;
+  border: 1px solid #e5ece0;
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 1;
+  color: #777;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.modal-close:hover {
+  background: #e7f2df;
+  color: #2f5d33;
+  transform: rotate(90deg);
+}
+
+/* ===== Modal Icon ===== */
+
+.modal-icon {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #e8f5dc, #b8dd9a);
+  border: 1px solid #d0e8bb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  box-shadow: 0 10px 25px rgba(107, 168, 79, 0.15);
+}
+
+/* ===== Modal Content ===== */
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #2f5d33;
+  margin: 0 0 15px;
+  line-height: 1.25;
+}
+
+.modal-text {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: #606060;
+  margin: 0 auto 24px;
+  max-width: 480px;
+}
+
+.modal-list-label {
+  font-size: 14px;
+  font-weight: 750;
+  color: #263b27;
+  text-align: left;
+  margin: 0 0 12px;
+}
+
+.modal-list {
+  list-style: none;
+  text-align: left;
+  margin: 0 0 28px;
+  padding: 0;
+}
+
+.modal-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #5d5d5d;
+  margin-bottom: 9px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.modal-list li:hover {
+  background: #f7faf4;
+}
+
+/* ===== Check ===== */
+
+.modal-check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: #e1f1d4;
+  color: #3f7a3f;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* ===== Modal Button ===== */
+
+.modal-btn {
+  min-width: 155px;
+  background: #2f5d33;
+  color: #ffffff;
+  border: none;
+  padding: 13px 32px;
+  border-radius: 28px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.modal-btn:hover {
+  background: #254a29;
+  transform: translateY(-2px);
+  box-shadow: 0 9px 22px rgba(47, 93, 51, 0.22);
+}
+
+.modal-btn:active {
+  transform: translateY(0);
+}
+
+/* ===== Scrollbar ===== */
+
+.modal-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-box::-webkit-scrollbar-track {
+  background: #f5f7f2;
+  border-radius: 10px;
+}
+
+.modal-box::-webkit-scrollbar-thumb {
+  background: #b8dd9a;
+  border-radius: 10px;
+}
+
+.modal-box::-webkit-scrollbar-thumb:hover {
+  background: #8fbd70;
+}
+
+/* ===== Tablet ===== */
+
+@media (max-width: 1100px) {
+  .why-section {
+    padding: 85px 5% 95px;
+  }
+
+  .why-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 760px;
+    gap: 24px;
+  }
+
+  .why-card {
+    min-height: 315px;
+  }
+}
+
+/* ===== Mobile ===== */
+
+@media (max-width: 700px) {
+  .why-section {
+    padding: 70px 25px 80px;
+  }
+
+  .why-header {
+    margin-bottom: 45px;
+  }
+
+  .why-heading {
+    font-size: 32px;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+    max-width: 430px;
+    gap: 20px;
+  }
+
+  .why-card {
+    min-height: auto;
+    padding: 32px 25px 30px;
+  }
+
+  .why-icon {
+    width: 68px;
+    height: 68px;
+    font-size: 28px;
+  }
+}
+
+/* ===== Small Mobile ===== */
+
+@media (max-width: 480px) {
+  .why-section {
+    padding: 60px 18px 70px;
+  }
+
+  .why-eyebrow {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+
+  .why-heading {
+    font-size: 28px;
+  }
+
+  .why-header {
+    margin-bottom: 38px;
+  }
+
+  .why-card {
+    border-radius: 19px;
+    padding: 28px 21px;
+  }
+
+  .why-title {
+    font-size: 17px;
+  }
+
+  .why-desc {
+    font-size: 13.5px;
+  }
+
+  .why-learn-more-btn {
+    width: 100%;
+    max-width: 180px;
+  }
+
+  /* Modal */
+
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-box {
+    width: 100%;
+    max-height: 90vh;
+    padding: 38px 20px 25px;
+    border-radius: 21px;
+  }
+
+  .modal-close {
+    width: 34px;
+    height: 34px;
+    top: 12px;
+    right: 12px;
+    font-size: 19px;
+  }
+
+  .modal-icon {
+    width: 64px;
+    height: 64px;
+    font-size: 27px;
+  }
+
+  .modal-title {
+    font-size: 20px;
+  }
+
+  .modal-text {
+    font-size: 13.5px;
+  }
+
+  .modal-list li {
+    font-size: 13px;
+  }
+
+  .modal-btn {
+    width: 100%;
+  }
+}
+
+/* ===== Very Small Screens ===== */
+
+@media (max-width: 350px) {
+  .why-section {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .why-heading {
+    font-size: 25px;
+  }
+
+  .why-card {
+    padding: 25px 17px;
+  }
+
+  .modal-box {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* ===== Accessibility ===== */
+
+.why-learn-more-btn:focus-visible,
+.modal-btn:focus-visible,
+.modal-close:focus-visible {
+  outline: 3px solid rgba(107, 168, 79, 0.35);
+  outline-offset: 3px;
+}

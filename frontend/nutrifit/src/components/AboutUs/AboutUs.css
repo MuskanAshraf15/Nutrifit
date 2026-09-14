@@ -1,0 +1,380 @@
+
+.about-section {
+  width: 100%;
+  background: #ffffff;
+  color: #26352a;
+  padding: 90px 7% 100px;
+  box-sizing: border-box;
+  scroll-margin-top: 80px;
+}
+
+
+/* ================= ABOUT NUTRIFIT ================= */
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto 100px;
+  display: flex;
+  align-items: center;
+  gap: 70px;
+}
+
+.about-image {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 430px;
+  height: 380px;
+  object-fit: contain;
+}
+
+.about-content {
+  width: 55%;
+}
+
+.about-small-title,
+.offer-small-title,
+.why-small-title {
+  display: inline-block;
+  color: #6a9b45;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.about-content h2 {
+  font-size: 42px;
+  line-height: 1.2;
+  margin: 0 0 22px;
+  color: #26352a;
+}
+
+.about-content h2 span {
+  color: #6a9b45;
+}
+
+.about-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #68736b;
+  margin-bottom: 15px;
+}
+
+
+/* ================= OUR PURPOSE ================= */
+
+.purpose-section {
+  max-width: 1200px;
+  margin: 0 auto 110px;
+  text-align: center;
+}
+
+.section-heading {
+  max-width: 700px;
+  margin: 0 auto 45px;
+}
+
+.section-heading span {
+  color: #6a9b45;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  font-size: 36px;
+  margin: 10px 0 15px;
+  color: #26352a;
+}
+
+.section-heading p {
+  color: #707970;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.purpose-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.purpose-card {
+  background: #f7faf5;
+  border-radius: 18px;
+  padding: 35px 28px;
+  min-height: 250px;
+  box-sizing: border-box;
+  transition: 0.3s ease;
+}
+
+.purpose-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 12px 30px rgba(54, 78, 58, 0.10);
+}
+
+.purpose-icon {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8f1df;
+  border-radius: 50%;
+  font-size: 30px;
+}
+
+.purpose-card h3 {
+  margin: 0 0 12px;
+  color: #304333;
+  font-size: 21px;
+}
+
+.purpose-card p {
+  color: #737d75;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+
+/* ================= WHAT WE OFFER ================= */
+
+.offer-container {
+  max-width: 1200px;
+  margin: 0 auto 110px;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  background: #f7faf5;
+  border-radius: 25px;
+  padding: 55px;
+  box-sizing: border-box;
+}
+
+.offer-content {
+  width: 55%;
+}
+
+.offer-content h2 {
+  font-size: 36px;
+  line-height: 1.25;
+  color: #26352a;
+  margin: 0 0 18px;
+}
+
+.offer-content h2 span {
+  color: #6a9b45;
+}
+
+.offer-intro {
+  color: #6f786f;
+  line-height: 1.7;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+.offer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.offer-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+  color: #4e5b51;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.offer-list li span {
+  color: #6a9b45;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.offer-image {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.offer-image img {
+  width: 100%;
+  max-width: 400px;
+  height: 330px;
+  object-fit: contain;
+}
+
+
+/* ================= WHY CHOOSE NUTRIFIT ================= */
+
+.why-section {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.why-section h2 {
+  font-size: 38px;
+  color: #26352a;
+  margin: 8px 0 25px;
+}
+
+.why-section p {
+  color: #6b756d;
+  font-size: 16px;
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+  .about-container,
+  .offer-container {
+    flex-direction: column;
+    gap: 35px;
+  }
+
+  .about-image,
+  .about-content,
+  .offer-content,
+  .offer-image {
+    width: 100%;
+  }
+
+  .about-content {
+    text-align: center;
+  }
+
+  .purpose-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .offer-container {
+    padding: 35px 25px;
+  }
+
+  .offer-content {
+    text-align: center;
+  }
+
+  .offer-list {
+    text-align: left;
+  }
+
+  .about-content h2,
+  .offer-content h2,
+  .why-section h2 {
+    font-size: 32px;
+  }
+}
+
+
+@media (max-width: 500px) {
+
+  .about-section {
+    padding: 60px 5%;
+  }
+
+  .about-content h2,
+  .offer-content h2,
+  .why-section h2 {
+    font-size: 28px;
+  }
+
+  .section-heading h2 {
+    font-size: 28px;
+  }
+
+  .about-image img {
+    height: 280px;
+  }
+
+  .offer-image img {
+    height: 260px;
+  }
+}
+
+/* ===== Get Started ===== */
+
+.about-get-started {
+  max-width: 900px;
+  margin: 70px auto 0;
+  padding: 55px 30px;
+  text-align: center;
+  background: #eef7e8;
+  border-radius: 24px;
+  box-sizing: border-box;
+}
+
+.about-get-started h2 {
+  margin: 0 0 12px;
+  font-size: 32px;
+  font-weight: 800;
+  color: #2f5d33;
+}
+
+.about-get-started p {
+  max-width: 600px;
+  margin: 0 auto 25px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #666;
+}
+
+.about-get-started-btn {
+  display: inline-block;
+  padding: 13px 32px;
+  background: #2f5d33;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.about-get-started-btn:hover {
+  background: #254a29;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(47, 93, 51, 0.2);
+}
+
+/* ===== Mobile ===== */
+
+@media (max-width: 600px) {
+  .about-get-started {
+    margin-top: 50px;
+    padding: 40px 22px;
+    border-radius: 20px;
+  }
+
+  .about-get-started h2 {
+    font-size: 25px;
+  }
+
+  .about-get-started p {
+    font-size: 14px;
+  }
+
+  .about-get-started-btn {
+    width: 100%;
+    max-width: 220px;
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,780 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.hero {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  display: flex;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+
+/* =========================================
+   LEFT SIDE
+========================================= */
+
+.hero__left {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 56%;
+  height: 100vh;
+
+  z-index: 1;
+}
+
+
+/* =========================================
+   MAIN GREEN BLOB
+========================================= */
+
+.hero__blob {
+  position: absolute;
+
+  width: 670px;
+  height: 535px;
+
+  left: -105px;
+  top: 65px;
+
+  background:
+    radial-gradient(
+      ellipse at 35% 25%,
+      #b8dc83 0%,
+      #a9d573 35%,
+      #99cb61 70%,
+      #8cc355 100%
+    );
+
+  border-radius:
+    47% 53% 58% 42%
+    /
+    38% 45% 55% 62%;
+
+  transform: rotate(-4deg);
+
+  z-index: 1;
+}
+
+
+/* Soft background layer */
+
+.hero__blob::before {
+  content: "";
+
+  position: absolute;
+
+  width: 390px;
+  height: 300px;
+
+  right: -120px;
+  bottom: -70px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #badc93 0%,
+      #a8d17c 50%,
+      #94c666 100%
+    );
+
+  border-radius:
+    60% 40% 65% 35%
+    /
+    45% 58% 42% 55%;
+
+  transform: rotate(12deg);
+
+  opacity: 0.9;
+}
+
+
+/* Soft highlight */
+
+.hero__blob::after {
+  content: "";
+
+  position: absolute;
+
+  width: 350px;
+  height: 190px;
+
+  left: 90px;
+  top: -35px;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(207, 231, 164, 0.8),
+      rgba(185, 218, 137, 0.35),
+      transparent 72%
+    );
+
+  border-radius: 50%;
+}
+
+
+/* =========================================
+   SECONDARY BLOB
+========================================= */
+
+.hero__blob2 {
+  position: absolute;
+
+  width: 290px;
+  height: 220px;
+
+  right: -20px;
+  bottom: 45px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #b9dc91,
+      #a5cf76,
+      #91c361
+    );
+
+  border-radius:
+    58% 42% 48% 52%
+    /
+    42% 60% 40% 58%;
+
+  transform: rotate(18deg);
+
+  opacity: 0.7;
+
+  z-index: 0;
+}
+
+
+/* =========================================
+   FRUIT BOWL
+========================================= */
+
+.hero__plate {
+  position: absolute;
+
+  width: 360px;
+  height: 360px;
+
+  left: 55px;
+  top: 105px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  z-index: 6;
+
+  box-shadow:
+    0 18px 35px rgba(50, 85, 30, 0.22);
+
+  transition: transform 0.3s ease;
+}
+
+.hero__plate:hover {
+  transform: scale(1.02);
+}
+
+
+/* =========================================
+   LEAVES
+========================================= */
+
+.leaf {
+  position: absolute;
+
+  display: block;
+
+  background:
+    linear-gradient(
+      135deg,
+      #b9dc7f 0%,
+      #83ba4d 48%,
+      #609d37 100%
+    );
+
+  border-radius: 100% 0 100% 0;
+
+  z-index: 9;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   TOP LEAF CLUSTER
+========================================= */
+
+.leaf-cluster {
+  position: absolute;
+
+  width: 75px;
+  height: 80px;
+
+  left: 320px;
+  top: 67px;
+
+  z-index: 10;
+}
+
+
+/* Leaf 1 */
+
+.leaf-1 {
+  width: 25px;
+  height: 48px;
+
+  left: 5px;
+  top: 20px;
+
+  transform: rotate(-42deg);
+}
+
+
+/* Leaf 2 */
+
+.leaf-2 {
+  width: 28px;
+  height: 51px;
+
+  left: 22px;
+  top: 3px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #c0df8d,
+      #83b94d
+    );
+
+  transform: rotate(5deg);
+}
+
+
+/* Leaf 3 */
+
+.leaf-3 {
+  width: 25px;
+  height: 45px;
+
+  left: 42px;
+  top: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #a8d36b,
+      #6eaa3e
+    );
+
+  transform: rotate(43deg);
+}
+
+
+/* Leaf 4 */
+
+.leaf-4 {
+  width: 20px;
+  height: 38px;
+
+  left: 28px;
+  top: 35px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #91c456,
+      #609c37
+    );
+
+  transform: rotate(70deg);
+}
+
+
+/* =========================================
+   LEAF VEINS
+========================================= */
+
+.leaf-1::after,
+.leaf-2::after,
+.leaf-3::after,
+.leaf-4::after {
+  content: "";
+
+  position: absolute;
+
+  width: 2px;
+  height: 70%;
+
+  left: 50%;
+  top: 12%;
+
+  background: rgba(65, 115, 38, 0.25);
+
+  transform: rotate(-35deg);
+}
+
+
+/* =========================================
+   LEFT FLOATING LEAF
+========================================= */
+
+.leaf-left {
+  width: 35px;
+  height: 57px;
+
+  left: -4px;
+  top: 91px;
+
+  transform: rotate(-45deg);
+
+  background:
+    linear-gradient(
+      145deg,
+      #b1d975,
+      #72ad3e,
+      #5c9634
+    );
+}
+
+
+/* =========================================
+   SMALL FLOATING LEAF
+========================================= */
+
+.leaf-small {
+  width: 28px;
+  height: 45px;
+
+  right: 270px;
+  top: 180px;
+
+  transform: rotate(55deg);
+
+  background:
+    linear-gradient(
+      135deg,
+      #c8e5a1,
+      #8abd55
+    );
+
+  opacity: 0.75;
+}
+
+
+/* =========================================
+   BIG BOTTOM RIGHT LEAF
+========================================= */
+
+.leaf-right {
+  width: 48px;
+  height: 78px;
+
+  right: 105px;
+  bottom: 55px;
+
+  transform: rotate(35deg);
+
+  background:
+    linear-gradient(
+      135deg,
+      #c2e39a 0%,
+      #8bc356 50%,
+      #67a33a 100%
+    );
+
+  opacity: 0.9;
+}
+
+
+/* Leaf vein */
+
+.leaf-right::after {
+  content: "";
+
+  position: absolute;
+
+  width: 2px;
+  height: 65px;
+
+  left: 23px;
+  top: 6px;
+
+  background: rgba(72, 120, 40, 0.3);
+
+  transform: rotate(-35deg);
+}
+
+
+/* =========================================
+   WHITE DECORATIVE DOTS
+========================================= */
+
+.dots {
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.8);
+
+  z-index: 7;
+
+  box-shadow:
+    15px 18px rgba(255, 255, 255, 0.8),
+    30px 7px rgba(255, 255, 255, 0.8),
+    45px 24px rgba(255, 255, 255, 0.8),
+    61px 11px rgba(255, 255, 255, 0.8),
+    76px 31px rgba(255, 255, 255, 0.8);
+}
+
+.dots-1 {
+  left: 285px;
+  top: 190px;
+}
+
+.dots-2 {
+  left: 315px;
+  top: 285px;
+}
+
+
+/* =========================================
+   SLIDER DOTS
+========================================= */
+
+.slider-dots {
+  position: absolute;
+
+  left: 27px;
+  bottom: 27px;
+
+  display: flex;
+
+  gap: 9px;
+
+  z-index: 15;
+}
+
+.slider-dots span {
+  width: 11px;
+  height: 11px;
+
+  border-radius: 50%;
+
+  border: 2px solid #4c862c;
+}
+
+.slider-dots span.active {
+  background: #4c862c;
+}
+
+
+/* =========================================
+   RIGHT CONTENT
+========================================= */
+
+.hero__content {
+  position: relative;
+
+  width: 44%;
+
+  margin-left: 56%;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding:
+    80px
+    6%
+    50px
+    3%;
+
+  z-index: 10;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.hero__title {
+  margin: 0;
+
+  padding: 0;
+
+  text-align: left;
+
+  align-self: center;
+
+  font-size: clamp(58px, 6vw, 88px);
+
+  line-height: 0.88;
+
+  letter-spacing: -4px;
+
+  font-weight: 800;
+}
+
+.green-text {
+  display: block;
+
+  color: #62a72d;
+}
+
+.yellow-text {
+  display: block;
+
+  color: #ffd52e;
+
+  margin-top: 5px;
+}
+
+
+/* =========================================
+   TEXT
+========================================= */
+
+.hero__text {
+  width: 390px;
+  max-width: 90%;
+
+  margin:
+    38px
+    0
+    0;
+
+  text-align: center;
+
+  color: #777;
+
+  font-size: 15px;
+
+  line-height: 1.55;
+
+  font-weight: 500;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.hero__btn {
+  margin-top: 18px;
+
+  padding: 10px 26px;
+
+  border: none;
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #77b63c,
+      #579c2d
+    );
+
+  color: white;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 15px rgba(85, 155, 43, 0.22);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.hero__btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 9px 20px rgba(85, 155, 43, 0.3);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .hero__blob {
+    width: 580px;
+    height: 470px;
+
+    left: -120px;
+  }
+
+  .hero__plate {
+    width: 310px;
+    height: 310px;
+
+    left: 35px;
+    top: 130px;
+  }
+
+  .hero__title {
+    font-size: 60px;
+  }
+
+  .hero__text {
+    width: 340px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .hero {
+    min-height: 900px;
+
+    display: block;
+  }
+
+  .hero__left {
+    position: relative;
+
+    width: 100%;
+
+    height: 500px;
+
+    min-height: 500px;
+  }
+
+  .hero__blob {
+    width: 590px;
+    height: 450px;
+
+    left: -100px;
+    top: 50px;
+  }
+
+  .hero__plate {
+    width: 300px;
+    height: 300px;
+
+    left: 50%;
+    top: 105px;
+
+    transform: translateX(-50%);
+  }
+
+  .hero__plate:hover {
+    transform:
+      translateX(-50%)
+      scale(1.02);
+  }
+
+  .hero__content {
+    width: 100%;
+
+    margin-left: 0;
+
+    min-height: auto;
+
+    padding:
+      20px
+      30px
+      70px;
+  }
+
+  .hero__title {
+    font-size: 60px;
+
+    text-align: center;
+
+    letter-spacing: -2px;
+  }
+
+  .hero__text {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .hero__left {
+    height: 410px;
+
+    min-height: 410px;
+  }
+
+  .hero__blob {
+    width: 500px;
+    height: 380px;
+
+    left: -115px;
+    top: 55px;
+  }
+
+  .hero__plate {
+    width: 245px;
+    height: 245px;
+
+    top: 105px;
+  }
+
+  .hero__title {
+    font-size: 48px;
+  }
+
+  .hero__text {
+    font-size: 11px;
+  }
+
+  .leaf-cluster {
+    transform: scale(0.8);
+  }
+
+  .leaf-right {
+    right: 25px;
+
+    bottom: 45px;
+
+    width: 45px;
+    height: 70px;
+  }
+
+  .leaf-small {
+    display: none;
+  }
+
+}
+

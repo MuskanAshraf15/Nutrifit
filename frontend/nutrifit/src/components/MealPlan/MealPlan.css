@@ -1,0 +1,837 @@
+/* =========================================================
+   NUTRIFIT - MEAL PLAN
+========================================================= */
+
+.meal-plan-page {
+  min-height: calc(100vh - 75px);
+  background: #f8f6ee;
+  padding: 32px 20px 65px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.meal-plan-container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   BACK
+========================================================= */
+
+.back-summary-btn {
+  border: none;
+  background: transparent;
+  color: #3f6f4a;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 25px;
+  transition: 0.3s ease;
+}
+
+.back-summary-btn:hover {
+  color: #2d5939;
+  transform: translateX(-4px);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.meal-plan-header {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.header-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 13px;
+  border-radius: 50%;
+  background: #e5eee3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 29px;
+}
+
+.meal-plan-header > span {
+  color: #77917c;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.meal-plan-header h1 {
+  margin: 8px 0 10px;
+  color: #284d34;
+  font-size: 38px;
+  font-weight: 500;
+}
+
+.meal-plan-header h1 strong {
+  color: #5b8765;
+  font-weight: 700;
+}
+
+.meal-plan-header p {
+  max-width: 650px;
+  margin: 0 auto;
+  color: #808981;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   THREE HORIZONTAL CARDS
+========================================================= */
+
+.meals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* =========================================================
+   MEAL CARD
+========================================================= */
+
+.meal-card {
+  background: #ffffff;
+  border: 1px solid #e5e9e1;
+  border-radius: 21px;
+  padding: 23px;
+  box-shadow: 0 8px 28px rgba(48, 78, 56, 0.06);
+  transition: 0.3s ease;
+  min-width: 0;
+}
+
+.meal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(48, 78, 56, 0.09);
+}
+
+/* =========================================================
+   MEAL HEADER
+========================================================= */
+
+.meal-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.meal-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: #e7efe4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+}
+
+.meal-small-label {
+  color: #829384;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.meal-card-header h2 {
+  margin: 3px 0 0;
+  color: #2d5438;
+  font-size: 22px;
+}
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.meal-description {
+  min-height: 38px;
+  margin: 15px 0;
+  color: #8a928c;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   TARGET
+========================================================= */
+
+.target-box {
+  padding: 13px 15px;
+  border-radius: 12px;
+  background: #f1f6ee;
+  border: 1px solid #e2ebdf;
+}
+
+.target-box span {
+  display: block;
+  color: #849287;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.target-box strong {
+  display: inline-block;
+  margin-top: 3px;
+  color: #477352;
+  font-size: 21px;
+}
+
+.target-box small {
+  margin-left: 5px;
+  color: #879289;
+  font-size: 10px;
+}
+
+/* =========================================================
+   FOOD NAME
+========================================================= */
+
+.food-name-box {
+  margin-top: 20px;
+}
+
+.food-name-box > span {
+  color: #89958b;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.food-name-box h3 {
+  margin: 5px 0 0;
+  color: #294f35;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+/* =========================================================
+   SERVING
+========================================================= */
+
+.serving-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 17px 0;
+  padding: 9px 12px;
+  background: #fafbf8;
+  border: 1px solid #edf0e9;
+  border-radius: 11px;
+}
+
+.serving-box > span {
+  font-size: 17px;
+}
+
+.serving-box small {
+  display: block;
+  color: #929a93;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.serving-box strong {
+  display: block;
+  margin-top: 2px;
+  color: #3c6245;
+  font-size: 14px;
+}
+
+/* =========================================================
+   CALORIES
+========================================================= */
+
+.main-calories {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.main-calories strong {
+  color: #4a7956;
+  font-size: 29px;
+}
+
+.main-calories span {
+  color: #89918b;
+  font-size: 11px;
+}
+
+/* =========================================================
+   NUTRITION
+========================================================= */
+
+.nutrition-list {
+  border-top: 1px solid #edf0eb;
+}
+
+.nutrition-row {
+  min-height: 39px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f2ee;
+}
+
+.nutrition-row span {
+  color: #737d75;
+  font-size: 11px;
+}
+
+.nutrition-row strong {
+  color: #365d40;
+  font-size: 12px;
+}
+
+.cost-row {
+  border-bottom: none;
+}
+
+.cost-row strong {
+  color: #4a7654;
+}
+
+/* =========================================================
+   CHANGE SECTION
+========================================================= */
+
+.change-section {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.change-hint {
+  margin: 0 0 12px;
+  color: #89918a;
+  font-size: 12px;
+}
+
+.change-hint span {
+  color: #54775c;
+  font-weight: 600;
+}
+
+.change-recommendation-btn {
+  min-width: 270px;
+  padding: 14px 25px;
+  border: 1px solid #cbdcc8;
+  border-radius: 12px;
+  background: #edf4ea;
+  color: #416c4c;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.change-recommendation-btn:hover:not(:disabled) {
+  background: #e2eddf;
+  border-color: #b8cfb5;
+  transform: translateY(-2px);
+}
+
+.change-recommendation-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   SPINNER
+========================================================= */
+
+.small-spinner {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin-right: 7px;
+  border: 2px solid #cbdac8;
+  border-top-color: #477352;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: -2px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.plan-footer {
+  max-width: 700px;
+  margin: 30px auto 0;
+  padding: 17px 20px;
+  background: #edf4e9;
+  border: 1px solid #dfeadb;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-icon {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #dcebd8;
+  color: #477352;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.plan-footer strong {
+  color: #3c6145;
+  font-size: 13px;
+}
+
+.plan-footer p {
+  margin: 3px 0 0;
+  color: #7f8c81;
+  font-size: 11px;
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.meal-loading,
+.meal-error {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 43px;
+  height: 43px;
+  border: 4px solid #dce7d9;
+  border-top-color: #4f7c59;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 20px;
+}
+
+.meal-loading h2,
+.meal-error h2 {
+  color: #31573b;
+  margin: 0 0 7px;
+}
+
+.meal-loading p,
+.meal-error p {
+  color: #858d87;
+  font-size: 13px;
+}
+
+.error-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #edf4e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 29px;
+  margin-bottom: 14px;
+}
+
+.retry-btn {
+  margin-top: 10px;
+  padding: 11px 23px;
+  border: none;
+  border-radius: 10px;
+  background: #4f7c59;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.small-error {
+  margin-bottom: 18px;
+  padding: 11px 14px;
+  background: #fff4f1;
+  border: 1px solid #f0d7d0;
+  border-radius: 10px;
+  color: #a05a4d;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty-meal-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 450px;
+}
+
+.empty-meal {
+  text-align: center;
+}
+
+.empty-meal > span {
+  font-size: 35px;
+}
+
+.empty-meal h3 {
+  color: #355d40;
+  margin: 10px 0 5px;
+}
+
+.empty-meal p {
+  color: #8b938d;
+  font-size: 12px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 950px) {
+  .meals-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .meal-card {
+    padding: 25px;
+  }
+
+  .meal-description {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .meal-plan-page {
+    padding: 25px 14px 50px;
+  }
+
+  .meal-plan-header h1 {
+    font-size: 30px;
+  }
+
+  .meal-plan-header p {
+    font-size: 13px;
+  }
+
+  .meal-card {
+    padding: 20px;
+    border-radius: 17px;
+  }
+
+  .change-recommendation-btn {
+    width: 100%;
+  }
+
+  .plan-footer {
+    align-items: flex-start;
+  }
+}
+/* =========================================================
+   USER FEEDBACK
+========================================================= */
+
+.feedback-section {
+  max-width: 850px;
+  margin: 35px auto 0;
+  padding: 26px 28px;
+  background: #ffffff;
+  border: 1px solid #e4e9e1;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(48, 78, 56, 0.05);
+}
+
+.feedback-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.feedback-icon {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 13px;
+  background: #e7efe4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+}
+
+.feedback-header span {
+  color: #829384;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.feedback-header h2 {
+  margin: 4px 0 5px;
+  color: #2d5438;
+  font-size: 21px;
+}
+
+.feedback-header p {
+  margin: 0;
+  color: #858e87;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.feedback-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 16px;
+  border: 1px solid #dfe6dc;
+  border-radius: 13px;
+  background: #fafbf9;
+  color: #405a46;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.feedback-input::placeholder {
+  color: #a2aaa4;
+}
+
+.feedback-input:focus {
+  border-color: #9fba9e;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(95, 139, 103, 0.08);
+}
+
+.feedback-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.character-count {
+  color: #9aa19c;
+  font-size: 10px;
+}
+
+.submit-feedback-btn {
+  padding: 11px 21px;
+  border: none;
+  border-radius: 10px;
+  background: #4f7c59;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.submit-feedback-btn:hover:not(:disabled) {
+  background: #3f6949;
+  transform: translateY(-1px);
+}
+
+.submit-feedback-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.feedback-success {
+  margin-top: 13px;
+  padding: 10px 13px;
+  border-radius: 9px;
+  background: #edf6ea;
+  color: #4b7654;
+  font-size: 11px;
+}
+
+.feedback-error {
+  margin-top: 13px;
+  padding: 10px 13px;
+  border-radius: 9px;
+  background: #fff3f0;
+  color: #a45e52;
+  font-size: 11px;
+}
+
+/* =========================================================
+   FEEDBACK RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .feedback-section {
+    padding: 21px 18px;
+    border-radius: 17px;
+  }
+
+  .feedback-header {
+    gap: 10px;
+  }
+
+  .feedback-header h2 {
+    font-size: 18px;
+  }
+
+  .feedback-header p {
+    font-size: 11px;
+  }
+
+  .feedback-bottom {
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .submit-feedback-btn {
+    padding: 10px 15px;
+  }
+}
+/* =========================================================
+   FEEDBACK MEAL SELECTION
+========================================================= */
+
+.feedback-meal-select {
+  margin-bottom: 22px;
+}
+
+.feedback-meal-select label {
+  display: block;
+  margin-bottom: 9px;
+  color: #405a46;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.feedback-meal-select select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #dfe6dc;
+  border-radius: 12px;
+  background: #fafbf9;
+  color: #405a46;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.feedback-meal-select select:focus {
+  border-color: #9fba9e;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(95, 139, 103, 0.08);
+}
+
+/* =========================================================
+   FOLLOWED YES / NO
+========================================================= */
+
+.followed-section {
+  margin-bottom: 20px;
+}
+
+.followed-section label {
+  display: block;
+  margin-bottom: 10px;
+  color: #405a46;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.followed-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.followed-btn {
+  min-width: 90px;
+  padding: 10px 20px;
+  border: 1px solid #dfe6dc;
+  border-radius: 10px;
+  background: #fafbf9;
+  color: #54745b;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.followed-btn:hover {
+  background: #edf4ea;
+  border-color: #bcd0b8;
+  transform: translateY(-1px);
+}
+
+.followed-btn.selected {
+  background: #4f7c59;
+  border-color: #4f7c59;
+  color: #ffffff;
+}
+
+.followed-btn.selected.no-selected {
+  background: #8a625b;
+  border-color: #8a625b;
+}
+
+/* =========================================================
+   FEEDBACK MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .feedback-meal-select select {
+    font-size: 12px;
+    padding: 11px 12px;
+  }
+
+  .followed-buttons {
+    width: 100%;
+  }
+
+  .followed-btn {
+    flex: 1;
+  }
+}
+
+
+
+
+

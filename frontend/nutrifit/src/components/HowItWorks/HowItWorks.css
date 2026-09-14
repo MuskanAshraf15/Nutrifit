@@ -1,0 +1,295 @@
+
+/* ===== HOW IT WORKS ===== */
+
+.how-section {
+  width: 100%;
+  padding: 90px 60px 100px;
+  background: #ffffff;
+}
+
+/* ===== HEADER ===== */
+
+.how-header {
+  max-width: 720px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.how-eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #6ba84f;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.how-heading {
+  margin: 0;
+  color: #2f5d33;
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.how-heading span {
+  color: #77b63c;
+}
+
+.how-subheading {
+  max-width: 620px;
+  margin: 18px auto 0;
+  color: #666;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* ===== STEPS CONTAINER ===== */
+
+.how-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* ===== CARD ===== */
+
+.how-card {
+  flex: 1;
+  min-width: 0;
+  background: #fbfaf6;
+  border: 1px solid #e6eedf;
+  border-radius: 20px;
+  padding: 26px 20px 28px;
+  text-align: center;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.how-card:hover {
+  transform: translateY(-7px);
+  border-color: #b8dd9a;
+  box-shadow: 0 16px 30px rgba(47, 93, 51, 0.12);
+}
+
+/* ===== CARD TOP ===== */
+
+.how-top {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.how-number {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  color: #b4c9a4;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.how-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    #e3f2d7,
+    #c4e3a8
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27px;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.how-card:hover .how-icon {
+  transform: scale(1.08);
+}
+
+/* ===== CARD TEXT ===== */
+
+.how-card h3 {
+  margin: 0 0 10px;
+  color: #243b25;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.how-card p {
+  margin: 0;
+  color: #6a6a6a;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ===== CONNECTOR ===== */
+
+.how-connector {
+  width: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.how-connector span {
+  color: #9ac477;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* ===== BOTTOM MESSAGE ===== */
+
+.how-bottom {
+  max-width: 850px;
+  margin: 55px auto 0;
+  padding: 25px 30px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  background: #f4f8ef;
+  border: 1px solid #dfead5;
+  border-radius: 18px;
+}
+
+.how-bottom-icon {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+  background: #dcefc9;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+}
+
+.how-bottom h3 {
+  margin: 0 0 6px;
+  color: #2f5d33;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.how-bottom p {
+  margin: 0;
+  color: #666;
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+/* ===== TABLET ===== */
+
+@media (max-width: 1100px) {
+
+  .how-section {
+    padding: 75px 35px 85px;
+  }
+
+  .how-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .how-connector {
+    display: none;
+  }
+
+  .how-card {
+    padding: 25px 18px;
+  }
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 700px) {
+
+  .how-section {
+    padding: 65px 24px 75px;
+  }
+
+  .how-heading {
+    font-size: 29px;
+  }
+
+  .how-subheading {
+    font-size: 14px;
+  }
+
+  .how-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .how-card {
+    padding: 28px 24px;
+  }
+
+  .how-number {
+    left: 5px;
+  }
+
+  .how-bottom {
+    padding: 22px;
+    align-items: flex-start;
+  }
+
+  .how-bottom-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 21px;
+  }
+
+  .how-bottom h3 {
+    font-size: 16px;
+  }
+
+  .how-bottom p {
+    font-size: 13px;
+  }
+}
+
+/* ===== SMALL MOBILE ===== */
+
+@media (max-width: 450px) {
+
+  .how-section {
+    padding: 55px 18px 65px;
+  }
+
+  .how-heading {
+    font-size: 26px;
+  }
+
+  .how-card {
+    padding: 25px 20px;
+  }
+
+  .how-bottom {
+    gap: 13px;
+    padding: 18px;
+  }
+}
+

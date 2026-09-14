@@ -1,0 +1,234 @@
+/* =====================================================
+   FONT IMPORT — Poppins (NutriFit logo jaisi feel)
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* Apply globally */
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+}
+
+/* =====================================================
+   NUTRIFIT LOGO — SVG icon + two-tone text
+   ===================================================== */
+
+.navbar-logo a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0px;
+}
+
+/* SVG leaf icon — exactly like your image */
+.navbar-logo a::before {
+  content: '';
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23e8f5e9' stroke='%2343e067' stroke-width='5'/%3E%3Cpath d='M50 20 C30 20 18 35 18 55 C18 72 32 82 50 82 C50 82 50 60 50 55 C50 50 56 44 68 38 C62 28 56 20 50 20Z' fill='%232e7d32'/%3E%3Cline x1='50' y1='55' x2='50' y2='82' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3Cline x1='50' y1='62' x2='38' y2='52' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='50' y1='70' x2='62' y2='60' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex-shrink: 0;
+}
+
+/* "Nutri" — dark green */
+.navbar-logo a .logo-nutri {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1b5e20;
+  letter-spacing: -0.3px;
+}
+
+/* "Fit" — lighter green */
+.navbar-logo a .logo-fit {
+  font-size: 24px;
+  font-weight: 800;
+  color: #43a047;
+  letter-spacing: -0.3px;
+}
+
+/* Navigation */
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333333;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: #2e7d32;
+}
+
+.nav-link.active {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+/* Profile */
+
+.navbar-profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile-link {
+  text-decoration: none;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #eeeeee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+/* Hamburger */
+
+.hamburger {
+  display: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 5px;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #333333;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+
+/* =====================================================
+   TABLET / MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    height: 55px;
+    padding: 0 20px;
+  }
+
+  .navbar-logo a::before {
+    width: 30px;
+    height: 30px;
+  }
+
+  .navbar-logo a .logo-nutri,
+  .navbar-logo a .logo-fit {
+    font-size: 21px;
+  }
+
+  .hamburger {
+    display: flex;
+    margin-left: auto;
+    margin-right: 15px;
+  }
+
+  .navbar-links {
+    display: none;
+    position: absolute;
+    top: 55px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #eeeeee;
+    box-sizing: border-box;
+  }
+
+  .navbar-links.menu-open {
+    display: flex;
+  }
+
+  .navbar-links a {
+    width: 100%;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  .navbar-profile {
+    display: flex;
+  }
+
+  .profile-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 19px;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+   ===================================================== */
+
+@media (max-width: 480px) {
+
+  .navbar {
+    padding: 0 15px;
+  }
+
+  .navbar-logo a::before {
+    width: 28px;
+    height: 28px;
+  }
+
+  .navbar-logo a .logo-nutri,
+  .navbar-logo a .logo-fit {
+    font-size: 20px;
+  }
+
+  .hamburger {
+    margin-right: 10px;
+  }
+
+  .navbar-links a {
+    font-size: 15px;
+    padding: 11px 0;
+  }
+
+  .profile-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+}
