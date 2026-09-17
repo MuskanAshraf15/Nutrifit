@@ -101,16 +101,79 @@ function Profile() {
     }
   };
 
-  // Logout
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
+  // =========================
+  // LOGOUT
+  // =========================
+  const handleLogout = async () => {
+    const token = localStorage.getItem("token");
+
+    try {
+      if (token) {
+        await fetch(`${API_URL}/logout`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+      }
+    } catch (err) {
+      console.error("Logout Error:", err);
+    } finally {
+      // Logout only ends the login session.
+      // User database data will NOT be deleted.
+      localStorage.removeItem("token");
+      navigate("/login");
+    }
   };
 
-  // Sign Out
-  const handleSignOut = () => {
-    localStorage.clear();
-    navigate("/");
+  // =========================
+  // SIGN OUT / DELETE ACCOUNT
+  // =========================
+  const handleSignOut = async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      localStorage.clear();
+      navigate("/");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/delete_account`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      let data = {};
+
+      try {
+        data = await response.json();
+      } catch (err) {
+        console.error("Invalid response from server.");
+      }
+
+      if (response.ok && data.success) {
+        // Account and all related user data deleted.
+        localStorage.clear();
+        navigate("/");
+      } else {
+        alert(
+          data.message ||
+            "Unable to delete your account. Please try again."
+        );
+      }
+
+    } catch (err) {
+      console.error("Sign Out Error:", err);
+
+      alert(
+        "Unable to connect to the server. Please make sure your Flask backend is running."
+      );
+    }
   };
 
   // =========================
