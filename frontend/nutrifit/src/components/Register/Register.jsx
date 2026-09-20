@@ -159,7 +159,13 @@ function Register() {
 
         <div className="register-form-side">
 
-         
+          {/* LOGO */}
+          <div className="navbar-logo">
+            <a href="/">
+              <span className="logo-nutri">Nutri</span>
+              <span className="logo-fit">Fit</span>
+            </a>
+          </div>
 
           <h2>Create your account</h2>
 
@@ -218,7 +224,7 @@ function Register() {
 
                 <input
                   type={
-                    showPassword? "text": "password"
+                    showPassword ? "text" : "password"
                   }
                   name="password"
                   placeholder="Create a password"

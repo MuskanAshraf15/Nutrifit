@@ -40,7 +40,7 @@ function CreateAdmin() {
     try {
       setLoading(true);
 
-      const token = localStorage.getItem("adminToken");
+      const token = localStorage.getItem("admin_token");
 
       const response = await fetch(`${API_URL}/create_admin`, {
         method: "POST",

@@ -634,17 +634,36 @@ function AdminDashboard() {
     }
   };
 
-  // LOGOUT
+  // SIGN OUT + PERMANENTLY DELETE ADMIN ACCOUNT
 
-  const handleLogout = async () => {
-    try {
-      await fetch(`${API_BASE}/admin/logout`, {
-        method: "POST",
+const handleSignOut = async () => {
+  const confirmSignOut = window.confirm(
+    "Are you sure you want to sign out? Your admin account will be permanently deleted. This action cannot be undone."
+  );
+
+  if (!confirmSignOut) {
+    return;
+  }
+
+  clearMessages();
+  setLoading(true);
+
+  try {
+    const response = await fetch(
+      `${API_BASE}/admin/delete-account`,
+      {
+        method: "DELETE",
         headers: getAuthHeaders(),
         credentials: "include",
-      });
-    } catch (error) {
-      console.error("ADMIN LOGOUT ERROR:", error);
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        data.message || "Failed to delete admin account."
+      );
     }
 
     // Clear admin local storage
@@ -658,7 +677,14 @@ function AdminDashboard() {
     navigate("/admin/login", {
       replace: true,
     });
-  };
+
+  } catch (err) {
+    console.error("ADMIN SIGN OUT ERROR:", err);
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   // FORMAT DATE
 
@@ -1751,52 +1777,81 @@ function AdminDashboard() {
     );
   };
 
-  // SETTINGS SECTION
+ const handleLogout = () => {
+  const confirmLogout = window.confirm(
+    "Are you sure you want to logout?"
+  );
 
-  const renderSettings = () => {
-    return (
-      <>
-        <div className="admin-page-heading">
+  if (!confirmLogout) {
+    return;
+  }
+
+  localStorage.removeItem("admin_token");
+  localStorage.removeItem("admin_id");
+  localStorage.removeItem("admin_name");
+  localStorage.removeItem("admin_email");
+  localStorage.removeItem("adminLoggedIn");
+
+  navigate("/admin/login", {
+    replace: true,
+  });
+};
+
+
+// SETTINGS SECTION
+
+const renderSettings = () => {
+  return (
+    <>
+      <div className="admin-page-heading">
+        <div>
+          <h1>Settings</h1>
+          <p>View your administrator account information.</p>
+        </div>
+      </div>
+
+      <div className="admin-settings-card">
+        <div className="admin-profile-icon">👤</div>
+
+        <h2>{adminName}</h2>
+
+        <p>{adminEmail}</p>
+
+        <div className="admin-account-info">
           <div>
-            <h1>Settings</h1>
-            <p>View your administrator account information.</p>
+            <span>Admin ID</span>
+            <strong>#{adminId}</strong>
+          </div>
+
+          <div>
+            <span>Account Type</span>
+            <strong>Administrator</strong>
+          </div>
+
+          <div>
+            <span>Authentication</span>
+            <strong>JWT + Local Storage</strong>
           </div>
         </div>
 
-        <div className="admin-settings-card">
-          <div className="admin-profile-icon">👤</div>
+        <button
+          className="admin-logout-settings-btn"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
 
-          <h2>{adminName}</h2>
-
-          <p>{adminEmail}</p>
-
-          <div className="admin-account-info">
-            <div>
-              <span>Admin ID</span>
-              <strong>#{adminId}</strong>
-            </div>
-
-            <div>
-              <span>Account Type</span>
-              <strong>Administrator</strong>
-            </div>
-
-            <div>
-              <span>Authentication</span>
-              <strong>JWT + Local Storage</strong>
-            </div>
-          </div>
-
-          <button
-            className="admin-logout-settings-btn"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        </div>
-      </>
-    );
-  };
+        <button
+          className="admin-logout-settings-btn"
+          onClick={handleSignOut}
+          disabled={loading}
+        >
+          {loading ? "Signing Out..." : "Sign Out"}
+        </button>
+      </div>
+    </>
+  );
+};
 
   // SECTION CONTENT
 
@@ -1930,6 +1985,15 @@ function AdminDashboard() {
             Admins
           </button>
 
+          {/* CREATE NEW ADMIN - ADDED ONLY */}
+
+          <button
+            onClick={() => navigate("/admin/create")}
+          >
+            <span>➕</span>
+            Create New Admin
+          </button>
+
           <button
             className={activeSection === "settings" ? "active" : ""}
             onClick={() => setActiveSection("settings")}
@@ -1942,19 +2006,11 @@ function AdminDashboard() {
             className={activeSection === "settings" ? "active" : ""}
             onClick={() => navigate("/admin/login")}
           >
-            <span>⚙️</span>
+            <span>🔐</span>
             Login
           </button>
 
         </nav>
-
-        <button
-          className="admin-sidebar-logout"
-          onClick={handleLogout}
-        >
-          <span>↪</span>
-          Logout
-        </button>
 
       </aside>
 

@@ -7046,7 +7046,61 @@ def admin_logout():
         return jsonify({
             "success": False,
             "message": "Admin logout failed"
-        }), 500                            
+        }), 500                   
 
+@app.route("/admin/delete-account", methods=["DELETE", "OPTIONS"])
+def delete_admin_account():
+
+    # Allow browser CORS preflight request
+    if request.method == "OPTIONS":
+        return "", 204
+
+    # Check admin authentication
+    auth_error = admin_required()
+
+    if auth_error:
+        return auth_error
+
+    db = None
+    cursor = None
+
+    try:
+
+        admin_id = get_jwt_identity()
+
+        db = get_db_connection()
+        cursor = db.cursor()
+
+        cursor.execute(
+            "DELETE FROM admins WHERE id = %s",
+            (admin_id,)
+        )
+
+        db.commit()
+
+        return jsonify({
+            "success": True,
+            "message": "Admin account deleted successfully."
+        }), 200
+
+    except Exception as e:
+
+        if db:
+            db.rollback()
+
+        print("DELETE ADMIN ERROR:", e)
+
+        return jsonify({
+            "success": False,
+            "message": str(e)
+        }), 500
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        if db:
+            db.close()
 if __name__ == "__main__":
     app.run(debug=True)
