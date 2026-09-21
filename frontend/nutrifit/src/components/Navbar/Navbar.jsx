@@ -1,59 +1,12 @@
 import React, { useState } from "react";
-import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const navigate = useNavigate();
-  const location = useLocation();
-
   const closeMenu = () => {
     setMenuOpen(false);
-  };
-
-  const scrollToSection = (sectionId) => {
-    closeMenu();
-
-    if (location.pathname !== "/") {
-      navigate("/");
-
-      setTimeout(() => {
-        const section = document.getElementById(sectionId);
-
-        if (section) {
-          section.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }
-      }, 300);
-    } else {
-      const section = document.getElementById(sectionId);
-
-      if (section) {
-        section.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }
-  };
-
-  const handleHowItWorks = (e) => {
-    e.preventDefault();
-    scrollToSection("how-it-works");
-  };
-
-  const handleAbout = (e) => {
-    e.preventDefault();
-    scrollToSection("about");
-  };
-
-  // Contact Us function
-  const handleContact = (e) => {
-    e.preventDefault();
-    scrollToSection("contact");
   };
 
   return (
@@ -61,26 +14,29 @@ function Navbar() {
 
       {/* Logo */}
       <div className="navbar-logo">
-        <a href="/">
+        <Link to="/" onClick={closeMenu}>
           <span className="logo-nutri">Nutri</span>
           <span className="logo-fit">Fit</span>
-        </a>
+        </Link>
       </div>
 
       {/* Hamburger */}
       <button
+        type="button"
         className="hamburger"
         onClick={() => setMenuOpen(!menuOpen)}
         aria-label="Toggle navigation"
+        aria-expanded={menuOpen}
       >
         <span></span>
         <span></span>
         <span></span>
       </button>
 
-      {/* Navigation */}
+      {/* Navigation Links */}
       <div className={`navbar-links ${menuOpen ? "menu-open" : ""}`}>
 
+        {/* Home */}
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -91,30 +47,38 @@ function Navbar() {
           Home
         </NavLink>
 
-        <a
-          href="#how-it-works"
-          className="nav-link"
-          onClick={handleHowItWorks}
+        {/* How It Works */}
+        <NavLink
+          to="/works"
+          className={({ isActive }) =>
+            isActive ? "nav-link active" : "nav-link"
+          }
+          onClick={closeMenu}
         >
           How It Works
-        </a>
+        </NavLink>
 
-        <a
-          href="#about"
-          className="nav-link"
-          onClick={handleAbout}
+        {/* About Us */}
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive ? "nav-link active" : "nav-link"
+          }
+          onClick={closeMenu}
         >
           About Us
-        </a>
+        </NavLink>
 
         {/* Contact Us */}
-        <a
-          href="#contact"
-          className="nav-link"
-          onClick={handleContact}
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive ? "nav-link active" : "nav-link"
+          }
+          onClick={closeMenu}
         >
           Contact Us
-        </a>
+        </NavLink>
 
         {/* Progress */}
         <NavLink
@@ -127,6 +91,7 @@ function Navbar() {
           Progress
         </NavLink>
 
+        {/* Login */}
         <NavLink
           to="/login"
           className={({ isActive }) =>
@@ -144,7 +109,9 @@ function Navbar() {
         <NavLink
           to="/profile"
           className={({ isActive }) =>
-            isActive ? "profile-link profile-active" : "profile-link"
+            isActive
+              ? "profile-link profile-active"
+              : "profile-link"
           }
           onClick={closeMenu}
           aria-label="Profile"
