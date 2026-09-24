@@ -53,6 +53,8 @@ function AdminDashboard() {
   const [foodForm, setFoodForm] = useState(emptyFood);
   const [editingFoodId, setEditingFoodId] = useState(null);
   const [showFoodForm, setShowFoodForm] = useState(false);
+  const [foodErrors, setFoodErrors] = useState({});
+  const [originalNutrition, setOriginalNutrition] = useState(null);
 
   // FEEDBACK REPLY
 
@@ -298,6 +300,47 @@ function AdminDashboard() {
   const handleFoodChange = (e) => {
     const { name, value } = e.target;
 
+    setFoodErrors((previous) => ({
+      ...previous,
+      [name]: "",
+    }));
+
+    if (
+      name === "Serving_g" &&
+      editingFoodId &&
+      originalNutrition
+    ) {
+      const newServing = Number(value);
+      const baseServing = Number(originalNutrition.Serving_g);
+
+      if (
+        value !== "" &&
+        newServing > 0 &&
+        baseServing > 0
+      ) {
+        const multiplier = newServing / baseServing;
+
+        setFoodForm((previous) => ({
+          ...previous,
+          Serving_g: value,
+          Protein_g: (
+            Number(originalNutrition.Protein_g || 0) *
+            multiplier
+          ).toFixed(2),
+          Carbs_g: (
+            Number(originalNutrition.Carbs_g || 0) *
+            multiplier
+          ).toFixed(2),
+          Fat_g: (
+            Number(originalNutrition.Fat_g || 0) *
+            multiplier
+          ).toFixed(2),
+        }));
+
+        return;
+      }
+    }
+
     setFoodForm((previous) => ({
       ...previous,
       [name]: value,
@@ -308,6 +351,8 @@ function AdminDashboard() {
 
   const openAddFood = () => {
     clearMessages();
+    setFoodErrors({});
+    setOriginalNutrition(null);
     setEditingFoodId(null);
     setFoodForm(emptyFood);
     setShowFoodForm(true);
@@ -317,8 +362,18 @@ function AdminDashboard() {
 
   const openEditFood = (food) => {
     clearMessages();
+    setFoodErrors({});
 
     setEditingFoodId(food.Food_ID);
+
+    setOriginalNutrition({
+      Serving_g: Number(food.Serving_g) > 0
+        ? Number(food.Serving_g)
+        : 100,
+      Protein_g: Number(food.Protein_g) || 0,
+      Carbs_g: Number(food.Carbs_g) || 0,
+      Fat_g: Number(food.Fat_g) || 0,
+    });
 
     setFoodForm({
       Food_Name: food.Food_Name || "",
@@ -345,24 +400,74 @@ function AdminDashboard() {
 
     clearMessages();
 
+    const validationErrors = {};
+
     if (!foodForm.Food_Name.trim()) {
-      setError("Food name is required.");
-      return;
+      validationErrors.Food_Name =
+        "Food name is required.";
     }
 
     if (!foodForm.Meal_Type) {
-      setError("Meal type is required.");
-      return;
+      validationErrors.Meal_Type =
+        "Meal type is required.";
     }
+
+    const calories = Number(foodForm.Calories);
+    const serving = Number(foodForm.Serving_g);
+    const estimatedCost = Number(foodForm.Estimated_Cost);
+    const protein = Number(foodForm.Protein_g || 0);
+    const carbs = Number(foodForm.Carbs_g || 0);
+    const fat = Number(foodForm.Fat_g || 0);
 
     if (
       foodForm.Calories === "" ||
-      foodForm.Calories === null
+      !Number.isFinite(calories) ||
+      calories <= 0
     ) {
-      setError("Calories are required.");
+      validationErrors.Calories =
+        "Calories must be greater than 0.";
+    }
+
+    if (
+      foodForm.Serving_g === "" ||
+      !Number.isFinite(serving) ||
+      serving <= 0
+    ) {
+      validationErrors.Serving_g =
+        "Serving must be greater than 0 grams.";
+    }
+
+    if (
+      foodForm.Estimated_Cost === "" ||
+      !Number.isFinite(estimatedCost) ||
+      estimatedCost <= 0
+    ) {
+      validationErrors.Estimated_Cost =
+        "Estimated cost must be greater than 0.";
+    }
+
+    if (!Number.isFinite(protein) || protein < 0) {
+      validationErrors.Protein_g =
+        "Protein cannot be negative.";
+    }
+
+    if (!Number.isFinite(carbs) || carbs < 0) {
+      validationErrors.Carbs_g =
+        "Carbs cannot be negative.";
+    }
+
+    if (!Number.isFinite(fat) || fat < 0) {
+      validationErrors.Fat_g =
+        "Fat cannot be negative.";
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setFoodErrors(validationErrors);
+      setError("Please correct the highlighted food values.");
       return;
     }
 
+    setFoodErrors({});
     setLoading(true);
 
     try {
@@ -393,6 +498,8 @@ function AdminDashboard() {
 
       setShowFoodForm(false);
       setEditingFoodId(null);
+      setOriginalNutrition(null);
+      setFoodErrors({});
       setFoodForm(emptyFood);
 
       await loadFoods();
@@ -995,12 +1102,18 @@ const handleSignOut = async () => {
                 <div className="admin-form-group">
                   <label>Food Name *</label>
                   <input
+                    className={foodErrors.Food_Name ? "admin-input-error" : ""}
                     type="text"
                     name="Food_Name"
                     value={foodForm.Food_Name}
                     onChange={handleFoodChange}
                     placeholder="Food name"
                   />
+                  {foodErrors.Food_Name && (
+                    <span className="admin-field-error">
+                      {foodErrors.Food_Name}
+                    </span>
+                  )}
                 </div>
 
                 <div className="admin-form-group">
@@ -1019,61 +1132,103 @@ const handleSignOut = async () => {
                 <div className="admin-form-group">
                   <label>Calories *</label>
                   <input
+                    className={foodErrors.Calories ? "admin-input-error" : ""}
                     type="number"
                     step="0.01"
+                    min="0.01"
                     name="Calories"
                     value={foodForm.Calories}
                     onChange={handleFoodChange}
                     placeholder="Calories"
                   />
+                  {foodErrors.Calories && (
+                    <span className="admin-field-error">
+                      {foodErrors.Calories}
+                    </span>
+                  )}
                 </div>
 
                 <div className="admin-form-group">
                   <label>Protein (g)</label>
                   <input
+                    className={foodErrors.Protein_g ? "admin-input-error" : ""}
                     type="number"
                     step="0.01"
+                    min="0"
                     name="Protein_g"
                     value={foodForm.Protein_g}
                     onChange={handleFoodChange}
                     placeholder="Protein"
                   />
+                  {foodErrors.Protein_g && (
+                    <span className="admin-field-error">
+                      {foodErrors.Protein_g}
+                    </span>
+                  )}
                 </div>
 
                 <div className="admin-form-group">
                   <label>Carbs (g)</label>
                   <input
+                    className={foodErrors.Carbs_g ? "admin-input-error" : ""}
                     type="number"
                     step="0.01"
+                    min="0"
                     name="Carbs_g"
                     value={foodForm.Carbs_g}
                     onChange={handleFoodChange}
                     placeholder="Carbs"
                   />
+                  {foodErrors.Carbs_g && (
+                    <span className="admin-field-error">
+                      {foodErrors.Carbs_g}
+                    </span>
+                  )}
                 </div>
 
                 <div className="admin-form-group">
                   <label>Fat (g)</label>
                   <input
+                    className={foodErrors.Fat_g ? "admin-input-error" : ""}
                     type="number"
                     step="0.01"
+                    min="0"
                     name="Fat_g"
                     value={foodForm.Fat_g}
                     onChange={handleFoodChange}
                     placeholder="Fat"
                   />
+                  {foodErrors.Fat_g && (
+                    <span className="admin-field-error">
+                      {foodErrors.Fat_g}
+                    </span>
+                  )}
                 </div>
 
                 <div className="admin-form-group">
                   <label>Serving (g)</label>
                   <input
+                    className={foodErrors.Serving_g ? "admin-input-error" : ""}
                     type="number"
                     step="0.01"
+                    min="0.01"
                     name="Serving_g"
                     value={foodForm.Serving_g}
                     onChange={handleFoodChange}
                     placeholder="Serving"
                   />
+                  {foodErrors.Serving_g && (
+                    <span className="admin-field-error">
+                      {foodErrors.Serving_g}
+                    </span>
+                  )}
+
+                  {editingFoodId && (
+                    <span className="admin-auto-note">
+                      Changing serving automatically adjusts protein,
+                      carbs and fat.
+                    </span>
+                  )}
                 </div>
 
                 <div className="admin-form-group">
@@ -1137,13 +1292,20 @@ const handleSignOut = async () => {
                 <div className="admin-form-group">
                   <label>Estimated Cost</label>
                   <input
+                    className={foodErrors.Estimated_Cost ? "admin-input-error" : ""}
                     type="number"
                     step="0.01"
+                    min="0.01"
                     name="Estimated_Cost"
                     value={foodForm.Estimated_Cost}
                     onChange={handleFoodChange}
                     placeholder="Estimated cost"
                   />
+                  {foodErrors.Estimated_Cost && (
+                    <span className="admin-field-error">
+                      {foodErrors.Estimated_Cost}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -1983,15 +2145,6 @@ const renderSettings = () => {
           >
             <span>🛡️</span>
             Admins
-          </button>
-
-          {/* CREATE NEW ADMIN - ADDED ONLY */}
-
-          <button
-            onClick={() => navigate("/admin/create")}
-          >
-            <span>➕</span>
-            Create New Admin
           </button>
 
           <button

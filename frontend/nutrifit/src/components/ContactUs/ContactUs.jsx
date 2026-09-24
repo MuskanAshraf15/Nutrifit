@@ -6,14 +6,11 @@ function Contact() {
     e.preventDefault();
 
     alert("Thank you! Your message has been submitted successfully.");
-
     e.target.reset();
   };
 
   return (
     <section className="contact-section" id="contact">
-
-      {/* Heading */}
       <div className="contact-header">
         <span className="contact-eyebrow">CONTACT US</span>
 
@@ -26,13 +23,8 @@ function Contact() {
       </div>
 
       <div className="contact-container">
-
-        {/* Left Side */}
         <div className="contact-info">
-
-          <span className="contact-small-title">
-            GET IN TOUCH
-          </span>
+          <span className="contact-small-title">GET IN TOUCH</span>
 
           <h3>Need Help?</h3>
 
@@ -42,9 +34,7 @@ function Contact() {
             you can contact our admin team through this form.
           </p>
 
-          {/* Instructions */}
           <div className="contact-instructions">
-
             <h4>How to Contact Admin</h4>
 
             <div className="instruction-item">
@@ -80,10 +70,8 @@ function Contact() {
                 </p>
               </div>
             </div>
-
           </div>
 
-          {/* Note */}
           <div className="contact-note">
             <span>💡</span>
 
@@ -92,14 +80,10 @@ function Contact() {
               we can help you more effectively.
             </p>
           </div>
-
         </div>
 
-        {/* Right Side - Form */}
         <div className="contact-form-box">
-
           <form onSubmit={handleSubmit}>
-
             <div className="form-group">
               <label htmlFor="name">Name</label>
 
@@ -145,22 +129,15 @@ function Contact() {
                 rows="6"
                 placeholder="Write your message here..."
                 required
-              ></textarea>
+              />
             </div>
 
-            <button
-              type="submit"
-              className="contact-submit-btn"
-            >
+            <button type="submit" className="contact-submit-btn">
               Send Message →
             </button>
-
           </form>
-
         </div>
-
       </div>
-
     </section>
   );
 }

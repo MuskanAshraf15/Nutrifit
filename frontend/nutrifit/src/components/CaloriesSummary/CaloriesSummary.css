@@ -1,72 +1,46 @@
-/* =====================================================
-   CALORIES SUMMARY
-===================================================== */
-
 .calories-summary {
   min-height: calc(100vh - 80px);
   background: #fbfaf6;
-
   padding: 65px 20px 80px;
-
   box-sizing: border-box;
 }
 
 .summary-wrapper {
   width: 100%;
   max-width: 850px;
-
   margin: 0 auto;
 }
 
-
-/* =====================================================
-   HEADER
-===================================================== */
-
 .summary-header {
   text-align: center;
-
   margin-bottom: 35px;
 }
 
 .summary-icon {
   width: 65px;
   height: 65px;
-
   margin: 0 auto 15px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: #e7f2dc;
-
   border-radius: 50%;
-
   font-size: 32px;
 }
 
 .summary-header > span {
   display: block;
-
   color: #8db956;
-
   font-size: 12px;
-
   font-weight: 800;
-
   letter-spacing: 2px;
-
   margin-bottom: 8px;
 }
 
 .summary-header h1 {
   margin: 0;
-
   color: #294c2d;
-
   font-size: 38px;
-
   font-weight: 700;
 }
 
@@ -76,54 +50,28 @@
 
 .summary-header p {
   max-width: 600px;
-
   margin: 12px auto 0;
-
   color: #70796d;
-
   font-size: 14px;
-
   line-height: 1.7;
 }
 
-
-/* =====================================================
-   SUMMARY CARD
-===================================================== */
-
 .summary-card {
   background: #ffffff;
-
   border: 1px solid #e3ebdc;
-
   border-radius: 24px;
-
   overflow: hidden;
-
-  box-shadow:
-    0 15px 40px rgba(47, 93, 51, 0.09);
+  box-shadow: 0 15px 40px rgba(47, 93, 51, 0.09);
 }
-
-
-/* =====================================================
-   SUMMARY ITEM
-===================================================== */
 
 .summary-item {
   min-height: 120px;
-
   padding: 24px 30px;
-
   display: flex;
-
   align-items: center;
-
   gap: 20px;
-
   box-sizing: border-box;
-
   border-bottom: 1px solid #edf1e9;
-
   transition: background 0.2s ease;
 }
 
@@ -135,33 +83,17 @@
   background: #fbfcf9;
 }
 
-
-/* =====================================================
-   ICON
-===================================================== */
-
 .item-icon {
   width: 58px;
   height: 58px;
-
   min-width: 58px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   background: #edf5e7;
-
   border-radius: 15px;
-
   font-size: 26px;
 }
-
-
-/* =====================================================
-   INFORMATION
-===================================================== */
 
 .item-info {
   flex: 1;
@@ -169,54 +101,35 @@
 
 .item-info > span {
   display: block;
-
   color: #7b8577;
-
   font-size: 11px;
-
   font-weight: 800;
-
   letter-spacing: 1px;
-
   margin-bottom: 5px;
 }
 
 .item-info h2 {
   margin: 0;
-
   color: #2f5d33;
-
   font-size: 25px;
-
   font-weight: 750;
 }
 
 .item-info h2 small {
   font-size: 13px;
-
   color: #72806f;
-
   font-weight: 500;
 }
 
 .item-info p {
   margin: 4px 0 0;
-
   color: #8a9385;
-
   font-size: 12px;
 }
 
-
-/* =====================================================
-   RECOMMENDED CALORIES
-===================================================== */
-
 .summary-item.recommended {
   background: #eef7e8;
-
   border-bottom: none;
-
   padding-top: 27px;
   padding-bottom: 27px;
 }
@@ -227,7 +140,6 @@
 
 .summary-item.recommended .item-info h2 {
   color: #6d9c3d;
-
   font-size: 29px;
 }
 
@@ -235,48 +147,27 @@
   color: #709a45;
 }
 
-
-/* =====================================================
-   BUTTON
-===================================================== */
-
 .plan-section {
   text-align: center;
-
   margin-top: 30px;
 }
 
 .full-plan-btn {
   width: 100%;
   max-width: 400px;
-
   padding: 16px 25px;
-
   border: none;
-
   border-radius: 12px;
-
   background: #2f5d33;
-
   color: #ffffff;
-
   font-size: 16px;
-
   font-weight: 700;
-
   cursor: pointer;
-
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 12px;
-
-  box-shadow:
-    0 10px 25px rgba(47, 93, 51, 0.18);
-
+  box-shadow: 0 10px 25px rgba(47, 93, 51, 0.18);
   transition:
     background 0.25s ease,
     transform 0.25s ease,
@@ -285,16 +176,12 @@
 
 .full-plan-btn:hover {
   background: #244a29;
-
   transform: translateY(-3px);
-
-  box-shadow:
-    0 14px 30px rgba(47, 93, 51, 0.23);
+  box-shadow: 0 14px 30px rgba(47, 93, 51, 0.23);
 }
 
 .full-plan-btn span {
   font-size: 21px;
-
   transition: transform 0.25s ease;
 }
 
@@ -302,170 +189,52 @@
   transform: translateX(5px);
 }
 
-
-/* =====================================================
-   NO DATA
-===================================================== */
-
 .no-data {
   padding: 50px 30px;
-
   text-align: center;
 }
 
 .no-data h2 {
   margin: 0 0 10px;
-
   color: #2f5d33;
 }
 
 .no-data p {
   color: #727b70;
-
   font-size: 14px;
-
   margin-bottom: 25px;
 }
 
 .summary-btn {
   border: none;
-
   padding: 13px 25px;
-
   border-radius: 10px;
-
   background: #2f5d33;
-
   color: #ffffff;
-
   font-weight: 700;
-
   cursor: pointer;
 }
 
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 700px) {
-
-  .calories-summary {
-    padding: 45px 15px 60px;
-  }
-
-  .summary-header h1 {
-    font-size: 31px;
-  }
-
-  .summary-item {
-    padding: 22px 20px;
-  }
-
+.back-profile-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: #3f6f4a;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 18px;
+  transition: all 0.3s ease;
 }
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 480px) {
-
-  .calories-summary {
-    padding: 35px 12px 50px;
-  }
-
-  .summary-header {
-    margin-bottom: 25px;
-  }
-
-  .summary-icon {
-    width: 55px;
-    height: 55px;
-
-    font-size: 27px;
-  }
-
-  .summary-header > span {
-    font-size: 10px;
-  }
-
-  .summary-header h1 {
-    font-size: 27px;
-  }
-
-  .summary-header p {
-    font-size: 13px;
-  }
-
-  .summary-card {
-    border-radius: 18px;
-  }
-
-  .summary-item {
-    min-height: 105px;
-
-    padding: 19px 16px;
-
-    gap: 14px;
-  }
-
-  .item-icon {
-    width: 48px;
-    height: 48px;
-
-    min-width: 48px;
-
-    font-size: 22px;
-
-    border-radius: 12px;
-  }
-
-  .item-info > span {
-    font-size: 9px;
-  }
-
-  .item-info h2 {
-    font-size: 21px;
-  }
-
-  .item-info h2 small {
-    font-size: 11px;
-  }
-
-  .item-info p {
-    font-size: 10px;
-  }
-
-  .summary-item.recommended .item-info h2 {
-    font-size: 24px;
-  }
-
-  .full-plan-btn {
-    max-width: 100%;
-
-    font-size: 14px;
-  }
-
+.back-profile-btn:hover {
+  color: #2f5939;
+  transform: translateX(-4px);
 }
-/* BACK TO PROFILE BUTTON */ .back-profile-btn { 
-    display: inline-flex; 
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    border: none; 
-    color: #3f6f4a; 
-    font-size: 15px; 
-    font-weight: 600; 
-    cursor: pointer; 
-    padding: 8px 0; 
-    margin-bottom: 18px; 
-    transition: all 0.3s ease; 
-} 
-.back-profile-btn:hover { 
-    color: #2f5939; 
-    transform: translateX(-4px); 
-}
+
 .goal-warning {
   width: 100%;
   max-width: 900px;
@@ -501,4 +270,89 @@
   display: block;
   font-size: 14px;
   line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .calories-summary {
+    padding: 45px 15px 60px;
+  }
+
+  .summary-header h1 {
+    font-size: 31px;
+  }
+
+  .summary-item {
+    padding: 22px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calories-summary {
+    padding: 35px 12px 50px;
+  }
+
+  .summary-header {
+    margin-bottom: 25px;
+  }
+
+  .summary-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 27px;
+  }
+
+  .summary-header > span {
+    font-size: 10px;
+  }
+
+  .summary-header h1 {
+    font-size: 27px;
+  }
+
+  .summary-header p {
+    font-size: 13px;
+  }
+
+  .summary-card {
+    border-radius: 18px;
+  }
+
+  .summary-item {
+    min-height: 105px;
+    padding: 19px 16px;
+    gap: 14px;
+  }
+
+  .item-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    font-size: 22px;
+    border-radius: 12px;
+  }
+
+  .item-info > span {
+    font-size: 9px;
+  }
+
+  .item-info h2 {
+    font-size: 21px;
+  }
+
+  .item-info h2 small {
+    font-size: 11px;
+  }
+
+  .item-info p {
+    font-size: 10px;
+  }
+
+  .summary-item.recommended .item-info h2 {
+    font-size: 24px;
+  }
+
+  .full-plan-btn {
+    max-width: 100%;
+    font-size: 14px;
+  }
 }

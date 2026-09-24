@@ -1,20 +1,116 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./GetStarted.css";
 
 function GetStarted() {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [formData, setFormData] = useState({
-    age: "",
-    gender: "",
-    weight: "",
-    height: "",
-    activity_level: "",
-    goal: "",
-    food_preference: "",
-    budget_level: "",
+  const isEditMode = location.state?.editMode === true;
+
+  const [formData, setFormData] = useState(() => {
+    const token = localStorage.getItem("token");
+    const savedToken = localStorage.getItem("getStartedFormToken");
+    const savedFormData = localStorage.getItem("getStartedFormData");
+
+    if (savedFormData && token && savedToken === token) {
+      try {
+        return JSON.parse(savedFormData);
+      } catch (error) {
+        console.error("SAVED FORM DATA ERROR:", error);
+      }
+    }
+
+    return {
+      age: "",
+      gender: "",
+      weight: "",
+      height: "",
+      activity_level: "",
+      goal: "",
+      food_preference: "",
+      budget_level: "",
+    };
   });
+
+  useEffect(() => {
+    const loadExistingProfile = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        return;
+      }
+
+      const savedToken = localStorage.getItem("getStartedFormToken");
+      const savedFormData = localStorage.getItem("getStartedFormData");
+
+      if (savedFormData && savedToken === token) {
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          "http://127.0.0.1:5000/my_profile",
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          return;
+        }
+
+        const data = await response.json();
+
+        if (data.success && data.user) {
+          const existingProfile = {
+            age: data.user.age ?? "",
+            gender: data.user.gender ?? "",
+            weight: data.user.weight ?? "",
+            height: data.user.height ?? "",
+            activity_level:
+              data.user.activity_level ?? "",
+            goal: data.user.goal ?? "",
+            food_preference:
+              data.user.food_preference ?? "",
+            budget_level:
+              data.user.budget_level ?? "",
+          };
+
+          setFormData(existingProfile);
+        }
+      } catch (error) {
+        console.error(
+          "LOAD EXISTING PROFILE ERROR:",
+          error
+        );
+      }
+    };
+
+    loadExistingProfile();
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      return;
+    }
+
+    localStorage.setItem(
+      "getStartedFormData",
+      JSON.stringify(formData)
+    );
+
+    localStorage.setItem(
+      "getStartedFormToken",
+      token
+    );
+  }, [formData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,10 +128,6 @@ function GetStarted() {
     const weight = Number(formData.weight);
     const height = Number(formData.height);
 
-    // -----------------------------------------
-    // VALIDATION
-    // -----------------------------------------
-
     if (age < 10 || age > 100) {
       alert("Age must be between 10 and 100 years.");
       return;
@@ -52,9 +144,6 @@ function GetStarted() {
     }
 
     try {
-      // -----------------------------------------
-      // GET JWT TOKEN
-      // -----------------------------------------
 
       const token = localStorage.getItem("token");
 
@@ -63,10 +152,6 @@ function GetStarted() {
         navigate("/login");
         return;
       }
-
-      // -----------------------------------------
-      // STEP 1: SAVE PROFILE
-      // -----------------------------------------
 
       const saveProfileResponse = await fetch(
         "http://127.0.0.1:5000/save_profile",
@@ -100,10 +185,6 @@ function GetStarted() {
         );
         return;
       }
-
-      // -----------------------------------------
-      // STEP 2: SAVE INITIAL WEIGHT PROGRESS
-      // -----------------------------------------
 
       const progressResponse = await fetch(
         "http://127.0.0.1:5000/progress",
@@ -140,10 +221,6 @@ function GetStarted() {
         return;
       }
 
-      // -----------------------------------------
-      // STEP 3: CALCULATE CALORIES
-      // -----------------------------------------
-
       const response = await fetch(
         "http://127.0.0.1:5000/calculate_calories",
         {
@@ -173,14 +250,15 @@ function GetStarted() {
         return;
       }
 
-      // -----------------------------------------
-      // STEP 4: GO TO CALORIES SUMMARY
-      // -----------------------------------------
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "auto",
+      });
 
       navigate("/calories-summary", {
         state: {
           ...formData,
-
           bmi: result.bmi,
           category: result.category,
           bmr: result.bmr,
@@ -188,8 +266,18 @@ function GetStarted() {
             result.maintenance_calories,
           daily_calories:
             result.daily_calories,
-            goal_check: result.goal_check,
+          goal_check: result.goal_check,
         },
+      });
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "auto",
+          });
+        });
       });
     } catch (error) {
       console.error(
@@ -208,33 +296,37 @@ function GetStarted() {
 
       <div className="get-started-card">
 
-        {/* Header */}
         <div className="get-started-header">
 
           <div className="get-started-icon">
             🥗
           </div>
 
-          <span>GET STARTED</span>
+          <span>
+            {isEditMode ? "EDIT PROFILE" : "GET STARTED"}
+          </span>
 
           <h1>
-            Tell Us About <strong>You</strong>
+            {isEditMode ? (
+              <>Edit <strong>Profile</strong></>
+            ) : (
+              <>Tell Us About <strong>You</strong></>
+            )}
           </h1>
 
           <p>
-            Enter your information to get personalized
-            calorie-based food recommendations.
+            {isEditMode
+              ? "Update your personal information below."
+              : "Enter your information to get personalized calorie-based food recommendations."}
           </p>
 
         </div>
 
-        {/* Form */}
         <form
           className="profile-form"
           onSubmit={handleSubmit}
         >
 
-          {/* Age */}
           <div className="form-field">
 
             <label htmlFor="age">
@@ -259,7 +351,6 @@ function GetStarted() {
 
           </div>
 
-          {/* Gender */}
           <div className="form-field">
 
             <label htmlFor="gender">
@@ -290,7 +381,6 @@ function GetStarted() {
 
           </div>
 
-          {/* Weight */}
           <div className="form-field">
 
             <label htmlFor="weight">
@@ -316,7 +406,6 @@ function GetStarted() {
 
           </div>
 
-          {/* Height */}
           <div className="form-field">
 
             <label htmlFor="height">
@@ -342,7 +431,6 @@ function GetStarted() {
 
           </div>
 
-          {/* Activity Level */}
           <div className="form-field">
 
             <label htmlFor="activity_level">
@@ -381,7 +469,6 @@ function GetStarted() {
 
           </div>
 
-          {/* Goal */}
           <div className="form-field">
 
             <label htmlFor="goal">
@@ -416,7 +503,6 @@ function GetStarted() {
 
           </div>
 
-          {/* Food Preference */}
           <div className="form-field">
 
             <label htmlFor="food_preference">
@@ -451,7 +537,6 @@ function GetStarted() {
 
           </div>
 
-          {/* Budget */}
           <div className="form-field">
 
             <label htmlFor="budget_level">
@@ -486,7 +571,6 @@ function GetStarted() {
 
           </div>
 
-          {/* Button */}
           <button
             type="submit"
             className="calculate-btn"

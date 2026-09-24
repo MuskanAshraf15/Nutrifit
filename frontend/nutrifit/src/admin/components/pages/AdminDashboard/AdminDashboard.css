@@ -1466,3 +1466,24 @@
     flex: none;
   }
 }
+
+.admin-form-group input.admin-input-error,
+.admin-form-group select.admin-input-error {
+  border-color: #d94b4b;
+  background: #fff8f8;
+  box-shadow: 0 0 0 3px rgba(217, 75, 75, 0.08);
+}
+
+.admin-field-error {
+  margin-top: -2px;
+  color: #c73f3f;
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.admin-auto-note {
+  margin-top: -2px;
+  color: #6f7f73;
+  font-size: 9px;
+  line-height: 1.4;
+}

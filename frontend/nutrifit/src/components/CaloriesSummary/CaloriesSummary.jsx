@@ -16,9 +16,7 @@ function CaloriesSummary() {
 
           <h2>No Calories Summary Found</h2>
 
-          <p>
-            Please complete the Get Started form first.
-          </p>
+          <p>Please complete the Get Started form first.</p>
 
           <button
             onClick={() => navigate("/get-started")}
@@ -37,7 +35,6 @@ function CaloriesSummary() {
     });
   };
 
-  // Back to profile
   const handleBackToProfile = () => {
     navigate("/get-started", {
       state: data,
@@ -46,10 +43,7 @@ function CaloriesSummary() {
 
   return (
     <section className="calories-summary">
-
       <div className="summary-wrapper">
-
-        {/* BACK TO PROFILE */}
         <button
           className="back-profile-btn"
           onClick={handleBackToProfile}
@@ -57,12 +51,8 @@ function CaloriesSummary() {
           ← Back to Profile
         </button>
 
-        {/* HEADER */}
         <div className="summary-header">
-
-          <div className="summary-icon">
-            🥗
-          </div>
+          <div className="summary-icon">🥗</div>
 
           <span>YOUR RESULTS</span>
 
@@ -74,47 +64,29 @@ function CaloriesSummary() {
             Here is your personalized calorie summary based on
             your health information and selected goal.
           </p>
-
         </div>
 
-        {/* SUMMARY CARD */}
         <div className="summary-card">
-
-          {/* BMI */}
           <div className="summary-item">
             <div className="item-icon">⚖️</div>
 
             <div className="item-info">
               <span>BMI</span>
-
-              <h2>
-                {data.bmi}
-              </h2>
-
-              <p>
-                Body Mass Index
-              </p>
+              <h2>{data.bmi}</h2>
+              <p>Body Mass Index</p>
             </div>
           </div>
 
-          {/* BMI CATEGORY */}
           <div className="summary-item">
             <div className="item-icon">📊</div>
 
             <div className="item-info">
               <span>BMI CATEGORY</span>
-
-              <h2>
-                {data.category}
-              </h2>
-
-              <p>
-                Your current BMI category
-              </p>
+              <h2>{data.category}</h2>
+              <p>Your current BMI category</p>
             </div>
           </div>
 
-          {/* BMR */}
           <div className="summary-item">
             <div className="item-icon">🔥</div>
 
@@ -126,13 +98,10 @@ function CaloriesSummary() {
                 <small> kcal</small>
               </h2>
 
-              <p>
-                Basal Metabolic Rate
-              </p>
+              <p>Basal Metabolic Rate</p>
             </div>
           </div>
 
-          {/* MAINTENANCE CALORIES */}
           <div className="summary-item">
             <div className="item-icon">⚡</div>
 
@@ -144,13 +113,10 @@ function CaloriesSummary() {
                 <small> kcal</small>
               </h2>
 
-              <p>
-                Calories needed to maintain weight
-              </p>
+              <p>Calories needed to maintain weight</p>
             </div>
           </div>
 
-          {/* RECOMMENDED CALORIES */}
           <div className="summary-item recommended">
             <div className="item-icon">🎯</div>
 
@@ -162,15 +128,11 @@ function CaloriesSummary() {
                 <small> kcal/day</small>
               </h2>
 
-              <p>
-                Your personalized daily calorie target
-              </p>
+              <p>Your personalized daily calorie target</p>
             </div>
           </div>
-
         </div>
 
-        {/* GOAL COMPATIBILITY MESSAGE */}
         <div
           className={
             data.goal_check?.mismatch
@@ -178,13 +140,11 @@ function CaloriesSummary() {
               : "goal-success"
           }
         >
-
           <div className="goal-warning-icon">
             {data.goal_check?.mismatch ? "⚠️" : "✅"}
           </div>
 
           <div className="goal-warning-content">
-
             <h3>
               {data.goal_check?.mismatch
                 ? "Goal Review Recommended"
@@ -200,14 +160,10 @@ function CaloriesSummary() {
               {data.goal_check?.suggestion ||
                 "Continue with your selected goal and monitor your progress."}
             </span>
-
           </div>
-
         </div>
 
-        {/* FULL PLAN BUTTON */}
         <div className="plan-section">
-
           <button
             className="full-plan-btn"
             onClick={handleFullPlan}
@@ -215,11 +171,8 @@ function CaloriesSummary() {
             See My Full Plan
             <span>→</span>
           </button>
-
         </div>
-
       </div>
-
     </section>
   );
 }

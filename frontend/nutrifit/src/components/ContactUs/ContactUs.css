@@ -1,5 +1,3 @@
-/* ===== Contact Us Section ===== */
-
 .contact-section {
   width: 100%;
   padding: 90px 60px 100px;
@@ -7,8 +5,6 @@
   box-sizing: border-box;
   scroll-margin-top: 80px;
 }
-
-/* ===== Header ===== */
 
 .contact-header {
   max-width: 700px;
@@ -41,8 +37,6 @@
   line-height: 1.7;
 }
 
-/* ===== Main Container ===== */
-
 .contact-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -51,8 +45,6 @@
   gap: 55px;
   align-items: stretch;
 }
-
-/* ===== Left Side ===== */
 
 .contact-info {
   padding: 20px 5px;
@@ -78,8 +70,6 @@
   font-size: 14.5px;
   line-height: 1.8;
 }
-
-/* ===== Instructions ===== */
 
 .contact-instructions {
   padding: 25px;
@@ -132,8 +122,6 @@
   line-height: 1.6;
 }
 
-/* ===== Note ===== */
-
 .contact-note {
   display: flex;
   align-items: flex-start;
@@ -156,8 +144,6 @@
   line-height: 1.6;
 }
 
-/* ===== Form Box ===== */
-
 .contact-form-box {
   padding: 35px;
   background: #ffffff;
@@ -166,8 +152,6 @@
   box-shadow: 0 15px 35px rgba(47, 93, 51, 0.08);
   box-sizing: border-box;
 }
-
-/* ===== Form ===== */
 
 .form-group {
   margin-bottom: 20px;
@@ -220,8 +204,6 @@
   box-shadow: 0 0 0 3px rgba(143, 189, 115, 0.12);
 }
 
-/* ===== Submit Button ===== */
-
 .contact-submit-btn {
   width: 100%;
   margin-top: 5px;
@@ -245,8 +227,6 @@
   box-shadow: 0 8px 18px rgba(47, 93, 51, 0.2);
 }
 
-/* ===== Tablet ===== */
-
 @media (max-width: 900px) {
   .contact-section {
     padding: 70px 40px 80px;
@@ -262,8 +242,6 @@
     font-size: 32px;
   }
 }
-
-/* ===== Mobile ===== */
 
 @media (max-width: 600px) {
   .contact-section {

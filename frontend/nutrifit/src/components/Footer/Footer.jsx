@@ -5,7 +5,6 @@ import "./Footer.css";
 function Footer() {
   const navigate = useNavigate();
 
-  // Scroll to a section on the current page
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
 
@@ -17,12 +16,10 @@ function Footer() {
     }
   };
 
-  // Go to Home first, then scroll to section
   const goToHomeSection = (sectionId) => {
     if (window.location.pathname !== "/") {
       navigate("/");
-      
-      // Wait for Home page to load
+
       setTimeout(() => {
         const section = document.getElementById(sectionId);
 
@@ -38,7 +35,6 @@ function Footer() {
     }
   };
 
-  // Go to Home
   const goHome = () => {
     if (window.location.pathname === "/") {
       window.scrollTo({
@@ -53,8 +49,6 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-container">
-
-        {/* ===== Brand ===== */}
         <div className="footer-brand">
           <Link to="/" className="footer-logo">
             <span className="footer-logo-nutri">Nutri</span>
@@ -70,60 +64,60 @@ function Footer() {
           </p>
         </div>
 
-        {/* ===== Quick Links ===== */}
         <div className="footer-column">
           <h3>Quick Links</h3>
 
-          <button type="button" onClick={()=> navigate('/')}>
+          <button type="button" onClick={goHome}>
             Home
           </button>
 
           <button
             type="button"
-            onClick={() => navigate("/works")}
+            onClick={() => goToHomeSection("how-it-works")}
           >
             How It Works
           </button>
 
           <button
             type="button"
-            onClick={() => navigate("/about")}
+            onClick={() => goToHomeSection("about")}
           >
             About Us
           </button>
 
           <button
             type="button"
-            onClick={() => navigate("/contact")}
+            onClick={() => goToHomeSection("contact")}
           >
             Contact Us
           </button>
         </div>
 
-        {/* ===== Help ===== */}
         <div className="footer-column">
           <h3>Help</h3>
 
           <button
             type="button"
-            onClick={() => navigate("/works")}
+            onClick={() => goToHomeSection("how-it-works")}
           >
             How It Works
           </button>
 
-          <button type="button" onClick={()=> navigate('/get-started')}>
+          <button
+            type="button"
+            onClick={() => navigate("/get-started")}
+          >
             Getting Started
           </button>
 
           <button
             type="button"
-            onClick={() => navigate("/contact")}
+            onClick={() => goToHomeSection("contact")}
           >
             Contact Support
           </button>
         </div>
 
-        {/* ===== Contact ===== */}
         <div className="footer-column footer-contact">
           <h3>Get In Touch</h3>
 
@@ -136,19 +130,16 @@ function Footer() {
           <button
             type="button"
             className="footer-contact-btn"
-            onClick={() => navigate("/contact")}
+            onClick={() => goToHomeSection("contact")}
           >
             Contact Us →
           </button>
         </div>
-
       </div>
 
-      {/* ===== Bottom ===== */}
       <div className="footer-bottom">
         <div className="footer-bottom-container">
           <p>© 2026 NutriFit. All Rights Reserved.</p>
-
           <p>Made for healthier food choices.</p>
         </div>
       </div>

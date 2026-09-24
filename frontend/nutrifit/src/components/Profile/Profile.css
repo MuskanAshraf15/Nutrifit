@@ -129,6 +129,42 @@
 .signout-btn:hover {
   background: #e9e9e9;
 }
+/* =========================================================
+   PROFILE CLOSE BUTTON
+   Paste at the END of Profile.css
+   ========================================================= */
+
+.profile-card {
+  position: relative;
+}
+
+.profile-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: #eef4ec;
+  color: #3f6f4a;
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: 0.2s ease;
+}
+
+.profile-close-btn:hover {
+  background: #dfeade;
+  color: #2d5939;
+  transform: scale(1.05);
+}
+
 
 /* Mobile */
 
@@ -139,5 +175,12 @@
 
   .profile-card {
     padding: 20px;
+  }
+.profile-close-btn {
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    font-size: 23px;
   }
 }

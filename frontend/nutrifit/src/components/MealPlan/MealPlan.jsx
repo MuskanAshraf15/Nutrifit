@@ -16,6 +16,8 @@ function MealPlan() {
   const [changeIndex, setChangeIndex] = useState(0);
   const [error, setError] = useState("");
 
+  const [savingRecommendation, setSavingRecommendation] = useState(false);
+
   const token = localStorage.getItem("token");
 
   const mealNames = ["Breakfast", "Lunch", "Dinner"];
@@ -128,6 +130,33 @@ function MealPlan() {
   }, []);
 
   // =========================================================
+  // AUTO SCROLL TO THE ACTUAL MEAL PLAN
+  // =========================================================
+
+  useEffect(() => {
+    if (
+      !loading &&
+      (
+        meals.Breakfast ||
+        meals.Lunch ||
+        meals.Dinner
+      )
+    ) {
+      const planSection =
+        document.getElementById("my-full-plan");
+
+      if (planSection) {
+        setTimeout(() => {
+          planSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }, 100);
+      }
+    }
+  }, [loading]);
+
+  // =========================================================
   // CHANGE RECOMMENDATION
   //
   // Breakfast -> Lunch -> Dinner -> Breakfast
@@ -136,12 +165,13 @@ function MealPlan() {
   // Every meal has its own history.
   // =========================================================
 
-  const changeRecommendation = async () => {
+  const changeRecommendation = async (selectedMealName = null) => {
     if (changing) {
       return;
     }
 
-    const currentMealName = mealNames[changeIndex];
+    const currentMealName =
+      selectedMealName || mealNames[changeIndex];
     const currentMeal = meals[currentMealName];
 
     if (!currentMeal?.recommendation?.food_id) {
@@ -236,9 +266,11 @@ function MealPlan() {
       // NEXT CLICK -> NEXT MEAL
       // -------------------------------------------------------
 
-      setChangeIndex((previous) => {
-        return (previous + 1) % mealNames.length;
-      });
+      if (!selectedMealName) {
+        setChangeIndex((previous) => {
+          return (previous + 1) % mealNames.length;
+        });
+      }
     } catch (err) {
       console.error(
         `Change ${currentMealName} Error:`,
@@ -253,6 +285,82 @@ function MealPlan() {
       setChanging(false);
     }
   };
+
+  // =========================================================
+  // SAVE CURRENT MEAL PLAN TO USER DEVICE
+  // =========================================================
+
+  const saveAllRecommendations = () => {
+    const currentMeals = mealNames
+      .map((mealName) => ({
+        mealName,
+        food: meals[mealName]?.recommendation,
+      }))
+      .filter((item) => item.food?.food_id);
+
+    if (currentMeals.length === 0) {
+      setError("No recommendations found to save.");
+      return;
+    }
+
+    setSavingRecommendation(true);
+    setError("");
+
+    try {
+      const mealPlanText = currentMeals
+        .map(({ mealName, food }) => {
+          return [
+            `${mealName.toUpperCase()}`,
+            `Food: ${food.food_name || "Recommended Food"}`,
+            `Serving: ${food.portion_grams || 0} g`,
+            `Calories: ${food.calories || 0} kcal`,
+            `Protein: ${food.protein_g || 0} g`,
+            `Carbs: ${food.carbs_g || 0} g`,
+            `Fat: ${food.fat_g || 0} g`,
+            `Estimated Cost: Rs. ${food.estimated_cost || 0}`,
+          ].join("\n");
+        })
+        .join("\n\n------------------------------\n\n");
+
+      const fileContent =
+        `NUTRIFIT - SAVED MEAL PLAN\n\n${mealPlanText}\n\nSaved from NutriFit`;
+
+      const blob = new Blob(
+        [fileContent],
+        { type: "text/plain;charset=utf-8" }
+      );
+
+      const downloadUrl =
+        URL.createObjectURL(blob);
+
+      const link =
+        document.createElement("a");
+
+      link.href = downloadUrl;
+      link.download =
+        `NutriFit_Meal_Plan_${new Date()
+          .toISOString()
+          .slice(0, 10)}.txt`;
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(downloadUrl);
+    } catch (err) {
+      console.error(
+        "Save Meal Plan Error:",
+        err
+      );
+
+      setError(
+        "Unable to save meal plan to your device."
+      );
+    } finally {
+      setSavingRecommendation(false);
+    }
+  };
+
 
   // =========================================================
   // SUBMIT FEEDBACK
@@ -344,6 +452,79 @@ function MealPlan() {
       setSubmittingFeedback(false);
     }
   };
+
+  // =========================================================
+  // BACK TO CALORIES SUMMARY WITH EXISTING RECORD
+  // =========================================================
+
+  const goBackToCaloriesSummary = async () => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:5000/my_profile",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(
+          data.message ||
+            "Unable to load calorie summary."
+        );
+      }
+
+      const user = data.user || {};
+      const health =
+        data.health_information || {};
+
+      navigate("/calories-summary", {
+        state: {
+          age: user.age ?? "",
+          gender: user.gender ?? "",
+          weight: user.weight ?? "",
+          height: user.height ?? "",
+          activity_level:
+            user.activity_level ?? "",
+          goal: user.goal ?? "",
+          food_preference:
+            user.food_preference ?? "",
+          budget_level:
+            user.budget_level ?? "",
+
+          bmi: health.bmi ?? "",
+          category:
+            health.bmi_category ?? "",
+          bmr: health.bmr ?? "",
+          maintenance_calories:
+            health.maintenance_calories ?? "",
+          daily_calories:
+            health.recommended_daily_calories ?? "",
+        },
+      });
+    } catch (err) {
+      console.error(
+        "Back To Calories Summary Error:",
+        err
+      );
+
+      setError(
+        err.message ||
+          "Unable to open calorie summary."
+      );
+    }
+  };
+
 
   // =========================================================
   // MEAL CARD
@@ -506,6 +687,20 @@ function MealPlan() {
 
         </div>
 
+        {/* Change This Meal Recommendation */}
+        <button
+          type="button"
+          className="submit-feedback-btn meal-change-btn"
+          onClick={() =>
+            changeRecommendation(mealName)
+          }
+          disabled={changing}
+        >
+          {changing
+            ? "Finding Another Meal..."
+            : "Change Recommendation"}
+        </button>
+
       </div>
     );
   };
@@ -588,9 +783,7 @@ function MealPlan() {
         {/* Back */}
         <button
           className="back-summary-btn"
-          onClick={() =>
-            navigate("/calories-summary")
-          }
+          onClick={goBackToCaloriesSummary}
         >
           ← Back to Calories Summary
         </button>
@@ -629,7 +822,10 @@ function MealPlan() {
             THREE HORIZONTAL MEALS
         ================================================= */}
 
-        <div className="meals-grid">
+        <div
+          id="my-full-plan"
+          className="meals-grid"
+        >
 
           <MealCard
             mealName="Breakfast"
@@ -655,37 +851,36 @@ function MealPlan() {
         </div>
 
         {/* =================================================
-            ONE CHANGE BUTTON
+            SAVE MEAL PLAN TO DEVICE
         ================================================= */}
 
         <div className="change-section">
 
           <p className="change-hint">
 
-            Want something different?
+            Like your current meal plan?
 
             <span>
-              {" "}Change your{" "}
-              {mealNames[changeIndex].toLowerCase()}
-              {" "}recommendation.
+              {" "}Save your Breakfast, Lunch and Dinner
+              recommendations directly to your device.
             </span>
 
           </p>
 
           <button
             className="change-recommendation-btn"
-            onClick={changeRecommendation}
-            disabled={changing}
+            onClick={saveAllRecommendations}
+            disabled={savingRecommendation}
           >
 
-            {changing ? (
+            {savingRecommendation ? (
               <>
                 <span className="small-spinner"></span>
-                Finding Another Meal...
+                Saving...
               </>
             ) : (
               <>
-                ↻ Change Recommendation
+                 Save Recommendation
               </>
             )}
 

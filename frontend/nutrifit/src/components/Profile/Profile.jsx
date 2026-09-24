@@ -177,6 +177,18 @@ function Profile() {
   };
 
   // =========================
+  // CLOSE PROFILE
+  // =========================
+
+  const handleCloseProfile = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate("/");
+    }
+  };
+
+  // =========================
   // LOADING
   // =========================
 
@@ -184,6 +196,15 @@ function Profile() {
     return (
       <div className="profile-page">
         <div className="profile-card profile-loading">
+
+        <button
+          type="button"
+          className="profile-close-btn"
+          onClick={handleCloseProfile}
+          aria-label="Close profile"
+        >
+          ×
+        </button>
 
           <div className="loading-spinner"></div>
 
@@ -204,6 +225,15 @@ function Profile() {
     return (
       <div className="profile-page">
         <div className="profile-card profile-error">
+
+        <button
+          type="button"
+          className="profile-close-btn"
+          onClick={handleCloseProfile}
+          aria-label="Close profile"
+        >
+          ×
+        </button>
 
           <div className="error-icon">
             ⚠️
@@ -268,6 +298,15 @@ function Profile() {
     <div className="profile-page">
 
       <div className="profile-card">
+
+        <button
+          type="button"
+          className="profile-close-btn"
+          onClick={handleCloseProfile}
+          aria-label="Close profile"
+        >
+          ×
+        </button>
 
         {/* =========================
             HEADER
@@ -539,10 +578,12 @@ function Profile() {
             type="button"
             className="edit-btn"
             onClick={() =>
-              navigate("/get-started")
+              navigate("/get-started", {
+                state: { editMode: true },
+              })
             }
           >
-            ✏️ Edit Profile
+             Edit Profile
           </button>
 
           <button
@@ -550,7 +591,7 @@ function Profile() {
             className="logout-btn"
             onClick={handleLogout}
           >
-            🚪 Logout
+             Logout
           </button>
 
           <button
@@ -558,7 +599,7 @@ function Profile() {
             className="signout-btn"
             onClick={handleSignOut}
           >
-            ↪ Sign Out
+            Sign Out
           </button>
 
         </div>

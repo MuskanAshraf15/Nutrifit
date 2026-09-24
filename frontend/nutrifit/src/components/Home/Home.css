@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-/* =========================================
-   HERO SECTION
-========================================= */
-
 .hero {
   width: 100%;
   min-height: 100vh;
@@ -16,36 +12,21 @@
   font-family: "Poppins", Arial, sans-serif;
 }
 
-
-/* =========================================
-   LEFT SIDE
-========================================= */
-
 .hero__left {
   position: absolute;
   left: 0;
   top: 0;
-
   width: 56%;
   height: 100vh;
-
   z-index: 1;
 }
 
-
-/* =========================================
-   MAIN GREEN BLOB
-========================================= */
-
 .hero__blob {
   position: absolute;
-
   width: 670px;
   height: 535px;
-
   left: -105px;
   top: 65px;
-
   background:
     radial-gradient(
       ellipse at 35% 25%,
@@ -54,31 +35,21 @@
       #99cb61 70%,
       #8cc355 100%
     );
-
   border-radius:
     47% 53% 58% 42%
     /
     38% 45% 55% 62%;
-
   transform: rotate(-4deg);
-
   z-index: 1;
 }
 
-
-/* Soft background layer */
-
 .hero__blob::before {
   content: "";
-
   position: absolute;
-
   width: 390px;
   height: 300px;
-
   right: -120px;
   bottom: -70px;
-
   background:
     linear-gradient(
       135deg,
@@ -86,31 +57,21 @@
       #a8d17c 50%,
       #94c666 100%
     );
-
   border-radius:
     60% 40% 65% 35%
     /
     45% 58% 42% 55%;
-
   transform: rotate(12deg);
-
   opacity: 0.9;
 }
 
-
-/* Soft highlight */
-
 .hero__blob::after {
   content: "";
-
   position: absolute;
-
   width: 350px;
   height: 190px;
-
   left: 90px;
   top: -35px;
-
   background:
     radial-gradient(
       ellipse,
@@ -118,24 +79,15 @@
       rgba(185, 218, 137, 0.35),
       transparent 72%
     );
-
   border-radius: 50%;
 }
 
-
-/* =========================================
-   SECONDARY BLOB
-========================================= */
-
 .hero__blob2 {
   position: absolute;
-
   width: 290px;
   height: 220px;
-
   right: -20px;
   bottom: 45px;
-
   background:
     linear-gradient(
       145deg,
@@ -143,42 +95,25 @@
       #a5cf76,
       #91c361
     );
-
   border-radius:
     58% 42% 48% 52%
     /
     42% 60% 40% 58%;
-
   transform: rotate(18deg);
-
   opacity: 0.7;
-
   z-index: 0;
 }
 
-
-/* =========================================
-   FRUIT BOWL
-========================================= */
-
 .hero__plate {
   position: absolute;
-
   width: 360px;
   height: 360px;
-
   left: 55px;
   top: 105px;
-
   object-fit: cover;
-
   border-radius: 50%;
-
   z-index: 6;
-
-  box-shadow:
-    0 18px 35px rgba(50, 85, 30, 0.22);
-
+  box-shadow: 0 18px 35px rgba(50, 85, 30, 0.22);
   transition: transform 0.3s ease;
 }
 
@@ -186,16 +121,9 @@
   transform: scale(1.02);
 }
 
-
-/* =========================================
-   LEAVES
-========================================= */
-
 .leaf {
   position: absolute;
-
   display: block;
-
   background:
     linear-gradient(
       135deg,
@@ -203,189 +131,94 @@
       #83ba4d 48%,
       #609d37 100%
     );
-
   border-radius: 100% 0 100% 0;
-
   z-index: 9;
-
   pointer-events: none;
 }
 
-
-/* =========================================
-   TOP LEAF CLUSTER
-========================================= */
-
 .leaf-cluster {
   position: absolute;
-
   width: 75px;
   height: 80px;
-
   left: 320px;
   top: 67px;
-
   z-index: 10;
 }
-
-
-/* Leaf 1 */
 
 .leaf-1 {
   width: 25px;
   height: 48px;
-
   left: 5px;
   top: 20px;
-
   transform: rotate(-42deg);
 }
-
-
-/* Leaf 2 */
 
 .leaf-2 {
   width: 28px;
   height: 51px;
-
   left: 22px;
   top: 3px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #c0df8d,
-      #83b94d
-    );
-
+  background: linear-gradient(135deg, #c0df8d, #83b94d);
   transform: rotate(5deg);
 }
-
-
-/* Leaf 3 */
 
 .leaf-3 {
   width: 25px;
   height: 45px;
-
   left: 42px;
   top: 18px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #a8d36b,
-      #6eaa3e
-    );
-
+  background: linear-gradient(135deg, #a8d36b, #6eaa3e);
   transform: rotate(43deg);
 }
-
-
-/* Leaf 4 */
 
 .leaf-4 {
   width: 20px;
   height: 38px;
-
   left: 28px;
   top: 35px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #91c456,
-      #609c37
-    );
-
+  background: linear-gradient(135deg, #91c456, #609c37);
   transform: rotate(70deg);
 }
-
-
-/* =========================================
-   LEAF VEINS
-========================================= */
 
 .leaf-1::after,
 .leaf-2::after,
 .leaf-3::after,
 .leaf-4::after {
   content: "";
-
   position: absolute;
-
   width: 2px;
   height: 70%;
-
   left: 50%;
   top: 12%;
-
   background: rgba(65, 115, 38, 0.25);
-
   transform: rotate(-35deg);
 }
-
-
-/* =========================================
-   LEFT FLOATING LEAF
-========================================= */
 
 .leaf-left {
   width: 35px;
   height: 57px;
-
   left: -4px;
   top: 91px;
-
   transform: rotate(-45deg);
-
-  background:
-    linear-gradient(
-      145deg,
-      #b1d975,
-      #72ad3e,
-      #5c9634
-    );
+  background: linear-gradient(145deg, #b1d975, #72ad3e, #5c9634);
 }
-
-
-/* =========================================
-   SMALL FLOATING LEAF
-========================================= */
 
 .leaf-small {
   width: 28px;
   height: 45px;
-
   right: 270px;
   top: 180px;
-
   transform: rotate(55deg);
-
-  background:
-    linear-gradient(
-      135deg,
-      #c8e5a1,
-      #8abd55
-    );
-
+  background: linear-gradient(135deg, #c8e5a1, #8abd55);
   opacity: 0.75;
 }
-
-
-/* =========================================
-   BIG BOTTOM RIGHT LEAF
-========================================= */
 
 .leaf-right {
   width: 48px;
   height: 78px;
-
   right: 105px;
   bottom: 55px;
-
   transform: rotate(35deg);
-
   background:
     linear-gradient(
       135deg,
@@ -393,46 +226,27 @@
       #8bc356 50%,
       #67a33a 100%
     );
-
   opacity: 0.9;
 }
 
-
-/* Leaf vein */
-
 .leaf-right::after {
   content: "";
-
   position: absolute;
-
   width: 2px;
   height: 65px;
-
   left: 23px;
   top: 6px;
-
   background: rgba(72, 120, 40, 0.3);
-
   transform: rotate(-35deg);
 }
 
-
-/* =========================================
-   WHITE DECORATIVE DOTS
-========================================= */
-
 .dots {
   position: absolute;
-
   width: 5px;
   height: 5px;
-
   border-radius: 50%;
-
   background: rgba(255, 255, 255, 0.8);
-
   z-index: 7;
-
   box-shadow:
     15px 18px rgba(255, 255, 255, 0.8),
     30px 7px rgba(255, 255, 255, 0.8),
@@ -451,30 +265,19 @@
   top: 285px;
 }
 
-
-/* =========================================
-   SLIDER DOTS
-========================================= */
-
 .slider-dots {
   position: absolute;
-
   left: 27px;
   bottom: 27px;
-
   display: flex;
-
   gap: 9px;
-
   z-index: 15;
 }
 
 .slider-dots span {
   width: 11px;
   height: 11px;
-
   border-radius: 50%;
-
   border: 2px solid #4c862c;
 }
 
@@ -482,157 +285,79 @@
   background: #4c862c;
 }
 
-
-/* =========================================
-   RIGHT CONTENT
-========================================= */
-
 .hero__content {
   position: relative;
-
   width: 44%;
-
   margin-left: 56%;
-
   min-height: 100vh;
-
   display: flex;
-
   flex-direction: column;
-
   justify-content: center;
-
   align-items: center;
-
-  padding:
-    80px
-    6%
-    50px
-    3%;
-
+  padding: 80px 6% 50px 3%;
   z-index: 10;
 }
 
-
-/* =========================================
-   TITLE
-========================================= */
-
 .hero__title {
   margin: 0;
-
   padding: 0;
-
   text-align: left;
-
   align-self: center;
-
   font-size: clamp(58px, 6vw, 88px);
-
   line-height: 0.88;
-
   letter-spacing: -4px;
-
   font-weight: 800;
 }
 
 .green-text {
   display: block;
-
   color: #62a72d;
 }
 
 .yellow-text {
   display: block;
-
   color: #ffd52e;
-
   margin-top: 5px;
 }
-
-
-/* =========================================
-   TEXT
-========================================= */
 
 .hero__text {
   width: 390px;
   max-width: 90%;
-
-  margin:
-    38px
-    0
-    0;
-
+  margin: 38px 0 0;
   text-align: center;
-
   color: #777;
-
   font-size: 15px;
-
   line-height: 1.55;
-
   font-weight: 500;
 }
 
-
-/* =========================================
-   BUTTON
-========================================= */
-
 .hero__btn {
   margin-top: 18px;
-
   padding: 10px 26px;
-
   border: none;
-
   border-radius: 30px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #77b63c,
-      #579c2d
-    );
-
+  background: linear-gradient(135deg, #77b63c, #579c2d);
   color: white;
-
   font-size: 12px;
-
   font-weight: 600;
-
   cursor: pointer;
-
-  box-shadow:
-    0 6px 15px rgba(85, 155, 43, 0.22);
-
+  box-shadow: 0 6px 15px rgba(85, 155, 43, 0.22);
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
-
   text-decoration: none;
 }
 
 .hero__btn:hover {
   transform: translateY(-2px);
-
-  box-shadow:
-    0 9px 20px rgba(85, 155, 43, 0.3);
+  box-shadow: 0 9px 20px rgba(85, 155, 43, 0.3);
 }
-
-
-/* =========================================
-   WHY NUTRIFIT
-========================================= */
 
 .Why-section {
   width: 100vw;
   min-height: 100vh;
   position: relative;
-
   padding: 95px 6% 105px;
-
   background:
     radial-gradient(
       circle at 10% 15%,
@@ -645,187 +370,110 @@
       transparent 30%
     ),
     #fbfaf6;
-
   overflow: hidden;
-
   box-sizing: border-box;
 }
 
 .Why-section::before,
 .Why-section::after {
   content: "";
-
   position: absolute;
-
   border-radius: 50%;
-
   pointer-events: none;
 }
 
 .Why-section::before {
   width: 280px;
   height: 280px;
-
   top: -130px;
   left: -120px;
-
   background: rgba(184, 221, 154, 0.12);
 }
 
 .Why-section::after {
   width: 360px;
   height: 360px;
-
   right: -180px;
   bottom: -170px;
-
   background: rgba(220, 239, 201, 0.2);
 }
 
-
-/* =========================================
-   WHY HEADER
-========================================= */
-
 .why-header {
   position: relative;
-
   z-index: 1;
-
   text-align: center;
-
   max-width: 700px;
-
   margin: 0 auto 62px;
 }
 
 .why-eyebrow {
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
   padding: 7px 15px;
-
   margin-bottom: 15px;
-
   border-radius: 30px;
-
   background: #e8f5dd;
-
   border: 1px solid #d4e9c5;
-
   font-size: 12px;
-
   font-weight: 700;
-
   color: #4f8a43;
-
   letter-spacing: 1.2px;
-
   text-transform: uppercase;
 }
 
 .why-heading {
   font-size: clamp(30px, 4vw, 44px);
-
   font-weight: 800;
-
   color: #2f5d33;
-
   line-height: 1.15;
-
   margin: 0;
-
   letter-spacing: -0.7px;
 }
 
 .why-heading::after {
   content: "";
-
   display: block;
-
   width: 55px;
-
   height: 4px;
-
   margin: 17px auto 0;
-
   border-radius: 10px;
-
   background: #9acb75;
 }
 
 .why-subheading {
   margin: 15px auto 0;
-
   color: #707070;
-
   font-size: 15px;
-
   line-height: 1.6;
 }
 
-
-/* =========================================
-   FEATURE GRID
-========================================= */
-
 .why-grid {
   position: relative;
-
   z-index: 1;
-
   display: grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
-
   width: 100%;
-
   max-width: 1220px;
-
   margin: 0 auto;
 }
 
-
-/* =========================================
-   FEATURE CARDS
-========================================= */
-
 .why-card {
   position: relative;
-
   min-height: 330px;
-
   width: 100%;
-
   background: rgba(255, 255, 255, 0.95);
-
   border: 1px solid #e4ecde;
-
   border-radius: 22px;
-
   padding: 34px 25px 30px;
-
   text-align: center;
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   box-sizing: border-box;
-
   overflow: hidden;
-
-  box-shadow:
-    0 8px 25px rgba(47, 93, 51, 0.05);
-
+  box-shadow: 0 8px 25px rgba(47, 93, 51, 0.05);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
@@ -834,153 +482,80 @@
 
 .why-card::before {
   content: "";
-
   position: absolute;
-
   top: 0;
   left: 50%;
-
   width: 0;
-
   height: 3px;
-
   transform: translateX(-50%);
-
   background: #6ba84f;
-
   border-radius: 0 0 10px 10px;
-
   transition: width 0.3s ease;
 }
 
 .why-card:hover {
   transform: translateY(-9px);
-
   background: #ffffff;
-
   border-color: #c6dfb4;
-
-  box-shadow:
-    0 20px 40px rgba(47, 93, 51, 0.12);
+  box-shadow: 0 20px 40px rgba(47, 93, 51, 0.12);
 }
 
 .why-card:hover::before {
   width: 55%;
 }
 
-
-/* =========================================
-   ICON
-========================================= */
-
 .why-icon {
   width: 72px;
   height: 72px;
-
   margin: 0 auto 21px;
-
   border-radius: 50%;
-
-  background:
-    linear-gradient(
-      145deg,
-      #e8f5dc,
-      #c3e3a8
-    );
-
+  background: linear-gradient(145deg, #e8f5dc, #c3e3a8);
   border: 1px solid #d1e8bd;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   font-size: 30px;
-
-  box-shadow:
-    0 8px 18px rgba(107, 168, 79, 0.12);
-
+  box-shadow: 0 8px 18px rgba(107, 168, 79, 0.12);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
 }
 
 .why-card:hover .why-icon {
-  transform:
-    scale(1.08)
-    rotate(3deg);
-
-  box-shadow:
-    0 12px 25px rgba(107, 168, 79, 0.2);
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: 0 12px 25px rgba(107, 168, 79, 0.2);
 }
-
-
-/* =========================================
-   TITLE
-========================================= */
 
 .why-title {
   font-size: 18px;
-
   font-weight: 750;
-
   color: #243c26;
-
   margin: 0 0 11px;
-
   line-height: 1.35;
 }
 
-
-/* =========================================
-   DESCRIPTION
-========================================= */
-
 .why-desc {
   font-size: 14px;
-
   line-height: 1.75;
-
   color: #707070;
-
   margin: 0 0 22px;
-
   max-width: 260px;
 }
 
-
-/* =========================================
-   LEARN MORE BUTTON
-========================================= */
-
 .why-learn-more-btn {
   margin-top: auto;
-
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
   min-width: 125px;
-
   background: transparent;
-
   border: 1.5px solid #5d944d;
-
   color: #4d8543;
-
   padding: 10px 20px;
-
   border-radius: 30px;
-
   font-size: 13px;
-
   font-weight: 700;
-
   cursor: pointer;
-
   transition:
     background 0.25s ease,
     color 0.25s ease,
@@ -990,47 +565,27 @@
 
 .why-learn-more-btn:hover {
   background: #3f7a3f;
-
   color: #ffffff;
-
   transform: translateY(-2px);
-
-  box-shadow:
-    0 8px 18px rgba(63, 122, 63, 0.2);
+  box-shadow: 0 8px 18px rgba(63, 122, 63, 0.2);
 }
 
 .why-learn-more-btn:active {
   transform: translateY(0);
 }
 
-
-/* =========================================
-   MODAL OVERLAY
-========================================= */
-
 .modal-overlay {
   position: fixed;
-
   inset: 0;
-
   background: rgba(28, 43, 26, 0.58);
-
   backdrop-filter: blur(5px);
-
   -webkit-backdrop-filter: blur(5px);
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   z-index: 1000;
-
   padding: 20px;
-
   box-sizing: border-box;
-
   animation: overlayFade 0.25s ease;
 }
 
@@ -1044,92 +599,50 @@
   }
 }
 
-
-/* =========================================
-   MODAL BOX
-========================================= */
-
 .modal-box {
   position: relative;
-
   width: 560px;
-
   max-width: 100%;
-
   max-height: 88vh;
-
   overflow-y: auto;
-
   background: #ffffff;
-
   border: 1px solid #e4ecde;
-
   border-radius: 26px;
-
   padding: 45px 42px 38px;
-
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.25);
-
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
   text-align: center;
-
   box-sizing: border-box;
-
   animation: modalPop 0.3s ease;
 }
 
 @keyframes modalPop {
   from {
     opacity: 0;
-
-    transform:
-      translateY(15px)
-      scale(0.94);
+    transform: translateY(15px) scale(0.94);
   }
 
   to {
     opacity: 1;
-
-    transform:
-      translateY(0)
-      scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 
-
-/* =========================================
-   MODAL CLOSE BUTTON
-========================================= */
-
 .modal-close {
   position: absolute;
-
   top: 16px;
   right: 18px;
-
   width: 38px;
   height: 38px;
-
   background: #f4f7f1;
-
   border: 1px solid #e5ece0;
-
   border-radius: 50%;
-
   font-size: 22px;
-
   line-height: 1;
-
   color: #777;
-
   cursor: pointer;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   transition:
     background 0.2s ease,
     color 0.2s ease,
@@ -1138,131 +651,65 @@
 
 .modal-close:hover {
   background: #e7f2df;
-
   color: #2f5d33;
-
   transform: rotate(90deg);
 }
-
-
-/* =========================================
-   MODAL ICON
-========================================= */
 
 .modal-icon {
   width: 76px;
   height: 76px;
-
   margin: 0 auto 20px;
-
   border-radius: 50%;
-
-  background:
-    linear-gradient(
-      145deg,
-      #e8f5dc,
-      #b8dd9a
-    );
-
+  background: linear-gradient(145deg, #e8f5dc, #b8dd9a);
   border: 1px solid #d0e8bb;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   font-size: 32px;
-
-  box-shadow:
-    0 10px 25px rgba(107, 168, 79, 0.15);
+  box-shadow: 0 10px 25px rgba(107, 168, 79, 0.15);
 }
-
-
-/* =========================================
-   MODAL TITLE
-========================================= */
 
 .modal-title {
   font-size: 24px;
-
   font-weight: 800;
-
   color: #2f5d33;
-
   margin: 0 0 15px;
-
   line-height: 1.25;
 }
 
-
-/* =========================================
-   MODAL TEXT
-========================================= */
-
 .modal-text {
   font-size: 14.5px;
-
   line-height: 1.8;
-
   color: #606060;
-
   margin: 0 auto 24px;
-
   max-width: 480px;
 }
 
-
-/* =========================================
-   MODAL LIST LABEL
-========================================= */
-
 .modal-list-label {
   font-size: 14px;
-
   font-weight: 750;
-
   color: #263b27;
-
   text-align: left;
-
   margin: 0 0 12px;
 }
 
-
-/* =========================================
-   MODAL LIST
-========================================= */
-
 .modal-list {
   list-style: none;
-
   text-align: left;
-
   margin: 0 0 28px;
-
   padding: 0;
 }
 
 .modal-list li {
   display: flex;
-
   align-items: flex-start;
-
   gap: 10px;
-
   font-size: 14px;
-
   line-height: 1.65;
-
   color: #5d5d5d;
-
   margin-bottom: 9px;
-
   padding: 8px 10px;
-
   border-radius: 10px;
-
   transition: background 0.2s ease;
 }
 
@@ -1270,60 +717,31 @@
   background: #f7faf4;
 }
 
-
-/* =========================================
-   MODAL CHECK
-========================================= */
-
 .modal-check {
   flex-shrink: 0;
-
   width: 20px;
   height: 20px;
-
   margin-top: 1px;
-
   border-radius: 50%;
-
   background: #e1f1d4;
-
   color: #3f7a3f;
-
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
   font-size: 11px;
-
   font-weight: 800;
 }
 
-
-/* =========================================
-   MODAL BUTTON
-========================================= */
-
 .modal-btn {
   min-width: 155px;
-
   background: #2f5d33;
-
   color: #ffffff;
-
   border: none;
-
   padding: 13px 32px;
-
   border-radius: 28px;
-
   font-size: 14px;
-
   font-weight: 700;
-
   cursor: pointer;
-
   transition:
     background 0.25s ease,
     transform 0.25s ease,
@@ -1332,21 +750,13 @@
 
 .modal-btn:hover {
   background: #254a29;
-
   transform: translateY(-2px);
-
-  box-shadow:
-    0 9px 22px rgba(47, 93, 51, 0.22);
+  box-shadow: 0 9px 22px rgba(47, 93, 51, 0.22);
 }
 
 .modal-btn:active {
   transform: translateY(0);
 }
-
-
-/* =========================================
-   MODAL SCROLLBAR
-========================================= */
 
 .modal-box::-webkit-scrollbar {
   width: 6px;
@@ -1354,13 +764,11 @@
 
 .modal-box::-webkit-scrollbar-track {
   background: #f5f7f2;
-
   border-radius: 10px;
 }
 
 .modal-box::-webkit-scrollbar-thumb {
   background: #b8dd9a;
-
   border-radius: 10px;
 }
 
@@ -1368,23 +776,14 @@
   background: #8fbd70;
 }
 
-
-/* =========================================
-   TABLET - WHY SECTION
-========================================= */
-
 @media (max-width: 1100px) {
-
   .Why-section {
     padding: 85px 5% 95px;
   }
 
   .why-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     max-width: 760px;
-
     gap: 24px;
   }
 
@@ -1393,13 +792,7 @@
   }
 }
 
-
-/* =========================================
-   MOBILE - WHY SECTION
-========================================= */
-
 @media (max-width: 700px) {
-
   .Why-section {
     padding: 70px 25px 80px;
   }
@@ -1414,40 +807,29 @@
 
   .why-grid {
     grid-template-columns: 1fr;
-
     max-width: 430px;
-
     gap: 20px;
   }
 
   .why-card {
     min-height: auto;
-
     padding: 32px 25px 30px;
   }
 
   .why-icon {
     width: 68px;
     height: 68px;
-
     font-size: 28px;
   }
 }
 
-
-/* =========================================
-   SMALL MOBILE - WHY SECTION
-========================================= */
-
 @media (max-width: 480px) {
-
   .Why-section {
     padding: 60px 18px 70px;
   }
 
   .why-eyebrow {
     font-size: 10px;
-
     padding: 6px 12px;
   }
 
@@ -1461,7 +843,6 @@
 
   .why-card {
     border-radius: 19px;
-
     padding: 28px 21px;
   }
 
@@ -1475,12 +856,8 @@
 
   .why-learn-more-btn {
     width: 100%;
-
     max-width: 180px;
   }
-
-
-  /* Modal */
 
   .modal-overlay {
     padding: 12px;
@@ -1488,28 +865,22 @@
 
   .modal-box {
     width: 100%;
-
     max-height: 90vh;
-
     padding: 38px 20px 25px;
-
     border-radius: 21px;
   }
 
   .modal-close {
     width: 34px;
     height: 34px;
-
     top: 12px;
     right: 12px;
-
     font-size: 19px;
   }
 
   .modal-icon {
     width: 64px;
     height: 64px;
-
     font-size: 27px;
   }
 
@@ -1530,16 +901,9 @@
   }
 }
 
-
-/* =========================================
-   VERY SMALL SCREENS
-========================================= */
-
 @media (max-width: 350px) {
-
   .Why-section {
     padding-left: 14px;
-
     padding-right: 14px;
   }
 
@@ -1553,46 +917,28 @@
 
   .modal-box {
     padding-left: 16px;
-
     padding-right: 16px;
   }
 }
-
-
-/* =========================================
-   ACCESSIBILITY
-========================================= */
 
 .why-learn-more-btn:focus-visible,
 .modal-btn:focus-visible,
 .modal-close:focus-visible {
   outline: 3px solid rgba(107, 168, 79, 0.35);
-
   outline-offset: 3px;
 }
 
-
-/* =========================================
-   HERO - TABLET
-========================================= */
-
 @media (max-width: 1000px) {
-
   .hero__blob {
     width: 580px;
-
     height: 470px;
-
     left: -120px;
   }
 
   .hero__plate {
     width: 310px;
-
     height: 310px;
-
     left: 35px;
-
     top: 130px;
   }
 
@@ -1605,113 +951,73 @@
   }
 }
 
-
-/* =========================================
-   HERO - MOBILE
-========================================= */
-
 @media (max-width: 768px) {
-
   .hero {
     min-height: 900px;
-
     display: block;
   }
 
   .hero__left {
     position: relative;
-
     width: 100%;
-
     height: 500px;
-
     min-height: 500px;
   }
 
   .hero__blob {
     width: 590px;
-
     height: 450px;
-
     left: -100px;
-
     top: 50px;
   }
 
   .hero__plate {
     width: 300px;
-
     height: 300px;
-
     left: 50%;
-
     top: 105px;
-
     transform: translateX(-50%);
   }
 
   .hero__plate:hover {
-    transform:
-      translateX(-50%)
-      scale(1.02);
+    transform: translateX(-50%) scale(1.02);
   }
 
   .hero__content {
     width: 100%;
-
     margin-left: 0;
-
     min-height: auto;
-
-    padding:
-      20px
-      30px
-      70px;
+    padding: 20px 30px 70px;
   }
 
   .hero__title {
     font-size: 60px;
-
     text-align: center;
-
     letter-spacing: -2px;
   }
 
   .hero__text {
     margin-left: auto;
-
     margin-right: auto;
   }
 }
 
-
-/* =========================================
-   HERO - SMALL MOBILE
-========================================= */
-
 @media (max-width: 480px) {
-
   .hero__left {
     height: 410px;
-
     min-height: 410px;
   }
 
   .hero__blob {
     width: 500px;
-
     height: 380px;
-
     left: -115px;
-
     top: 55px;
   }
 
   .hero__plate {
     width: 245px;
-
     height: 245px;
-
     top: 105px;
   }
 
@@ -1729,11 +1035,8 @@
 
   .leaf-right {
     right: 25px;
-
     bottom: 45px;
-
     width: 45px;
-
     height: 70px;
   }
 

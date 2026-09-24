@@ -24,7 +24,6 @@ import Profile from "./components/Profile/Profile";
 
 import AdminRegister from "./admin/components/pages/AdminRegister/AdminRegister";
 import AdminLogin from "./admin/components/pages/AdminLogin/AdminLogin";
-import CreateAdmin from "./admin/components/pages/CreateAdmin/CreateAdmin";
 import AdminForgotPassword from "./admin/components/pages/AdminForgotPassword/AdminForgotPassword";
 import AdminDashboard from "./admin/components/pages/AdminDashboard/AdminDashboard";
 
@@ -88,22 +87,12 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/works" element={<HowItWorks />} />
         <Route path="/about" element={<About />} />
-
         <Route path="/admin/signup" element={<AdminRegister />} />
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/create" element={<CreateAdmin />} />
-
-        <Route
-          path="/admin/forgot-password"
-          element={<AdminForgotPassword />}
-        />
-
+        <Route path="/admin/forgot-password" element={<AdminForgotPassword />}/>
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
-
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-
-      {/* Footer */}
       {!hideFooter && <Footer />}
     </>
   );

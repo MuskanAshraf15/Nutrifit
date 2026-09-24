@@ -7,21 +7,13 @@ import { Link } from "react-router-dom";
 function About() {
   return (
     <section className="about-section" id="about">
-
-      {/* ================= ABOUT NUTRIFIT ================= */}
       <div className="about-container">
-
         <div className="about-image">
-          <img
-            src={fruitsImage}
-            alt="Fresh healthy fruits"
-          />
+          <img src={fruitsImage} alt="Fresh healthy fruits" />
         </div>
 
         <div className="about-content">
-          <span className="about-small-title">
-            ABOUT NUTRIFIT
-          </span>
+          <span className="about-small-title">ABOUT NUTRIFIT</span>
 
           <h1>
             Eat Better. <span>Live Healthier.</span>
@@ -44,15 +36,11 @@ function About() {
             your everyday eating complicated.
           </p>
         </div>
-
       </div>
 
-      {/* ================= OUR PURPOSE ================= */}
       <div className="purpose-section">
-
         <div className="section-heading">
           <span>OUR PURPOSE</span>
-
           <h2>Making Healthy Eating Easier</h2>
 
           <p>
@@ -62,10 +50,8 @@ function About() {
         </div>
 
         <div className="purpose-cards">
-
           <div className="purpose-card">
             <div className="purpose-icon">🥗</div>
-
             <h3>Personalized Meals</h3>
 
             <p>
@@ -77,7 +63,6 @@ function About() {
 
           <div className="purpose-card">
             <div className="purpose-icon">🔥</div>
-
             <h3>Calorie-Based Plans</h3>
 
             <p>
@@ -88,7 +73,6 @@ function About() {
 
           <div className="purpose-card">
             <div className="purpose-icon">💰</div>
-
             <h3>Affordable Choices</h3>
 
             <p>
@@ -96,18 +80,12 @@ function About() {
               budget, making healthy eating practical and accessible.
             </p>
           </div>
-
         </div>
       </div>
 
-      {/* ================= WHAT WE OFFER ================= */}
       <div className="offer-container">
-
         <div className="offer-content">
-
-          <span className="offer-small-title">
-            WHAT WE OFFER
-          </span>
+          <span className="offer-small-title">WHAT WE OFFER</span>
 
           <h2>
             Everything You Need for a
@@ -120,7 +98,6 @@ function About() {
           </p>
 
           <ul className="offer-list">
-
             <li>
               <span>✓</span>
               Daily calorie requirement calculation
@@ -150,9 +127,7 @@ function About() {
               <span>✓</span>
               Progress tracking to help you stay motivated
             </li>
-
           </ul>
-
         </div>
 
         <div className="offer-image">
@@ -161,19 +136,11 @@ function About() {
             alt="Healthy bowl with fresh vegetables"
           />
         </div>
-
       </div>
 
-      {/* ================= WHY CHOOSE NUTRIFIT ================= */}
       <div className="why-section">
-
-        <span className="why-small-title">
-          WHY CHOOSE NUTRIFIT?
-        </span>
-
-        <h2>
-          Your Goals. Your Needs. Your Food.
-        </h2>
+        <span className="why-small-title">WHY CHOOSE NUTRIFIT?</span>
+        <h2>Your Goals. Your Needs. Your Food.</h2>
 
         <p>
           Everyone has different nutritional needs, lifestyle habits,
@@ -201,20 +168,20 @@ function About() {
           achievable by combining personalized calorie calculations with
           accessible food recommendations.
         </p>
-
       </div>
+
       <div className="about-get-started">
-  <h2>Ready to Start Your Healthy Journey?</h2>
-  <p>
-    Get personalized food recommendations that fit your goals,
-    lifestyle, and budget.
-  </p>
+        <h2>Ready to Start Your Healthy Journey?</h2>
 
-  <Link to="/get-started" className="about-get-started-btn">
-    Get Started →
-  </Link>
-</div>
+        <p>
+          Get personalized food recommendations that fit your goals,
+          lifestyle, and budget.
+        </p>
 
+        <Link to="/get-started" className="about-get-started-btn">
+          Get Started →
+        </Link>
+      </div>
     </section>
   );
 }

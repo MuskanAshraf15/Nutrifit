@@ -1,13 +1,8 @@
-
-/* ===== HOW IT WORKS ===== */
-
 .how-section {
   width: 100%;
   padding: 90px 60px 100px;
   background: #ffffff;
 }
-
-/* ===== HEADER ===== */
 
 .how-header {
   max-width: 720px;
@@ -44,8 +39,6 @@
   line-height: 1.8;
 }
 
-/* ===== STEPS CONTAINER ===== */
-
 .how-container {
   max-width: 1250px;
   margin: 0 auto;
@@ -54,8 +47,6 @@
   justify-content: center;
   gap: 12px;
 }
-
-/* ===== CARD ===== */
 
 .how-card {
   flex: 1;
@@ -76,8 +67,6 @@
   border-color: #b8dd9a;
   box-shadow: 0 16px 30px rgba(47, 93, 51, 0.12);
 }
-
-/* ===== CARD TOP ===== */
 
 .how-top {
   position: relative;
@@ -101,18 +90,11 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    #e3f2d7,
-    #c4e3a8
-  );
-
+  background: linear-gradient(135deg, #e3f2d7, #c4e3a8);
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 27px;
-
   transition:
     transform 0.25s ease,
     background 0.25s ease;
@@ -121,8 +103,6 @@
 .how-card:hover .how-icon {
   transform: scale(1.08);
 }
-
-/* ===== CARD TEXT ===== */
 
 .how-card h3 {
   margin: 0 0 10px;
@@ -138,8 +118,6 @@
   line-height: 1.7;
 }
 
-/* ===== CONNECTOR ===== */
-
 .how-connector {
   width: 24px;
   flex-shrink: 0;
@@ -154,17 +132,13 @@
   font-weight: 700;
 }
 
-/* ===== BOTTOM MESSAGE ===== */
-
 .how-bottom {
   max-width: 850px;
   margin: 55px auto 0;
   padding: 25px 30px;
-
   display: flex;
   align-items: center;
   gap: 20px;
-
   background: #f4f8ef;
   border: 1px solid #dfead5;
   border-radius: 18px;
@@ -174,14 +148,11 @@
   width: 52px;
   height: 52px;
   flex-shrink: 0;
-
   border-radius: 50%;
   background: #dcefc9;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 24px;
 }
 
@@ -199,10 +170,7 @@
   line-height: 1.7;
 }
 
-/* ===== TABLET ===== */
-
 @media (max-width: 1100px) {
-
   .how-section {
     padding: 75px 35px 85px;
   }
@@ -222,10 +190,7 @@
   }
 }
 
-/* ===== MOBILE ===== */
-
 @media (max-width: 700px) {
-
   .how-section {
     padding: 65px 24px 75px;
   }
@@ -271,10 +236,7 @@
   }
 }
 
-/* ===== SMALL MOBILE ===== */
-
 @media (max-width: 450px) {
-
   .how-section {
     padding: 55px 18px 65px;
   }
@@ -292,4 +254,3 @@
     padding: 18px;
   }
 }
-

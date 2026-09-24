@@ -27,7 +27,6 @@ const features = [
       ],
     },
   },
-
   {
     icon: "🔥",
     title: "Calorie-Based",
@@ -49,7 +48,6 @@ const features = [
       ],
     },
   },
-
   {
     icon: "🍛",
     title: "Food choice",
@@ -67,7 +65,6 @@ const features = [
       ],
     },
   },
-
   {
     icon: "💰",
     title: "Budget Friendly",
@@ -87,9 +84,6 @@ const features = [
 ];
 
 function Home() {
-
-  // ================= MODAL STATE =================
-
   const [activeIndex, setActiveIndex] = useState(null);
 
   const activeFeature =
@@ -99,18 +93,11 @@ function Home() {
     setActiveIndex(null);
   };
 
-
   return (
     <>
-
-      {/* ================= HERO SECTION ================= */}
-
       <section className="hero">
-
         <div className="hero__left">
-
           <div className="hero__blob"></div>
-
           <div className="hero__blob2"></div>
 
           <img
@@ -118,24 +105,13 @@ function Home() {
             alt="Healthy salad bowl"
             className="hero__plate"
           />
-
         </div>
 
-
         <div className="hero__content">
-
           <h1 className="hero__title">
-
-            <span className="green-text">
-              Welcome to
-            </span>
-
-            <span className="yellow-text">
-              NutriFit
-            </span>
-
+            <span className="green-text">Welcome to</span>
+            <span className="yellow-text">NutriFit</span>
           </h1>
-
 
           <p className="hero__text">
             Not sure what to eat or how much to eat?
@@ -144,74 +120,37 @@ function Home() {
             recommendations designed around your needs.
           </p>
 
-
-          <Link
-            to="/get-started"
-            className="hero__btn"
-          >
+          <Link to="/get-started" className="hero__btn">
             Get Started
           </Link>
-
         </div>
-
       </section>
 
-
-
-      {/* ================= WHY NUTRIFIT ================= */}
-
-      <section
-        className="Why-section"
-        id="why-nutrifit"
-      >
-
-        {/* ===== Header ===== */}
-
+      <section className="Why-section" id="why-nutrifit">
         <div className="why-header">
-
-          <span className="why-eyebrow">
-            WHY NUTRIFIT?
-          </span>
-
+          <span className="why-eyebrow">WHY NUTRIFIT?</span>
 
           <h2 className="why-heading">
             Nutrition That Fits Your Life
           </h2>
 
-
           <p className="why-subheading">
             Smart nutrition made simple, personalized, and practical for you.
           </p>
-
         </div>
 
-
-
-        {/* ===== Feature Cards ===== */}
-
         <div className="why-grid">
-
           {features.map((item, index) => (
-
-            <div
-              className="why-card"
-              key={index}
-            >
-
-              <div className="why-icon">
-                {item.icon}
-              </div>
-
+            <div className="why-card" key={index}>
+              <div className="why-icon">{item.icon}</div>
 
               <h3 className="why-title">
                 {item.title}
               </h3>
 
-
               <p className="why-desc">
                 {item.desc}
               </p>
-
 
               <button
                 type="button"
@@ -220,32 +159,20 @@ function Home() {
               >
                 Learn More →
               </button>
-
             </div>
-
           ))}
-
         </div>
 
-
-
-        {/* ================= MODAL ================= */}
-
         {activeFeature && (
-
           <div
             className="modal-overlay"
             onClick={closeModal}
             role="presentation"
           >
-
             <div
               className="modal-box"
               onClick={(e) => e.stopPropagation()}
             >
-
-              {/* Close Button */}
-
               <button
                 type="button"
                 className="modal-close"
@@ -255,67 +182,30 @@ function Home() {
                 ×
               </button>
 
-
-
-              {/* Modal Icon */}
-
               <div className="modal-icon">
                 {activeFeature.icon}
               </div>
-
-
-
-              {/* Modal Title */}
 
               <h3 className="modal-title">
                 {activeFeature.modal.title}
               </h3>
 
-
-
-              {/* Modal Description */}
-
               <p className="modal-text">
                 {activeFeature.modal.text}
               </p>
-
-
-
-              {/* List Label */}
 
               <p className="modal-list-label">
                 {activeFeature.modal.listLabel}
               </p>
 
-
-
-              {/* Modal List */}
-
               <ul className="modal-list">
-
-                {activeFeature.modal.list.map(
-                  (point, index) => (
-
-                    <li key={index}>
-
-                      <span className="modal-check">
-                        ✓
-                      </span>
-
-                      <span>
-                        {point}
-                      </span>
-
-                    </li>
-
-                  )
-                )}
-
+                {activeFeature.modal.list.map((point, index) => (
+                  <li key={index}>
+                    <span className="modal-check">✓</span>
+                    <span>{point}</span>
+                  </li>
+                ))}
               </ul>
-
-
-
-              {/* Modal Button */}
 
               <button
                 type="button"
@@ -324,35 +214,16 @@ function Home() {
               >
                 Got It
               </button>
-
             </div>
-
           </div>
-
         )}
-
       </section>
 
-
-
-      {/* ================= HOW IT WORKS ================= */}
-
       <HowItWorks />
-
-
-
-      {/* ================= ABOUT NUTRIFIT ================= */}
-
       <About />
-
-
-
-      {/* ================= CONTACT US ================= */}
-
       <Contact />
-
     </>
   );
 }
 
-export default Home;  
+export default Home;
