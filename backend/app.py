@@ -22,15 +22,16 @@ jwt = JWTManager(app)
 CORS(
     app,
     resources={
-        r"/*": {"origins": [
+        r"/*": {
+            "origins": [
                 "http://localhost:3000",
-                "http://127.0.0.1:3000"
+                "http://127.0.0.1:3000",
+                "https://nutrifit-orpin.vercel.app"
             ]
         }
     },
     supports_credentials=True,
     allow_headers=["Content-Type", "Authorization"],
-    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 )
 
 EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
