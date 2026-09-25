@@ -45,6 +45,13 @@ function Footer() {
       navigate("/");
     }
   };
+  const goToGetStarted = () => {
+  navigate("/get-started");
+
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 0);
+};
 
   return (
     <footer className="footer">
@@ -105,7 +112,7 @@ function Footer() {
 
           <button
             type="button"
-            onClick={() => navigate("/get-started")}
+            onClick={() => goToHomeSection("/get-started")}
           >
             Getting Started
           </button>
