@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const API_BASE = "http://127.0.0.1:5000";
+const API_BASE = "https://nutrifit.alwaysdata.net";
 const PING_INTERVAL_MS = 30000; // 30 seconds
 
 function Heartbeat() {

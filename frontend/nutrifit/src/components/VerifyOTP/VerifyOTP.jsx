@@ -30,7 +30,7 @@ function VerifyOTP() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/verify-otp",
+        "https://nutrifit.alwaysdata.net/verify-otp",
         {
           method: "POST",
           headers: {
@@ -72,7 +72,7 @@ function VerifyOTP() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/resend-otp",
+        "https://nutrifit.alwaysdata.net/resend-otp",
         {
           method: "POST",
           headers: {

@@ -48,7 +48,7 @@ function MealPlan() {
   // =========================================================
 
   const getRecommendation = async (meal, excludeIds = []) => {
-    let url = `http://127.0.0.1:5000/recommend_food?meal=${encodeURIComponent(
+    let url = `https://nutrifit.alwaysdata.net/recommend_food?meal=${encodeURIComponent(
       meal
     )}`;
 
@@ -405,7 +405,7 @@ function MealPlan() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/feedback",
+        "https://nutrifit.alwaysdata.net/feedback",
         {
           method: "POST",
 
@@ -465,7 +465,7 @@ function MealPlan() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/my_profile",
+        "https://nutrifit.alwaysdata.net/my_profile",
         {
           method: "GET",
           headers: {

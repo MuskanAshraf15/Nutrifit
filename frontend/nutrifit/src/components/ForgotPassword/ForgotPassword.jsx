@@ -39,7 +39,7 @@ function ForgotPassword() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/forgot_password",
+        "https://nutrifit.alwaysdata.net/forgot_password",
         {
           method: "POST",
           headers: {
@@ -95,7 +95,7 @@ function ForgotPassword() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/forgot_password",
+        "https://nutrifit.alwaysdata.net/forgot_password",
         {
           method: "POST",
           headers: {
@@ -139,7 +139,7 @@ function ForgotPassword() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/forgot_password",
+        "https://nutrifit.alwaysdata.net/forgot_password",
         {
           method: "POST",
           headers: {
@@ -196,7 +196,7 @@ function ForgotPassword() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/forgot_password",
+        "https://nutrifit.alwaysdata.net/forgot_password",
         {
           method: "POST",
           headers: {

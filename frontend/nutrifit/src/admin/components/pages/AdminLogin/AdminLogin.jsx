@@ -19,7 +19,7 @@ function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const API_URL = "http://127.0.0.1:5000";
+  const API_URL = "https://nutrifit.alwaysdata.net";
 
   // -----------------------------------------
   // ADMIN LOGIN

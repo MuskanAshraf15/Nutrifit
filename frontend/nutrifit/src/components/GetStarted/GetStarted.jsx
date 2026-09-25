@@ -50,7 +50,7 @@ function GetStarted() {
 
       try {
         const response = await fetch(
-          "http://127.0.0.1:5000/my_profile",
+          "https://nutrifit.alwaysdata.net/my_profile",
           {
             method: "GET",
             headers: {
@@ -154,7 +154,7 @@ function GetStarted() {
       }
 
       const saveProfileResponse = await fetch(
-        "http://127.0.0.1:5000/save_profile",
+        "https://nutrifit.alwaysdata.net/save_profile",
         {
           method: "POST",
 
@@ -187,7 +187,7 @@ function GetStarted() {
       }
 
       const progressResponse = await fetch(
-        "http://127.0.0.1:5000/progress",
+        "https://nutrifit.alwaysdata.net/progress",
         {
           method: "POST",
 
@@ -222,7 +222,7 @@ function GetStarted() {
       }
 
       const response = await fetch(
-        "http://127.0.0.1:5000/calculate_calories",
+        "https://nutrifit.alwaysdata.net/calculate_calories",
         {
           method: "POST",
 

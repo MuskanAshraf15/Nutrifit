@@ -13,7 +13,7 @@ function Dashboard({ onClose }) {
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const API_URL = "http://127.0.0.1:5000";
+  const API_URL = "https://nutrifit.alwaysdata.net";
 
   const handleClose = () => {
     if (onClose) {
