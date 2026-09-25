@@ -8,18 +8,13 @@ function AdminDashboard() {
   const navigate = useNavigate();
 
   const [activeSection, setActiveSection] = useState("dashboard");
-
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  // ADMIN DATA FROM LOCAL STORAGE
-
   const adminName = localStorage.getItem("admin_name") || "Admin";
   const adminEmail = localStorage.getItem("admin_email") || "";
   const adminId = localStorage.getItem("admin_id") || "";
-
-  // DATA STATE
 
   const [userStats, setUserStats] = useState({
     total_users: 0,
@@ -32,8 +27,6 @@ function AdminDashboard() {
   const [foods, setFoods] = useState([]);
   const [progress, setProgress] = useState([]);
   const [admins, setAdmins] = useState([]);
-
-  // FOOD FORM
 
   const emptyFood = {
     Food_Name: "",
@@ -56,17 +49,11 @@ function AdminDashboard() {
   const [foodErrors, setFoodErrors] = useState({});
   const [originalNutrition, setOriginalNutrition] = useState(null);
 
-  // FEEDBACK REPLY
-
   const [feedbackReplyId, setFeedbackReplyId] = useState(null);
   const [feedbackReplyText, setFeedbackReplyText] = useState("");
 
-  // CONTACT REPLY
-
   const [contactReplyId, setContactReplyId] = useState(null);
   const [contactReplyText, setContactReplyText] = useState("");
-
-  // AUTH HEADERS
 
   const getAuthHeaders = () => {
     const token = localStorage.getItem("admin_token");
@@ -77,8 +64,6 @@ function AdminDashboard() {
     };
   };
 
-  // CHECK ADMIN LOGIN
-
   useEffect(() => {
     const token = localStorage.getItem("admin_token");
     const loggedIn = localStorage.getItem("adminLoggedIn");
@@ -88,14 +73,10 @@ function AdminDashboard() {
     }
   }, [navigate]);
 
-  // CLEAR MESSAGES
-
   const clearMessages = () => {
     setMessage("");
     setError("");
   };
-
-  // LOAD USER STATS
 
   const loadUserStats = async () => {
     try {
@@ -122,8 +103,6 @@ function AdminDashboard() {
     }
   };
 
-  // LOAD FEEDBACK
-
   const loadFeedback = async () => {
     try {
       const response = await fetch(`${API_BASE}/admin/feedback`, {
@@ -144,8 +123,6 @@ function AdminDashboard() {
       setError(err.message);
     }
   };
-
-  // LOAD CONTACT MESSAGES
 
   const loadContactMessages = async () => {
     try {
@@ -168,8 +145,6 @@ function AdminDashboard() {
     }
   };
 
-  // LOAD FOODS
-
   const loadFoods = async () => {
     try {
       const response = await fetch(`${API_BASE}/admin/foods`, {
@@ -190,8 +165,6 @@ function AdminDashboard() {
       setError(err.message);
     }
   };
-
-  // LOAD PROGRESS
 
   const loadProgress = async () => {
     try {
@@ -214,8 +187,6 @@ function AdminDashboard() {
     }
   };
 
-  // LOAD ADMINS
-
   const loadAdmins = async () => {
     try {
       const response = await fetch(`${API_BASE}/admin/admins`, {
@@ -236,8 +207,6 @@ function AdminDashboard() {
       setError(err.message);
     }
   };
-
-  // LOAD DATA WHEN SECTION CHANGES
 
   useEffect(() => {
     clearMessages();
@@ -272,11 +241,6 @@ function AdminDashboard() {
       loadAdmins();
     }
 
-    // --------------------------------------------------
-    // USER ACTIVITY AUTO REFRESH
-    // Joined / Left / Last Seen
-    // --------------------------------------------------
-
     let userActivityInterval = null;
 
     if (
@@ -294,8 +258,6 @@ function AdminDashboard() {
       }
     };
   }, [activeSection]);
-
-  // FOOD FORM CHANGE
 
   const handleFoodChange = (e) => {
     const { name, value } = e.target;
@@ -347,8 +309,6 @@ function AdminDashboard() {
     }));
   };
 
-  // OPEN ADD FOOD
-
   const openAddFood = () => {
     clearMessages();
     setFoodErrors({});
@@ -357,8 +317,6 @@ function AdminDashboard() {
     setFoodForm(emptyFood);
     setShowFoodForm(true);
   };
-
-  // OPEN EDIT FOOD
 
   const openEditFood = (food) => {
     clearMessages();
@@ -392,8 +350,6 @@ function AdminDashboard() {
 
     setShowFoodForm(true);
   };
-
-  // SAVE FOOD
 
   const saveFood = async (e) => {
     e.preventDefault();
@@ -511,8 +467,6 @@ function AdminDashboard() {
     }
   };
 
-  // DELETE FOOD
-
   const deleteFood = async (foodId) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this food?"
@@ -552,8 +506,6 @@ function AdminDashboard() {
     }
   };
 
-  // MARK FEEDBACK READ
-
   const markFeedbackRead = async (feedbackId) => {
     clearMessages();
 
@@ -581,8 +533,6 @@ function AdminDashboard() {
       setError(err.message);
     }
   };
-
-  // REPLY TO FEEDBACK
 
   const replyToFeedback = async (feedbackId) => {
     if (!feedbackReplyText.trim()) {
@@ -626,8 +576,6 @@ function AdminDashboard() {
     }
   };
 
-  // MARK CONTACT READ
-
   const markContactRead = async (messageId) => {
     clearMessages();
 
@@ -655,8 +603,6 @@ function AdminDashboard() {
       setError(err.message);
     }
   };
-
-  // REPLY TO CONTACT
 
   const replyToContact = async (messageId) => {
     if (!contactReplyText.trim()) {
@@ -700,8 +646,6 @@ function AdminDashboard() {
     }
   };
 
-  // DELETE CONTACT MESSAGE
-
   const deleteContactMessage = async (messageId) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this message?"
@@ -741,59 +685,52 @@ function AdminDashboard() {
     }
   };
 
-  // SIGN OUT + PERMANENTLY DELETE ADMIN ACCOUNT
-
-const handleSignOut = async () => {
-  const confirmSignOut = window.confirm(
-    "Are you sure you want to sign out? Your admin account will be permanently deleted. This action cannot be undone."
-  );
-
-  if (!confirmSignOut) {
-    return;
-  }
-
-  clearMessages();
-  setLoading(true);
-
-  try {
-    const response = await fetch(
-      `${API_BASE}/admin/delete-account`,
-      {
-        method: "DELETE",
-        headers: getAuthHeaders(),
-        credentials: "include",
-      }
+  const handleSignOut = async () => {
+    const confirmSignOut = window.confirm(
+      "Are you sure you want to sign out? Your admin account will be permanently deleted. This action cannot be undone."
     );
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(
-        data.message || "Failed to delete admin account."
-      );
+    if (!confirmSignOut) {
+      return;
     }
 
-    // Clear admin local storage
-    localStorage.removeItem("admin_token");
-    localStorage.removeItem("admin_id");
-    localStorage.removeItem("admin_name");
-    localStorage.removeItem("admin_email");
-    localStorage.removeItem("adminLoggedIn");
+    clearMessages();
+    setLoading(true);
 
-    // Go to admin login
-    navigate("/admin/login", {
-      replace: true,
-    });
+    try {
+      const response = await fetch(
+        `${API_BASE}/admin/delete-account`,
+        {
+          method: "DELETE",
+          headers: getAuthHeaders(),
+          credentials: "include",
+        }
+      );
 
-  } catch (err) {
-    console.error("ADMIN SIGN OUT ERROR:", err);
-    setError(err.message);
-  } finally {
-    setLoading(false);
-  }
-};
+      const data = await response.json();
 
-  // FORMAT DATE
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Failed to delete admin account."
+        );
+      }
+
+      localStorage.removeItem("admin_token");
+      localStorage.removeItem("admin_id");
+      localStorage.removeItem("admin_name");
+      localStorage.removeItem("admin_email");
+      localStorage.removeItem("adminLoggedIn");
+
+      navigate("/admin/login", {
+        replace: true,
+      });
+    } catch (err) {
+      console.error("ADMIN SIGN OUT ERROR:", err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const formatDate = (date) => {
     if (!date) {
@@ -803,15 +740,8 @@ const handleSignOut = async () => {
     return new Date(date).toLocaleString();
   };
 
-  // RECENT FEEDBACK
-
   const recentFeedback = feedback.slice(0, 5);
-
-  // RECENT CONTACT
-
   const recentMessages = contactMessages.slice(0, 5);
-
-  // UNREAD COUNTS
 
   const unreadFeedback = feedback.filter(
     (item) => item.status !== "Read" && item.status !== "Replied"
@@ -820,8 +750,6 @@ const handleSignOut = async () => {
   const unreadMessages = contactMessages.filter(
     (item) => item.status !== "Read" && item.status !== "Replied"
   ).length;
-
-  // RENDER DASHBOARD
 
   const renderDashboard = () => {
     return (
@@ -882,6 +810,7 @@ const handleSignOut = async () => {
           <div className="admin-content-card">
             <div className="admin-card-heading">
               <h2>Recent Feedback</h2>
+
               <button onClick={() => setActiveSection("feedback")}>
                 View All
               </button>
@@ -920,6 +849,7 @@ const handleSignOut = async () => {
           <div className="admin-content-card">
             <div className="admin-card-heading">
               <h2>Recent Messages</h2>
+
               <button onClick={() => setActiveSection("contact")}>
                 View All
               </button>
@@ -959,8 +889,6 @@ const handleSignOut = async () => {
     );
   };
 
-  // USERS SECTION
-
   const renderUsers = () => {
     return (
       <>
@@ -970,7 +898,10 @@ const handleSignOut = async () => {
             <p>Monitor NutriFit users and their current activity.</p>
           </div>
 
-          <button className="admin-refresh-btn" onClick={loadUserStats}>
+          <button
+            className="admin-refresh-btn"
+            onClick={loadUserStats}
+          >
             ↻ Refresh
           </button>
         </div>
@@ -978,6 +909,7 @@ const handleSignOut = async () => {
         <div className="admin-stat-grid admin-small-grid">
           <div className="admin-stat-card">
             <div className="admin-stat-icon">👥</div>
+
             <div>
               <h3>Total Users</h3>
               <strong>{userStats.total_users}</strong>
@@ -986,6 +918,7 @@ const handleSignOut = async () => {
 
           <div className="admin-stat-card">
             <div className="admin-stat-icon">🟢</div>
+
             <div>
               <h3>Online Now</h3>
               <strong>{userStats.active_users}</strong>
@@ -1021,9 +954,7 @@ const handleSignOut = async () => {
                   {userStats.users.map((user) => (
                     <tr key={user.user_id}>
                       <td>#{user.user_id}</td>
-
                       <td>{user.name}</td>
-
                       <td>{user.email}</td>
 
                       <td>
@@ -1039,9 +970,7 @@ const handleSignOut = async () => {
                       </td>
 
                       <td>{formatDate(user.joined_at)}</td>
-
                       <td>{formatDate(user.last_seen)}</td>
-
                       <td>{formatDate(user.left_at)}</td>
                     </tr>
                   ))}
@@ -1054,25 +983,30 @@ const handleSignOut = async () => {
     );
   };
 
-  // FOODS SECTION
-
   const renderFoods = () => {
     return (
       <>
         <div className="admin-page-heading">
           <div>
             <h1>Foods</h1>
+
             <p>
               Manage foods available in the NutriFit recommendation system.
             </p>
           </div>
 
           <div className="admin-heading-actions">
-            <button className="admin-refresh-btn" onClick={loadFoods}>
+            <button
+              className="admin-refresh-btn"
+              onClick={loadFoods}
+            >
               ↻ Refresh
             </button>
 
-            <button className="admin-primary-btn" onClick={openAddFood}>
+            <button
+              className="admin-primary-btn"
+              onClick={openAddFood}
+            >
               + Add Food
             </button>
           </div>
@@ -1101,14 +1035,20 @@ const handleSignOut = async () => {
               <div className="admin-food-form-grid">
                 <div className="admin-form-group">
                   <label>Food Name *</label>
+
                   <input
-                    className={foodErrors.Food_Name ? "admin-input-error" : ""}
+                    className={
+                      foodErrors.Food_Name
+                        ? "admin-input-error"
+                        : ""
+                    }
                     type="text"
                     name="Food_Name"
                     value={foodForm.Food_Name}
                     onChange={handleFoodChange}
                     placeholder="Food name"
                   />
+
                   {foodErrors.Food_Name && (
                     <span className="admin-field-error">
                       {foodErrors.Food_Name}
@@ -1118,21 +1058,35 @@ const handleSignOut = async () => {
 
                 <div className="admin-form-group">
                   <label>Meal Type *</label>
+
                   <select
                     name="Meal_Type"
                     value={foodForm.Meal_Type}
                     onChange={handleFoodChange}
                   >
-                    <option value="Breakfast">Breakfast</option>
-                    <option value="Lunch">Lunch</option>
-                    <option value="Dinner">Dinner</option>
+                    <option value="Breakfast">
+                      Breakfast
+                    </option>
+
+                    <option value="Lunch">
+                      Lunch
+                    </option>
+
+                    <option value="Dinner">
+                      Dinner
+                    </option>
                   </select>
                 </div>
 
                 <div className="admin-form-group">
                   <label>Calories *</label>
+
                   <input
-                    className={foodErrors.Calories ? "admin-input-error" : ""}
+                    className={
+                      foodErrors.Calories
+                        ? "admin-input-error"
+                        : ""
+                    }
                     type="number"
                     step="0.01"
                     min="0.01"
@@ -1141,6 +1095,7 @@ const handleSignOut = async () => {
                     onChange={handleFoodChange}
                     placeholder="Calories"
                   />
+
                   {foodErrors.Calories && (
                     <span className="admin-field-error">
                       {foodErrors.Calories}
@@ -1150,8 +1105,13 @@ const handleSignOut = async () => {
 
                 <div className="admin-form-group">
                   <label>Protein (g)</label>
+
                   <input
-                    className={foodErrors.Protein_g ? "admin-input-error" : ""}
+                    className={
+                      foodErrors.Protein_g
+                        ? "admin-input-error"
+                        : ""
+                    }
                     type="number"
                     step="0.01"
                     min="0"
@@ -1160,6 +1120,7 @@ const handleSignOut = async () => {
                     onChange={handleFoodChange}
                     placeholder="Protein"
                   />
+
                   {foodErrors.Protein_g && (
                     <span className="admin-field-error">
                       {foodErrors.Protein_g}
@@ -1169,8 +1130,13 @@ const handleSignOut = async () => {
 
                 <div className="admin-form-group">
                   <label>Carbs (g)</label>
+
                   <input
-                    className={foodErrors.Carbs_g ? "admin-input-error" : ""}
+                    className={
+                      foodErrors.Carbs_g
+                        ? "admin-input-error"
+                        : ""
+                    }
                     type="number"
                     step="0.01"
                     min="0"
@@ -1179,6 +1145,7 @@ const handleSignOut = async () => {
                     onChange={handleFoodChange}
                     placeholder="Carbs"
                   />
+
                   {foodErrors.Carbs_g && (
                     <span className="admin-field-error">
                       {foodErrors.Carbs_g}
@@ -1188,8 +1155,13 @@ const handleSignOut = async () => {
 
                 <div className="admin-form-group">
                   <label>Fat (g)</label>
+
                   <input
-                    className={foodErrors.Fat_g ? "admin-input-error" : ""}
+                    className={
+                      foodErrors.Fat_g
+                        ? "admin-input-error"
+                        : ""
+                    }
                     type="number"
                     step="0.01"
                     min="0"
@@ -1198,6 +1170,7 @@ const handleSignOut = async () => {
                     onChange={handleFoodChange}
                     placeholder="Fat"
                   />
+
                   {foodErrors.Fat_g && (
                     <span className="admin-field-error">
                       {foodErrors.Fat_g}
@@ -1207,8 +1180,13 @@ const handleSignOut = async () => {
 
                 <div className="admin-form-group">
                   <label>Serving (g)</label>
+
                   <input
-                    className={foodErrors.Serving_g ? "admin-input-error" : ""}
+                    className={
+                      foodErrors.Serving_g
+                        ? "admin-input-error"
+                        : ""
+                    }
                     type="number"
                     step="0.01"
                     min="0.01"
@@ -1217,6 +1195,7 @@ const handleSignOut = async () => {
                     onChange={handleFoodChange}
                     placeholder="Serving"
                   />
+
                   {foodErrors.Serving_g && (
                     <span className="admin-field-error">
                       {foodErrors.Serving_g}
@@ -1233,66 +1212,125 @@ const handleSignOut = async () => {
 
                 <div className="admin-form-group">
                   <label>Cost</label>
+
                   <select
                     name="Cost"
                     value={foodForm.Cost}
                     onChange={handleFoodChange}
                   >
-                    <option value="">Select Cost</option>
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
+                    <option value="">
+                      Select Cost
+                    </option>
+
+                    <option value="Low">
+                      Low
+                    </option>
+
+                    <option value="Medium">
+                      Medium
+                    </option>
+
+                    <option value="High">
+                      High
+                    </option>
                   </select>
                 </div>
 
                 <div className="admin-form-group">
                   <label>Preference</label>
+
                   <select
                     name="Preference"
                     value={foodForm.Preference}
                     onChange={handleFoodChange}
                   >
-                    <option value="">Select Preference</option>
-                    <option value="Veg">Veg</option>
-                    <option value="Non-Veg">Non-Veg</option>
-                    <option value="Both">Both</option>
+                    <option value="">
+                      Select Preference
+                    </option>
+
+                    <option value="Veg">
+                      Veg
+                    </option>
+
+                    <option value="Non-Veg">
+                      Non-Veg
+                    </option>
+
+                    <option value="Both">
+                      Both
+                    </option>
                   </select>
                 </div>
 
                 <div className="admin-form-group">
                   <label>Activity</label>
+
                   <select
                     name="Activity"
                     value={foodForm.Activity}
                     onChange={handleFoodChange}
                   >
-                    <option value="">Select Activity</option>
-                    <option value="Sedentary">Sedentary</option>
-                    <option value="Moderate">Moderate</option>
-                    <option value="Active">Active</option>
-                    <option value="Very Active">Very Active</option>
+                    <option value="">
+                      Select Activity
+                    </option>
+
+                    <option value="Sedentary">
+                      Sedentary
+                    </option>
+
+                    <option value="Moderate">
+                      Moderate
+                    </option>
+
+                    <option value="Active">
+                      Active
+                    </option>
+
+                    <option value="Very Active">
+                      Very Active
+                    </option>
                   </select>
                 </div>
 
                 <div className="admin-form-group">
                   <label>Goal</label>
+
                   <select
                     name="Goal"
                     value={foodForm.Goal}
                     onChange={handleFoodChange}
                   >
-                    <option value="">Select Goal</option>
-                    <option value="Weight Loss">Weight Loss</option>
-                    <option value="Weight Gain">Weight Gain</option>
-                    <option value="Weight Maintain">Weight Maintain</option>
-                    <option value="maintain">maintain</option>
+                    <option value="">
+                      Select Goal
+                    </option>
+
+                    <option value="Weight Loss">
+                      Weight Loss
+                    </option>
+
+                    <option value="Weight Gain">
+                      Weight Gain
+                    </option>
+
+                    <option value="Weight Maintain">
+                      Weight Maintain
+                    </option>
+
+                    <option value="maintain">
+                      maintain
+                    </option>
                   </select>
                 </div>
 
                 <div className="admin-form-group">
                   <label>Estimated Cost</label>
+
                   <input
-                    className={foodErrors.Estimated_Cost ? "admin-input-error" : ""}
+                    className={
+                      foodErrors.Estimated_Cost
+                        ? "admin-input-error"
+                        : ""
+                    }
                     type="number"
                     step="0.01"
                     min="0.01"
@@ -1301,6 +1339,7 @@ const handleSignOut = async () => {
                     onChange={handleFoodChange}
                     placeholder="Estimated cost"
                   />
+
                   {foodErrors.Estimated_Cost && (
                     <span className="admin-field-error">
                       {foodErrors.Estimated_Cost}
@@ -1341,7 +1380,9 @@ const handleSignOut = async () => {
         <div className="admin-content-card">
           <div className="admin-card-heading">
             <h2>Food Dataset</h2>
-            <span className="admin-count">{foods.length} foods</span>
+            <span className="admin-count">
+              {foods.length} foods
+            </span>
           </div>
 
           {foods.length === 0 ? (
@@ -1408,7 +1449,9 @@ const handleSignOut = async () => {
 
                           <button
                             className="admin-delete-btn"
-                            onClick={() => deleteFood(food.Food_ID)}
+                            onClick={() =>
+                              deleteFood(food.Food_ID)
+                            }
                           >
                             Delete
                           </button>
@@ -1425,18 +1468,21 @@ const handleSignOut = async () => {
     );
   };
 
-  // FEEDBACK SECTION
-
   const renderFeedback = () => {
     return (
       <>
         <div className="admin-page-heading">
           <div>
             <h1>Feedback</h1>
-            <p>Review feedback submitted by NutriFit users.</p>
+            <p>
+              Review feedback submitted by NutriFit users.
+            </p>
           </div>
 
-          <button className="admin-refresh-btn" onClick={loadFeedback}>
+          <button
+            className="admin-refresh-btn"
+            onClick={loadFeedback}
+          >
             ↻ Refresh
           </button>
         </div>
@@ -1528,7 +1574,9 @@ const handleSignOut = async () => {
                           </span>
                         </td>
 
-                        <td>{formatDate(item.created_at)}</td>
+                        <td>
+                          {formatDate(item.created_at)}
+                        </td>
 
                         <td>
                           <div className="admin-action-buttons vertical-actions">
@@ -1566,7 +1614,9 @@ const handleSignOut = async () => {
                               <textarea
                                 value={feedbackReplyText}
                                 onChange={(e) =>
-                                  setFeedbackReplyText(e.target.value)
+                                  setFeedbackReplyText(
+                                    e.target.value
+                                  )
                                 }
                                 placeholder="Write your response..."
                                 rows="3"
@@ -1610,15 +1660,15 @@ const handleSignOut = async () => {
     );
   };
 
-  // CONTACT SECTION
-
   const renderContact = () => {
     return (
       <>
         <div className="admin-page-heading">
           <div>
             <h1>Contact Messages</h1>
-            <p>Manage messages received from NutriFit users.</p>
+            <p>
+              Manage messages received from NutriFit users.
+            </p>
           </div>
 
           <button
@@ -1703,7 +1753,9 @@ const handleSignOut = async () => {
                           </span>
                         </td>
 
-                        <td>{formatDate(item.created_at)}</td>
+                        <td>
+                          {formatDate(item.created_at)}
+                        </td>
 
                         <td>
                           <div className="admin-action-buttons vertical-actions">
@@ -1750,7 +1802,9 @@ const handleSignOut = async () => {
                               <textarea
                                 value={contactReplyText}
                                 onChange={(e) =>
-                                  setContactReplyText(e.target.value)
+                                  setContactReplyText(
+                                    e.target.value
+                                  )
                                 }
                                 placeholder="Write your response..."
                                 rows="3"
@@ -1794,18 +1848,21 @@ const handleSignOut = async () => {
     );
   };
 
-  // PROGRESS SECTION
-
   const renderProgress = () => {
     return (
       <>
         <div className="admin-page-heading">
           <div>
             <h1>User Progress</h1>
-            <p>View weight progress records submitted by users.</p>
+            <p>
+              View weight progress records submitted by users.
+            </p>
           </div>
 
-          <button className="admin-refresh-btn" onClick={loadProgress}>
+          <button
+            className="admin-refresh-btn"
+            onClick={loadProgress}
+          >
             ↻ Refresh
           </button>
         </div>
@@ -1847,11 +1904,18 @@ const handleSignOut = async () => {
                       <td>{item.email || "-"}</td>
 
                       <td>
-                        <strong>{item.weight} kg</strong>
+                        <strong>
+                          {item.weight} kg
+                        </strong>
                       </td>
 
-                      <td>{item.progress_date || "-"}</td>
-                      <td>{formatDate(item.created_at)}</td>
+                      <td>
+                        {item.progress_date || "-"}
+                      </td>
+
+                      <td>
+                        {formatDate(item.created_at)}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -1863,18 +1927,21 @@ const handleSignOut = async () => {
     );
   };
 
-  // ADMINS SECTION
-
   const renderAdmins = () => {
     return (
       <>
         <div className="admin-page-heading">
           <div>
             <h1>Admins</h1>
-            <p>View registered NutriFit administrators.</p>
+            <p>
+              View registered NutriFit administrators.
+            </p>
           </div>
 
-          <button className="admin-refresh-btn" onClick={loadAdmins}>
+          <button
+            className="admin-refresh-btn"
+            onClick={loadAdmins}
+          >
             ↻ Refresh
           </button>
         </div>
@@ -1915,7 +1982,10 @@ const handleSignOut = async () => {
                       </td>
 
                       <td>{admin.email}</td>
-                      <td>{formatDate(admin.created_at)}</td>
+
+                      <td>
+                        {formatDate(admin.created_at)}
+                      </td>
 
                       <td>
                         {String(admin.id) === String(adminId) ? (
@@ -1939,83 +2009,83 @@ const handleSignOut = async () => {
     );
   };
 
- const handleLogout = () => {
-  const confirmLogout = window.confirm(
-    "Are you sure you want to logout?"
-  );
+  const handleLogout = () => {
+    const confirmLogout = window.confirm(
+      "Are you sure you want to logout?"
+    );
 
-  if (!confirmLogout) {
-    return;
-  }
+    if (!confirmLogout) {
+      return;
+    }
 
-  localStorage.removeItem("admin_token");
-  localStorage.removeItem("admin_id");
-  localStorage.removeItem("admin_name");
-  localStorage.removeItem("admin_email");
-  localStorage.removeItem("adminLoggedIn");
+    localStorage.removeItem("admin_token");
+    localStorage.removeItem("admin_id");
+    localStorage.removeItem("admin_name");
+    localStorage.removeItem("admin_email");
+    localStorage.removeItem("adminLoggedIn");
 
-  navigate("/admin/login", {
-    replace: true,
-  });
-};
+    navigate("/admin/login", {
+      replace: true,
+    });
+  };
 
-
-// SETTINGS SECTION
-
-const renderSettings = () => {
-  return (
-    <>
-      <div className="admin-page-heading">
-        <div>
-          <h1>Settings</h1>
-          <p>View your administrator account information.</p>
-        </div>
-      </div>
-
-      <div className="admin-settings-card">
-        <div className="admin-profile-icon">👤</div>
-
-        <h2>{adminName}</h2>
-
-        <p>{adminEmail}</p>
-
-        <div className="admin-account-info">
+  const renderSettings = () => {
+    return (
+      <>
+        <div className="admin-page-heading">
           <div>
-            <span>Admin ID</span>
-            <strong>#{adminId}</strong>
-          </div>
-
-          <div>
-            <span>Account Type</span>
-            <strong>Administrator</strong>
-          </div>
-
-          <div>
-            <span>Authentication</span>
-            <strong>JWT + Local Storage</strong>
+            <h1>Settings</h1>
+            <p>
+              View your administrator account information.
+            </p>
           </div>
         </div>
 
-        <button
-          className="admin-logout-settings-btn"
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
+        <div className="admin-settings-card">
+          <div className="admin-profile-icon">
+            👤
+          </div>
 
-        <button
-          className="admin-logout-settings-btn"
-          onClick={handleSignOut}
-          disabled={loading}
-        >
-          {loading ? "Signing Out..." : "Sign Out"}
-        </button>
-      </div>
-    </>
-  );
-};
+          <h2>{adminName}</h2>
+          <p>{adminEmail}</p>
 
-  // SECTION CONTENT
+          <div className="admin-account-info">
+            <div>
+              <span>Admin ID</span>
+              <strong>#{adminId}</strong>
+            </div>
+
+            <div>
+              <span>Account Type</span>
+              <strong>Administrator</strong>
+            </div>
+
+            <div>
+              <span>Authentication</span>
+              <strong>
+                JWT + Local Storage
+              </strong>
+            </div>
+          </div>
+
+          <button
+            className="admin-logout-settings-btn"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+
+          <button
+            className="admin-logout-settings-btn"
+            onClick={handleSignOut}
+            disabled={loading}
+          >
+            {loading ? "Signing Out..." : "Sign Out"}
+          </button>
+        </div>
+      </>
+    );
+  };
 
   const renderSection = () => {
     switch (activeSection) {
@@ -2048,17 +2118,13 @@ const renderSettings = () => {
     }
   };
 
-  // MAIN UI
-
   return (
     <div className="admin-dashboard">
-
-      {/* SIDEBAR */}
-
       <aside className="admin-sidebar">
-
         <div className="admin-sidebar-logo">
-          <div className="admin-logo-icon">🥗</div>
+          <div className="admin-logo-icon">
+            🥗
+          </div>
 
           <div>
             <h2>NutriFit</h2>
@@ -2078,34 +2144,57 @@ const renderSettings = () => {
         </div>
 
         <nav className="admin-nav">
-
           <button
-            className={activeSection === "dashboard" ? "active" : ""}
-            onClick={() => setActiveSection("dashboard")}
+            className={
+              activeSection === "dashboard"
+                ? "active"
+                : ""
+            }
+            onClick={() =>
+              setActiveSection("dashboard")
+            }
           >
             <span>▣</span>
             Dashboard
           </button>
 
           <button
-            className={activeSection === "users" ? "active" : ""}
-            onClick={() => setActiveSection("users")}
+            className={
+              activeSection === "users"
+                ? "active"
+                : ""
+            }
+            onClick={() =>
+              setActiveSection("users")
+            }
           >
             <span>👥</span>
             Users
           </button>
 
           <button
-            className={activeSection === "foods" ? "active" : ""}
-            onClick={() => setActiveSection("foods")}
+            className={
+              activeSection === "foods"
+                ? "active"
+                : ""
+            }
+            onClick={() =>
+              setActiveSection("foods")
+            }
           >
             <span>🥗</span>
             Foods
           </button>
 
           <button
-            className={activeSection === "feedback" ? "active" : ""}
-            onClick={() => setActiveSection("feedback")}
+            className={
+              activeSection === "feedback"
+                ? "active"
+                : ""
+            }
+            onClick={() =>
+              setActiveSection("feedback")
+            }
           >
             <span>💬</span>
             Feedback
@@ -2118,8 +2207,14 @@ const renderSettings = () => {
           </button>
 
           <button
-            className={activeSection === "contact" ? "active" : ""}
-            onClick={() => setActiveSection("contact")}
+            className={
+              activeSection === "contact"
+                ? "active"
+                : ""
+            }
+            onClick={() =>
+              setActiveSection("contact")
+            }
           >
             <span>✉️</span>
             Contact Messages
@@ -2132,45 +2227,64 @@ const renderSettings = () => {
           </button>
 
           <button
-            className={activeSection === "progress" ? "active" : ""}
-            onClick={() => setActiveSection("progress")}
+            className={
+              activeSection === "progress"
+                ? "active"
+                : ""
+            }
+            onClick={() =>
+              setActiveSection("progress")
+            }
           >
             <span>📈</span>
             Progress
           </button>
 
           <button
-            className={activeSection === "admins" ? "active" : ""}
-            onClick={() => setActiveSection("admins")}
+            className={
+              activeSection === "admins"
+                ? "active"
+                : ""
+            }
+            onClick={() =>
+              setActiveSection("admins")
+            }
           >
             <span>🛡️</span>
             Admins
           </button>
 
           <button
-            className={activeSection === "settings" ? "active" : ""}
-            onClick={() => setActiveSection("settings")}
+            className={
+              activeSection === "settings"
+                ? "active"
+                : ""
+            }
+            onClick={() =>
+              setActiveSection("settings")
+            }
           >
             <span>⚙️</span>
             Settings
           </button>
 
           <button
-            className={activeSection === "settings" ? "active" : ""}
-            onClick={() => navigate("/admin/login")}
+            className={
+              activeSection === "settings"
+                ? "active"
+                : ""
+            }
+            onClick={() =>
+              navigate("/admin/login")
+            }
           >
             <span>🔐</span>
             Login
           </button>
-
         </nav>
-
       </aside>
 
-      {/* MAIN CONTENT */}
-
       <main className="admin-main">
-
         <header className="admin-topbar">
           <div>
             <span className="admin-topbar-label">
@@ -2191,13 +2305,15 @@ const renderSettings = () => {
         </header>
 
         <section className="admin-content">
-
           {message && (
             <div className="admin-alert admin-success">
               <span>✓</span>
+
               {message}
 
-              <button onClick={() => setMessage("")}>
+              <button
+                onClick={() => setMessage("")}
+              >
                 ×
               </button>
             </div>
@@ -2206,20 +2322,20 @@ const renderSettings = () => {
           {error && (
             <div className="admin-alert admin-error">
               <span>!</span>
+
               {error}
 
-              <button onClick={() => setError("")}>
+              <button
+                onClick={() => setError("")}
+              >
                 ×
               </button>
             </div>
           )}
 
           {renderSection()}
-
         </section>
-
       </main>
-
     </div>
   );
 }

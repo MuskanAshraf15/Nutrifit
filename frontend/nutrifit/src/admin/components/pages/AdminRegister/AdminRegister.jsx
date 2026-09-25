@@ -25,25 +25,16 @@ function AdminRegister() {
     setError("");
     setSuccess("");
 
-    // -----------------------------------------
-    // REQUIRED FIELDS
-    // -----------------------------------------
     if (!name || !email || !password || !confirmPassword) {
       setError("Please fill in all fields.");
       return;
     }
 
-    // -----------------------------------------
-    // PASSWORD LENGTH
-    // -----------------------------------------
     if (password.length < 6) {
       setError("Password must be at least 6 characters.");
       return;
     }
 
-    // -----------------------------------------
-    // CONFIRM PASSWORD
-    // -----------------------------------------
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
       return;
@@ -54,11 +45,9 @@ function AdminRegister() {
     try {
       const response = await fetch(`${API_URL}/admin/register`, {
         method: "POST",
-
         headers: {
           "Content-Type": "application/json",
         },
-
         body: JSON.stringify({
           name: name,
           email: email,
@@ -68,9 +57,6 @@ function AdminRegister() {
 
       const data = await response.json();
 
-      // -----------------------------------------
-      // REGISTRATION FAILED
-      // -----------------------------------------
       if (!response.ok || !data.success) {
         setError(
           data.message || "Admin registration failed."
@@ -80,22 +66,15 @@ function AdminRegister() {
         return;
       }
 
-      // -----------------------------------------
-      // SUCCESS
-      // -----------------------------------------
       setSuccess(
         "Admin registered successfully. Redirecting to login..."
       );
 
-      // -----------------------------------------
-      // GO TO ADMIN LOGIN
-      // -----------------------------------------
       setTimeout(() => {
         navigate("/admin/login", {
           replace: true,
         });
       }, 1500);
-
     } catch (error) {
       console.error(
         "Admin registration error:",
@@ -112,12 +91,8 @@ function AdminRegister() {
 
   return (
     <div className="admin-register-page">
-
       <div className="admin-register-card">
-
-        {/* HEADER */}
         <div className="admin-register-header">
-
           <div className="admin-register-icon">
             🥗
           </div>
@@ -125,26 +100,18 @@ function AdminRegister() {
           <h1>NutriFit</h1>
 
           <p>Admin Panel</p>
-
         </div>
 
-        {/* TITLE */}
         <div className="admin-register-title">
-
           <h2>Admin Registration</h2>
 
           <p>
             Create the first administrator account
           </p>
-
         </div>
 
-        {/* FORM */}
         <form onSubmit={handleRegister}>
-
-          {/* NAME */}
           <div className="admin-form-group">
-
             <label>Name</label>
 
             <input
@@ -154,12 +121,9 @@ function AdminRegister() {
               onChange={(e) => setName(e.target.value)}
               autoComplete="name"
             />
-
           </div>
 
-          {/* EMAIL */}
           <div className="admin-form-group">
-
             <label>Email</label>
 
             <input
@@ -169,16 +133,12 @@ function AdminRegister() {
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
             />
-
           </div>
 
-          {/* PASSWORD */}
           <div className="admin-form-group">
-
             <label>Password</label>
 
             <div className="admin-password-wrapper">
-
               <input
                 type={
                   showPassword
@@ -202,18 +162,13 @@ function AdminRegister() {
               >
                 {showPassword ? "🙈" : "👁️"}
               </button>
-
             </div>
-
           </div>
 
-          {/* CONFIRM PASSWORD */}
           <div className="admin-form-group">
-
             <label>Confirm Password</label>
 
             <div className="admin-password-wrapper">
-
               <input
                 type={
                   showConfirmPassword
@@ -239,26 +194,21 @@ function AdminRegister() {
               >
                 {showConfirmPassword ? "🙈" : "👁️"}
               </button>
-
             </div>
-
           </div>
 
-          {/* ERROR */}
           {error && (
             <div className="admin-error">
               {error}
             </div>
           )}
 
-          {/* SUCCESS */}
           {success && (
             <div className="admin-success">
               {success}
             </div>
           )}
 
-          {/* REGISTER BUTTON */}
           <button
             type="submit"
             className="admin-register-button"
@@ -268,12 +218,9 @@ function AdminRegister() {
               ? "Creating Admin..."
               : "Create Admin Account"}
           </button>
-
         </form>
 
-        {/* LOGIN */}
         <div className="admin-register-login">
-
           <p>
             Already have an admin account?
           </p>
@@ -284,20 +231,14 @@ function AdminRegister() {
           >
             Admin Login
           </button>
-
         </div>
 
-        {/* FOOTER */}
         <div className="admin-register-footer">
-
           <p>
             NutriFit • Food Recommendation System
           </p>
-
         </div>
-
       </div>
-
     </div>
   );
 }

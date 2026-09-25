@@ -6,23 +6,15 @@ function ForgotPassword() {
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
-
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
   const [loading, setLoading] = useState(false);
-
-  // ==========================================
-  // STEP 1 - SEND OTP
-  // ==========================================
 
   const handleSendOTP = async (e) => {
     e.preventDefault();
@@ -70,10 +62,6 @@ function ForgotPassword() {
       setLoading(false);
     }
   };
-
-  // ==========================================
-  // STEP 2 - VERIFY OTP
-  // ==========================================
 
   const handleVerifyOTP = async (e) => {
     e.preventDefault();
@@ -128,10 +116,6 @@ function ForgotPassword() {
     }
   };
 
-  // ==========================================
-  // RESEND OTP
-  // ==========================================
-
   const handleResendOTP = async () => {
     setError("");
     setSuccess("");
@@ -166,10 +150,6 @@ function ForgotPassword() {
       setLoading(false);
     }
   };
-
-  // ==========================================
-  // STEP 3 - RESET PASSWORD
-  // ==========================================
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
@@ -230,10 +210,6 @@ function ForgotPassword() {
     }
   };
 
-  // ==========================================
-  // BACK BUTTON
-  // ==========================================
-
   const handleBack = () => {
     setError("");
     setSuccess("");
@@ -252,13 +228,7 @@ function ForgotPassword() {
 
   return (
     <div className="forgot-page">
-
       <div className="forgot-card">
-
-        {/* =====================================
-            STEP 1
-        ===================================== */}
-
         {step === 1 && (
           <>
             <h1>Forgot Password?</h1>
@@ -268,7 +238,6 @@ function ForgotPassword() {
             </p>
 
             <form onSubmit={handleSendOTP}>
-
               <div className="forgot-input-group">
                 <label>Email Address</label>
 
@@ -280,17 +249,9 @@ function ForgotPassword() {
                 />
               </div>
 
-              {error && (
-                <p className="forgot-error">
-                  {error}
-                </p>
-              )}
+              {error && <p className="forgot-error">{error}</p>}
 
-              {success && (
-                <p className="forgot-success">
-                  {success}
-                </p>
-              )}
+              {success && <p className="forgot-success">{success}</p>}
 
               <button
                 type="submit"
@@ -299,7 +260,6 @@ function ForgotPassword() {
               >
                 {loading ? "Sending OTP..." : "Send OTP"}
               </button>
-
             </form>
 
             <button
@@ -311,10 +271,6 @@ function ForgotPassword() {
           </>
         )}
 
-        {/* =====================================
-            STEP 2
-        ===================================== */}
-
         {step === 2 && (
           <>
             <h1>Verify OTP</h1>
@@ -323,12 +279,9 @@ function ForgotPassword() {
               Enter the 6-digit code sent to your email.
             </p>
 
-            <p className="forgot-email">
-              {email}
-            </p>
+            <p className="forgot-email">{email}</p>
 
             <form onSubmit={handleVerifyOTP}>
-
               <div className="forgot-input-group">
                 <label>Verification Code</label>
 
@@ -345,17 +298,9 @@ function ForgotPassword() {
                 />
               </div>
 
-              {error && (
-                <p className="forgot-error">
-                  {error}
-                </p>
-              )}
+              {error && <p className="forgot-error">{error}</p>}
 
-              {success && (
-                <p className="forgot-success">
-                  {success}
-                </p>
-              )}
+              {success && <p className="forgot-success">{success}</p>}
 
               <button
                 type="submit"
@@ -364,7 +309,6 @@ function ForgotPassword() {
               >
                 {loading ? "Verifying..." : "Verify OTP"}
               </button>
-
             </form>
 
             <button
@@ -375,18 +319,11 @@ function ForgotPassword() {
               Resend OTP
             </button>
 
-            <button
-              className="forgot-back-btn"
-              onClick={handleBack}
-            >
+            <button className="forgot-back-btn" onClick={handleBack}>
               ← Change Email
             </button>
           </>
         )}
-
-        {/* =====================================
-            STEP 3
-        ===================================== */}
 
         {step === 3 && (
           <>
@@ -397,82 +334,53 @@ function ForgotPassword() {
             </p>
 
             <form onSubmit={handleResetPassword}>
-
-              {/* New Password */}
-
               <div className="forgot-input-group">
                 <label>New Password</label>
 
                 <div className="password-wrapper">
-
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter new password"
                     value={newPassword}
-                    onChange={(e) =>
-                      setNewPassword(e.target.value)
-                    }
+                    onChange={(e) => setNewPassword(e.target.value)}
                   />
 
                   <button
                     type="button"
                     className="eye-btn"
-                    onClick={() =>
-                      setShowPassword(!showPassword)
-                    }
+                    onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? "◉" : "◉"}
                   </button>
-
                 </div>
               </div>
-
-              {/* Confirm Password */}
 
               <div className="forgot-input-group">
                 <label>Confirm Password</label>
 
                 <div className="password-wrapper">
-
                   <input
-                    type={
-                      showConfirmPassword
-                        ? "text"
-                        : "password"
-                    }
+                    type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm new password"
                     value={confirmPassword}
-                    onChange={(e) =>
-                      setConfirmPassword(e.target.value)
-                    }
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
 
                   <button
                     type="button"
                     className="eye-btn"
                     onClick={() =>
-                      setShowConfirmPassword(
-                        !showConfirmPassword
-                      )
+                      setShowConfirmPassword(!showConfirmPassword)
                     }
                   >
                     {showConfirmPassword ? "◉" : "◉"}
                   </button>
-
                 </div>
               </div>
 
-              {error && (
-                <p className="forgot-error">
-                  {error}
-                </p>
-              )}
+              {error && <p className="forgot-error">{error}</p>}
 
-              {success && (
-                <p className="forgot-success">
-                  {success}
-                </p>
-              )}
+              {success && <p className="forgot-success">{success}</p>}
 
               <button
                 type="submit"
@@ -481,20 +389,14 @@ function ForgotPassword() {
               >
                 {loading ? "Resetting..." : "Reset Password"}
               </button>
-
             </form>
 
-            <button
-              className="forgot-back-btn"
-              onClick={handleBack}
-            >
+            <button className="forgot-back-btn" onClick={handleBack}>
               ← Back to OTP
             </button>
           </>
         )}
-
       </div>
-
     </div>
   );
 }

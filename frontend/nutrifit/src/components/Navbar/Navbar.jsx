@@ -11,16 +11,12 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-
-      {/* Logo */}
       <div className="navbar-logo">
         <Link to="/" onClick={closeMenu}>
           <span className="logo-nutri">Nutri</span>
           <span className="logo-fit">Fit</span>
         </Link>
       </div>
-
-      {/* Hamburger */}
       <button
         type="button"
         className="hamburger"
@@ -32,11 +28,7 @@ function Navbar() {
         <span></span>
         <span></span>
       </button>
-
-      {/* Navigation Links */}
       <div className={`navbar-links ${menuOpen ? "menu-open" : ""}`}>
-
-        {/* Home */}
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -46,8 +38,6 @@ function Navbar() {
         >
           Home
         </NavLink>
-
-        {/* How It Works */}
         <NavLink
           to="/works"
           className={({ isActive }) =>
@@ -57,8 +47,6 @@ function Navbar() {
         >
           How It Works
         </NavLink>
-
-        {/* About Us */}
         <NavLink
           to="/about"
           className={({ isActive }) =>
@@ -68,8 +56,6 @@ function Navbar() {
         >
           About Us
         </NavLink>
-
-        {/* Contact Us */}
         <NavLink
           to="/contact"
           className={({ isActive }) =>
@@ -79,8 +65,6 @@ function Navbar() {
         >
           Contact Us
         </NavLink>
-
-        {/* Progress */}
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
@@ -90,8 +74,6 @@ function Navbar() {
         >
           Progress
         </NavLink>
-
-        {/* Login */}
         <NavLink
           to="/login"
           className={({ isActive }) =>
@@ -103,8 +85,6 @@ function Navbar() {
         </NavLink>
 
       </div>
-
-      {/* Profile */}
       <div className="navbar-profile">
         <NavLink
           to="/profile"

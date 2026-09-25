@@ -152,38 +152,22 @@ function Register() {
 
   return (
     <div className="register-container">
-
       <div className="register-box">
-
-        {/* ================= LEFT ================= */}
-
         <div className="register-form-side">
-
-          {/* LOGO */}
           <div className="navbar-logo">
             <a href="/">
               <span className="logo-nutri">Nutri</span>
               <span className="logo-fit">Fit</span>
             </a>
           </div>
-
           <h2>Create your account</h2>
-
           <p className="subtitle">
             Join NutriFit and start your healthy journey.
           </p>
-
-          {/* ================= FORM ================= */}
-
           <form onSubmit={handleRegister}>
-
-            {/* FULL NAME */}
             <div className="form-group">
-
               <label>Full Name</label>
-
               <div className="input-wrapper">
-
                 <input
                   type="text"
                   name="name"
@@ -191,18 +175,11 @@ function Register() {
                   value={formData.name}
                   onChange={handleChange}
                 />
-
               </div>
-
             </div>
-
-            {/* EMAIL */}
             <div className="form-group">
-
               <label>Email</label>
-
               <div className="input-wrapper">
-
                 <input
                   type="email"
                   name="email"
@@ -214,8 +191,6 @@ function Register() {
               </div>
 
             </div>
-
-            {/* PASSWORD */}
             <div className="form-group">
 
               <label>Password</label>
@@ -247,8 +222,6 @@ function Register() {
                 </button>
 
               </div>
-
-              {/* PASSWORD STRENGTH */}
               {strength && (
                 <p
                   className={`strength-text ${strength.cls}`}
@@ -259,9 +232,6 @@ function Register() {
               )}
 
             </div>
-
-            {/* CREATE ACCOUNT BUTTON */}
-
             <button
               type="submit"
               disabled={loading}
@@ -272,9 +242,6 @@ function Register() {
             </button>
 
           </form>
-
-          {/* MESSAGE */}
-
           {message && (
             <p
               className={`register-message ${
@@ -286,9 +253,6 @@ function Register() {
               {message}
             </p>
           )}
-
-          {/* LOGIN */}
-
           <p className="login-link">
             Already have an account?
             <span
@@ -299,30 +263,17 @@ function Register() {
           </p>
 
         </div>
-
-        {/* ================= RIGHT ================= */}
-
         <div className="register-art-side">
-
-          {/* MAIN ORGANIC PISTA BLOB */}
           <div className="organic-blob"></div>
-
-          {/* SECOND BLOB */}
           <div className="organic-blob-small"></div>
-
-          {/* DECORATIVE SMALL CIRCLES */}
           <span className="green-dot dot1"></span>
           <span className="green-dot dot2"></span>
           <span className="green-dot dot3"></span>
           <span className="green-dot dot4"></span>
           <span className="green-dot dot5"></span>
-
-          {/* LEAVES */}
           <span className="leaf leaf1"></span>
           <span className="leaf leaf2"></span>
           <span className="leaf leaf3"></span>
-
-          {/* AVOCADO IMAGE */}
           <img
             src="/avocado.png"
             alt="Fresh Avocado"

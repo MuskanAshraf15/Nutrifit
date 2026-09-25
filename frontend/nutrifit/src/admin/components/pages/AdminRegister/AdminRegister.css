@@ -94,10 +94,8 @@
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-
   border: none;
   background: transparent;
-
   cursor: pointer;
   font-size: 18px;
   padding: 5px;
@@ -175,12 +173,8 @@
   color: #999;
   font-size: 12px;
 }
-/* ============================= */
-/* RESPONSIVE - TABLET */
-/* ============================= */
 
 @media (max-width: 768px) {
-
   .admin-register-page {
     padding: 30px 18px;
   }
@@ -199,13 +193,7 @@
   }
 }
 
-
-/* ============================= */
-/* RESPONSIVE - MOBILE */
-/* ============================= */
-
 @media (max-width: 480px) {
-
   .admin-register-page {
     padding: 20px 15px;
   }
@@ -281,13 +269,7 @@
   }
 }
 
-
-/* ============================= */
-/* RESPONSIVE - SMALL MOBILE */
-/* ============================= */
-
 @media (max-width: 360px) {
-
   .admin-register-page {
     padding: 15px 10px;
   }

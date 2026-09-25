@@ -5,32 +5,20 @@ import "./AdminForgotPassword.css";
 const API_URL = "https://nutrifit.alwaysdata.net";
 
 function AdminForgotPassword() {
-
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
-
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
-
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-
   const [loading, setLoading] = useState(false);
 
-
-  // =========================================================
-  // SEND OTP
-  // =========================================================
-
   const sendOTP = async () => {
-
     setMessage("");
     setError("");
 
@@ -40,289 +28,198 @@ function AdminForgotPassword() {
     }
 
     try {
-
       setLoading(true);
 
       const response = await fetch(
         `${API_URL}/admin/forgot_password`,
         {
           method: "POST",
-
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-
           body: JSON.stringify({
             email: email,
-            action: "send_otp"
-          })
+            action: "send_otp",
+          }),
         }
       );
 
       const data = await response.json();
 
       if (response.ok && data.success) {
-
         setMessage(data.message);
-
         setStep(2);
-
       } else {
-
         setError(
           data.message || "Unable to send OTP."
         );
       }
-
     } catch (err) {
-
       setError(
         "Unable to connect to the server."
       );
-
     } finally {
-
       setLoading(false);
-
     }
   };
 
-
-  // =========================================================
-  // RESEND OTP
-  // =========================================================
-
   const resendOTP = async () => {
-
     setMessage("");
     setError("");
 
     try {
-
       setLoading(true);
 
       const response = await fetch(
         `${API_URL}/admin/forgot_password`,
         {
           method: "POST",
-
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-
           body: JSON.stringify({
             email: email,
-            action: "resend_otp"
-          })
+            action: "resend_otp",
+          }),
         }
       );
 
       const data = await response.json();
 
       if (response.ok && data.success) {
-
         setMessage(data.message);
-
       } else {
-
         setError(
           data.message || "Unable to resend OTP."
         );
       }
-
     } catch (err) {
-
       setError(
         "Unable to connect to the server."
       );
-
     } finally {
-
       setLoading(false);
-
     }
   };
 
-
-  // =========================================================
-  // VERIFY OTP
-  // =========================================================
-
   const verifyOTP = async () => {
-
     setMessage("");
     setError("");
 
     if (!otp) {
-
       setError("Please enter the OTP.");
       return;
     }
 
     try {
-
       setLoading(true);
 
       const response = await fetch(
         `${API_URL}/admin/forgot_password`,
         {
           method: "POST",
-
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-
           body: JSON.stringify({
             email: email,
             otp: otp,
-            action: "verify_otp"
-          })
+            action: "verify_otp",
+          }),
         }
       );
 
       const data = await response.json();
 
       if (response.ok && data.success) {
-
         setMessage(data.message);
-
         setStep(3);
-
       } else {
-
         setError(
           data.message || "Invalid OTP."
         );
       }
-
     } catch (err) {
-
       setError(
         "Unable to connect to the server."
       );
-
     } finally {
-
       setLoading(false);
-
     }
   };
 
-
-  // =========================================================
-  // RESET PASSWORD
-  // =========================================================
-
   const resetPassword = async () => {
-
     setMessage("");
     setError("");
 
     if (!newPassword || !confirmPassword) {
-
       setError(
         "Please enter both password fields."
       );
-
       return;
     }
 
     if (newPassword !== confirmPassword) {
-
       setError(
         "Passwords do not match."
       );
-
       return;
     }
 
     if (newPassword.length < 6) {
-
       setError(
         "Password must be at least 6 characters."
       );
-
       return;
     }
 
     try {
-
       setLoading(true);
 
       const response = await fetch(
         `${API_URL}/admin/forgot_password`,
         {
           method: "POST",
-
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-
           body: JSON.stringify({
-
             email: email,
-
             otp: otp,
-
             new_password: newPassword,
-
             confirm_password: confirmPassword,
-
-            action: "reset_password"
-
-          })
+            action: "reset_password",
+          }),
         }
       );
 
       const data = await response.json();
 
       if (response.ok && data.success) {
-
         setMessage(data.message);
 
         setTimeout(() => {
-
           navigate("/admin/login");
-
         }, 1500);
-
       } else {
-
         setError(
           data.message ||
-          "Unable to reset password."
+            "Unable to reset password."
         );
       }
-
     } catch (err) {
-
       setError(
         "Unable to connect to the server."
       );
-
     } finally {
-
       setLoading(false);
-
     }
   };
 
-
-  // =========================================================
-  // UI
-  // =========================================================
-
   return (
-
     <div className="admin-forgot-page">
-
       <div className="admin-forgot-card">
-
-
-        {/* HEADER */}
-
         <div className="admin-forgot-header">
-
           <div className="admin-forgot-icon">
             🔐
           </div>
@@ -332,26 +229,17 @@ function AdminForgotPassword() {
           <p>
             Reset your administrator password
           </p>
-
         </div>
 
-
-        {/* STEP 1 */}
-
         {step === 1 && (
-
           <>
-
             <div className="admin-forgot-title">
-
               <h2>Forgot Password?</h2>
 
               <p>
                 Enter your admin email to receive an OTP.
               </p>
-
             </div>
-
 
             {error && (
               <div className="admin-forgot-error">
@@ -365,9 +253,7 @@ function AdminForgotPassword() {
               </div>
             )}
 
-
             <div className="admin-forgot-form-group">
-
               <label>Email</label>
 
               <input
@@ -378,35 +264,23 @@ function AdminForgotPassword() {
                   setEmail(e.target.value)
                 }
               />
-
             </div>
-
 
             <button
               className="admin-forgot-button"
               onClick={sendOTP}
               disabled={loading}
             >
-
               {loading
                 ? "Sending..."
                 : "Send OTP"}
-
             </button>
-
           </>
-
         )}
 
-
-        {/* STEP 2 */}
-
         {step === 2 && (
-
           <>
-
             <div className="admin-forgot-title">
-
               <h2>Verify OTP</h2>
 
               <p>
@@ -416,9 +290,7 @@ function AdminForgotPassword() {
               <strong>
                 {email}
               </strong>
-
             </div>
-
 
             {error && (
               <div className="admin-forgot-error">
@@ -432,9 +304,7 @@ function AdminForgotPassword() {
               </div>
             )}
 
-
             <div className="admin-forgot-form-group">
-
               <label>OTP</label>
 
               <input
@@ -446,25 +316,19 @@ function AdminForgotPassword() {
                   setOtp(e.target.value)
                 }
               />
-
             </div>
-
 
             <button
               className="admin-forgot-button"
               onClick={verifyOTP}
               disabled={loading}
             >
-
               {loading
                 ? "Verifying..."
                 : "Verify OTP"}
-
             </button>
 
-
             <div className="admin-resend">
-
               <span>
                 Didn't receive OTP?
               </span>
@@ -476,30 +340,19 @@ function AdminForgotPassword() {
               >
                 Resend OTP
               </button>
-
             </div>
-
           </>
-
         )}
 
-
-        {/* STEP 3 */}
-
         {step === 3 && (
-
           <>
-
             <div className="admin-forgot-title">
-
               <h2>Reset Password</h2>
 
               <p>
                 Create your new admin password.
               </p>
-
             </div>
-
 
             {error && (
               <div className="admin-forgot-error">
@@ -513,15 +366,10 @@ function AdminForgotPassword() {
               </div>
             )}
 
-
-            {/* NEW PASSWORD */}
-
             <div className="admin-forgot-form-group">
-
               <label>New Password</label>
 
               <div className="admin-forgot-password-wrapper">
-
                 <input
                   type={
                     showPassword
@@ -542,28 +390,19 @@ function AdminForgotPassword() {
                     setShowPassword(!showPassword)
                   }
                 >
-
                   {showPassword
                     ? "🙈"
                     : "👁️"}
-
                 </button>
-
               </div>
-
             </div>
 
-
-            {/* CONFIRM PASSWORD */}
-
             <div className="admin-forgot-form-group">
-
               <label>
                 Confirm Password
               </label>
 
               <div className="admin-forgot-password-wrapper">
-
                 <input
                   type={
                     showConfirmPassword
@@ -588,39 +427,26 @@ function AdminForgotPassword() {
                     )
                   }
                 >
-
                   {showConfirmPassword
                     ? "🙈"
                     : "👁️"}
-
                 </button>
-
               </div>
-
             </div>
-
 
             <button
               className="admin-forgot-button"
               onClick={resetPassword}
               disabled={loading}
             >
-
               {loading
                 ? "Updating..."
                 : "Change Password"}
-
             </button>
-
           </>
-
         )}
 
-
-        {/* LOGIN */}
-
         <div className="admin-forgot-login">
-
           <p>
             Remember your password?
           </p>
@@ -633,22 +459,13 @@ function AdminForgotPassword() {
           >
             Back to Admin Login
           </button>
-
         </div>
-
-
-        {/* FOOTER */}
 
         <div className="admin-forgot-footer">
-
           NutriFit Admin Panel
-
         </div>
-
       </div>
-
     </div>
-
   );
 }
 

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
@@ -58,34 +57,23 @@ function Login() {
       console.log("LOGIN RESPONSE:", data);
 
       if (response.ok && data.success) {
-
-        // Save JWT token
         if (data.token) {
           localStorage.setItem("token", data.token);
         }
 
-        // Save logged-in user's email
         localStorage.setItem("loginEmail", formData.email);
 
-        setMessage(
-          data.message || "Login successful!"
-        );
+        setMessage(data.message || "Login successful!");
 
-        // Directly go to Get Started
         setTimeout(() => {
           navigate("/");
         }, 800);
-
       } else {
-        setMessage(
-          data.message || "Invalid email or password."
-        );
+        setMessage(data.message || "Invalid email or password.");
       }
-
     } catch (error) {
       console.error("Login Error:", error);
       setMessage("Unable to connect to server.");
-
     } finally {
       setLoading(false);
     }
@@ -93,10 +81,7 @@ function Login() {
 
   return (
     <div className="login-container">
-
       <div className="login-card">
-
-        {/* BACK ARROW */}
         <button
           className="back-arrow"
           type="button"
@@ -105,18 +90,12 @@ function Login() {
           ←
         </button>
 
-        {/* HEADING */}
         <h1>Welcome back</h1>
 
-        <p className="login-subtitle">
-          Login to your account
-        </p>
+        <p className="login-subtitle">Login to your account</p>
 
         <form onSubmit={handleLogin}>
-
-          {/* EMAIL */}
           <div className="form-group">
-
             <label>Email</label>
 
             <input
@@ -126,22 +105,14 @@ function Login() {
               value={formData.email}
               onChange={handleChange}
             />
-
           </div>
 
-          {/* PASSWORD */}
           <div className="form-group password-group">
-
             <label>Password</label>
 
             <div className="password-wrapper">
-
               <input
-                type={
-                  showPassword
-                    ? "text"
-                    : "password"
-                }
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter your password"
                 value={formData.password}
@@ -151,77 +122,52 @@ function Login() {
               <button
                 type="button"
                 className="eye-button"
-                onClick={() =>
-                  setShowPassword(!showPassword)
-                }
+                onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? "◉" : "◌"}
               </button>
-
             </div>
-
           </div>
 
-          {/* FORGOT PASSWORD */}
           <div className="forgot-wrapper">
-
             <button
               type="button"
-              onClick={() =>
-                navigate("/forgot-password")
-              }
+              onClick={() => navigate("/forgot-password")}
             >
               Forgot Password?
             </button>
-
           </div>
 
-          {/* LOGIN BUTTON */}
           <button
             type="submit"
             className="login-button"
             disabled={loading}
           >
-            {loading
-              ? "Logging in..."
-              : "Login"}
+            {loading ? "Logging in..." : "Login"}
           </button>
-
         </form>
 
-        {/* MESSAGE */}
         {message && (
           <p className="login-message">
             {message}
           </p>
         )}
 
-        {/* DIVIDER */}
         <div className="bottom-line"></div>
 
-        {/* CREATE ACCOUNT */}
         <div className="create-account">
-
-          <span>
-            Don't have an account?
-          </span>
+          <span>Don't have an account?</span>
 
           <button
             type="button"
-            onClick={() =>
-              navigate("/signup")
-            }
+            onClick={() => navigate("/signup")}
           >
             Create Account
           </button>
-
         </div>
-
       </div>
-
     </div>
   );
 }
 
 export default Login;
-

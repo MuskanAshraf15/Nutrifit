@@ -9,8 +9,6 @@ function Profile() {
   const [healthInfo, setHealthInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
-  // Flask Backend URL
   const API_URL = "https://nutrifit.alwaysdata.net";
 
   useEffect(() => {
@@ -23,15 +21,10 @@ function Profile() {
       setError("");
 
       const token = localStorage.getItem("token");
-
-      // Token nahi hai
       if (!token) {
         navigate("/login");
         return;
       }
-
-      // IMPORTANT:
-      // Backend route /my_profile hai
       const response = await fetch(`${API_URL}/my_profile`, {
         method: "GET",
         headers: {
@@ -47,15 +40,11 @@ function Profile() {
       } catch (error) {
         throw new Error("Invalid response received from server.");
       }
-
-      // Token invalid / expired
       if (response.status === 401) {
         localStorage.removeItem("token");
         navigate("/get-started");
         return;
       }
-
-      // Other errors
       if (!response.ok) {
         throw new Error(
           data.message ||
@@ -63,14 +52,6 @@ function Profile() {
             "Failed to fetch profile."
         );
       }
-
-      // Backend response:
-      // {
-      //   success: true,
-      //   user: {...},
-      //   health_information: {...}
-      // }
-
       if (data.success) {
         setProfile(data.user || null);
         setHealthInfo(data.health_information || null);
@@ -100,10 +81,6 @@ function Profile() {
       setLoading(false);
     }
   };
-
-  // =========================
-  // LOGOUT
-  // =========================
   const handleLogout = async () => {
     const token = localStorage.getItem("token");
 
@@ -120,16 +97,10 @@ function Profile() {
     } catch (err) {
       console.error("Logout Error:", err);
     } finally {
-      // Logout only ends the login session.
-      // User database data will NOT be deleted.
       localStorage.removeItem("token");
       navigate("/login");
     }
   };
-
-  // =========================
-  // SIGN OUT / DELETE ACCOUNT
-  // =========================
   const handleSignOut = async () => {
     const token = localStorage.getItem("token");
 
@@ -157,7 +128,6 @@ function Profile() {
       }
 
       if (response.ok && data.success) {
-        // Account and all related user data deleted.
         localStorage.clear();
         navigate("/");
       } else {
@@ -175,11 +145,6 @@ function Profile() {
       );
     }
   };
-
-  // =========================
-  // CLOSE PROFILE
-  // =========================
-
   const handleCloseProfile = () => {
     if (window.history.length > 1) {
       navigate(-1);
@@ -187,12 +152,7 @@ function Profile() {
       navigate("/");
     }
   };
-
-  // =========================
-  // LOADING
-  // =========================
-
-  if (loading) {
+ if (loading) {
     return (
       <div className="profile-page">
         <div className="profile-card profile-loading">
@@ -216,11 +176,6 @@ function Profile() {
       </div>
     );
   }
-
-  // =========================
-  // ERROR
-  // =========================
-
   if (error) {
     return (
       <div className="profile-page">
@@ -259,12 +214,7 @@ function Profile() {
       </div>
     );
   }
-
-  // =========================
-  // NO PROFILE
-  // =========================
-
-  if (!profile) {
+ if (!profile) {
     return (
       <div className="profile-page">
         <div className="profile-card profile-error">
@@ -307,11 +257,6 @@ function Profile() {
         >
           ×
         </button>
-
-        {/* =========================
-            HEADER
-        ========================== */}
-
         <div className="profile-top">
 
           <div className="profile-avatar">
@@ -331,12 +276,6 @@ function Profile() {
           </div>
 
         </div>
-
-
-        {/* =========================
-            PERSONAL INFORMATION
-        ========================== */}
-
         <div className="profile-section">
 
           <h3>
@@ -372,12 +311,6 @@ function Profile() {
           </div>
 
         </div>
-
-
-        {/* =========================
-            BODY INFORMATION
-        ========================== */}
-
         <div className="profile-section">
 
           <h3>
@@ -448,13 +381,7 @@ function Profile() {
           </div>
 
         </div>
-
-
-        {/* =========================
-            NUTRITION PREFERENCES
-        ========================== */}
-
-        <div className="profile-section">
+          <div className="profile-section">
 
           <h3>
             Nutrition Preferences
@@ -509,12 +436,6 @@ function Profile() {
           </div>
 
         </div>
-
-
-        {/* =========================
-            CALORIE INFORMATION
-        ========================== */}
-
         {healthInfo && (
           <div className="profile-section">
 
@@ -566,14 +487,7 @@ function Profile() {
 
           </div>
         )}
-
-
-        {/* =========================
-            BUTTONS
-        ========================== */}
-
-        <div className="profile-actions">
-
+          <div className="profile-actions">
           <button
             type="button"
             className="edit-btn"

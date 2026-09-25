@@ -8,18 +8,13 @@ function VerifyOTP() {
   const [otp, setOtp] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-
-  // Register page se saved email
   const email = localStorage.getItem("verificationEmail");
-
   const verifyOTP = async (e) => {
     e.preventDefault();
-
     if (!otp) {
       setMessage("Please enter the OTP");
       return;
     }
-
     if (otp.length !== 6) {
       setMessage("OTP must be 6 digits");
       return;

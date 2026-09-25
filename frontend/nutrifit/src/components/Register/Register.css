@@ -1,7 +1,3 @@
-/* =====================================================
-   FONT
-===================================================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 * {
@@ -13,104 +9,53 @@ body {
   margin: 0;
 }
 
-
-/* =====================================================
-   PAGE
-===================================================== */
-
 .register-container {
   min-height: 80vh;
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: #f7faf3;
-
   padding: 30px;
 }
-
-
-/* =====================================================
-   MAIN CARD
-   MEDIUM SIZE + CENTER
-===================================================== */
 
 .register-box {
   width: 900px;
   max-width: 100%;
-
   min-height: 570px;
-
   display: flex;
-
   position: relative;
-
   overflow: hidden;
-
   background: #ffffff;
-
   border: 1px solid #e5ebe2;
-
   border-radius: 22px;
-
-  box-shadow:
-    0 10px 35px rgba(44, 75, 38, 0.10);
+  box-shadow: 0 10px 35px rgba(44, 75, 38, 0.10);
 }
-
-
-/* =====================================================
-   LEFT FORM SIDE
-===================================================== */
 
 .register-form-side {
   width: 56%;
-
   padding: 35px 42px;
-
   display: flex;
   flex-direction: column;
-
   justify-content: center;
-
   background: #ffffff;
 }
 
-
-
-/* =====================================================
-   HEADING
-===================================================== */
-
 .register-form-side h2 {
   margin: 0;
-
   color: #101d28;
-
   font-size: 30px;
-
   font-weight: 800;
-
   line-height: 1.2;
-
   letter-spacing: -1px;
 }
 
 .subtitle {
   margin: 8px 0 22px;
-
   color: #778291;
-
   font-size: 14px;
-
   line-height: 1.5;
 }
-
-
-/* =====================================================
-   FORM
-===================================================== */
 
 .form-group {
   margin-bottom: 15px;
@@ -118,21 +63,11 @@ body {
 
 .form-group label {
   display: block;
-
   margin-bottom: 6px;
-
   color: #111d27;
-
   font-size: 13px;
-
   font-weight: 600;
 }
-
-
-/* =====================================================
-   NORMAL INPUT
-   ICON REMOVED
-===================================================== */
 
 .input-wrapper {
   width: 100%;
@@ -140,116 +75,67 @@ body {
 
 .form-group input {
   width: 100%;
-
   height: 46px;
-
   padding: 0 14px;
-
   border: 1px solid #d9dfe2;
-
   border-radius: 9px;
-
   outline: none;
-
   background: #ffffff;
-
   color: #333333;
-
   font-size: 13px;
-
   transition: 0.2s;
 }
 
 .form-group input:focus {
   border-color: #42a653;
-
-  box-shadow:
-    0 0 0 3px
-    rgba(66, 166, 83, 0.08);
+  box-shadow: 0 0 0 3px rgba(66, 166, 83, 0.08);
 }
 
 .form-group input::placeholder {
   color: #a3abb7;
 }
 
-
-/* =====================================================
-   REMOVE OLD INPUT ICON
-===================================================== */
-
 .input-icon {
   display: none;
 }
 
-
-/* =====================================================
-   PASSWORD
-   LOCK ICON REMOVED
-===================================================== */
-
 .password-wrapper {
   position: relative;
-
   width: 100%;
 }
 
 .password-wrapper input {
   width: 100%;
-
   height: 46px;
-
   padding: 0 48px 0 14px;
-
   border: 1px solid #d9dfe2;
-
   border-radius: 9px;
-
   outline: none;
-
   background: #ffffff;
-
   color: #333333;
-
   font-size: 13px;
-
   transition: 0.2s;
 }
 
 .password-wrapper input:focus {
   border-color: #42a653;
-
-  box-shadow:
-    0 0 0 3px
-    rgba(66, 166, 83, 0.08);
+  box-shadow: 0 0 0 3px rgba(66, 166, 83, 0.08);
 }
 
 .password-wrapper input::placeholder {
   color: #a3abb7;
 }
 
-
-/* =====================================================
-   EYE BUTTON
-===================================================== */
-
 .eye-btn {
   position: absolute;
-
   right: 14px;
   top: 50%;
-
   transform: translateY(-50%);
-
   border: none;
-
   background: transparent;
-
   color: #687582;
-
   padding: 0;
-
   cursor: pointer;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -259,18 +145,10 @@ body {
   color: #16883c;
 }
 
-
-/* =====================================================
-   PASSWORD STRENGTH
-===================================================== */
-
 .strength-text {
   margin: 5px 0 0;
-
   font-size: 11px;
-
   color: #16883c;
-
   font-weight: 400;
 }
 
@@ -290,61 +168,34 @@ body {
   color: #16883c;
 }
 
-
-/* =====================================================
-   CREATE ACCOUNT BUTTON
-===================================================== */
-
 .register-form-side button[type="submit"] {
   width: 100%;
-
   height: 48px;
-
   margin-top: 4px;
-
   border: none;
-
   border-radius: 9px;
-
   background: #148b3d;
-
   color: #ffffff;
-
   font-size: 14px;
-
   font-weight: 700;
-
   cursor: pointer;
-
   transition: 0.25s;
 }
 
 .register-form-side button[type="submit"]:hover {
   background: #0d7431;
-
-  box-shadow:
-    0 7px 18px
-    rgba(20, 139, 61, 0.18);
+  box-shadow: 0 7px 18px rgba(20, 139, 61, 0.18);
 }
 
 .register-form-side button[type="submit"]:disabled {
   background: #91c69c;
-
   cursor: not-allowed;
 }
 
-
-/* =====================================================
-   MESSAGE
-===================================================== */
-
 .register-message {
   margin: 8px 0 0;
-
   text-align: center;
-
   font-size: 12px;
-
   color: #e53935;
 }
 
@@ -352,28 +203,17 @@ body {
   color: #16883c;
 }
 
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
 .login-link {
   margin: 14px 0 0;
-
   text-align: center;
-
   color: #8b939f;
-
   font-size: 13px;
 }
 
 .login-link span {
   margin-left: 5px;
-
   color: #16883c;
-
   font-weight: 700;
-
   cursor: pointer;
 }
 
@@ -381,104 +221,56 @@ body {
   text-decoration: underline;
 }
 
-
-/* =====================================================
-   RIGHT SIDE
-===================================================== */
-
 .register-art-side {
   width: 44%;
-
   position: relative;
-
   overflow: hidden;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   background: #ffffff;
 }
 
-
-/* =====================================================
-   MAIN PISTA ORGANIC BLOB
-===================================================== */
-
 .organic-blob {
   position: absolute;
-
   z-index: 1;
-
   width: 350px;
   height: 455px;
-
   right: -55px;
   top: 50%;
-
-  transform:
-    translateY(-50%)
-    rotate(-8deg);
-
+  transform: translateY(-50%) rotate(-8deg);
   background: #e7f0c9;
-
   border-radius:
     53% 47% 52% 48% /
     42% 54% 46% 58%;
-
   opacity: 0.95;
 }
 
-
-/* =====================================================
-   LIGHTER INNER BLOB
-===================================================== */
-
 .organic-blob-small {
   position: absolute;
-
   z-index: 2;
-
   width: 290px;
   height: 280px;
-
   right: 10px;
   top: 145px;
-
   background: #eef5d9;
-
   border-radius:
     55% 45% 48% 52% /
     50% 43% 57% 50%;
-
   transform: rotate(12deg);
 }
 
-
-/* =====================================================
-   AVOCADO IMAGE
-===================================================== */
-
 .avocado-image {
   position: relative;
-
   z-index: 10;
-
   width: 350px;
   height: 350px;
-
   object-fit: contain;
-
   margin-right: -15px;
-
-  filter:
-    drop-shadow(
-      0 16px 15px
-      rgba(46, 82, 37, 0.18)
-    );
-
+  filter: drop-shadow(
+    0 16px 15px
+    rgba(46, 82, 37, 0.18)
+  );
   animation:
     avocadoFloat
     4s
@@ -486,9 +278,7 @@ body {
     infinite;
 }
 
-
 @keyframes avocadoFloat {
-
   0% {
     transform: translateY(5px);
   }
@@ -500,28 +290,18 @@ body {
   100% {
     transform: translateY(5px);
   }
-
 }
-
-
-/* =====================================================
-   GREEN DECORATIVE DOTS
-===================================================== */
 
 .green-dot {
   position: absolute;
-
   z-index: 7;
-
   border-radius: 50%;
-
   background: #c4dd79;
 }
 
 .dot1 {
   width: 17px;
   height: 17px;
-
   top: 125px;
   right: 70px;
 }
@@ -529,7 +309,6 @@ body {
 .dot2 {
   width: 16px;
   height: 16px;
-
   top: 265px;
   left: 35px;
 }
@@ -537,7 +316,6 @@ body {
 .dot3 {
   width: 10px;
   height: 10px;
-
   top: 270px;
   right: 15px;
 }
@@ -545,7 +323,6 @@ body {
 .dot4 {
   width: 17px;
   height: 17px;
-
   bottom: 80px;
   right: 55px;
 }
@@ -553,98 +330,61 @@ body {
 .dot5 {
   width: 10px;
   height: 10px;
-
   bottom: 100px;
   left: 55px;
 }
 
-
-/* =====================================================
-   DECORATIVE LEAVES
-===================================================== */
-
 .leaf {
   position: absolute;
-
   z-index: 8;
-
   width: 25px;
   height: 53px;
-
   background: #65aa3f;
-
-  border-radius:
-    100% 0 100% 0;
-
+  border-radius: 100% 0 100% 0;
   opacity: 0.95;
 }
 
 .leaf::after {
   content: "";
-
   position: absolute;
-
   width: 2px;
   height: 80%;
-
   top: 10%;
   left: 50%;
-
-  background:
-    rgba(48, 105, 39, 0.55);
-
+  background: rgba(48, 105, 39, 0.55);
   transform: rotate(-25deg);
-
   border-radius: 5px;
 }
 
 .leaf1 {
   top: 120px;
   right: 55px;
-
   transform: rotate(40deg);
 }
 
 .leaf2 {
   top: 190px;
   right: 12px;
-
   width: 21px;
   height: 47px;
-
   background: #82b84c;
-
   transform: rotate(60deg);
 }
 
 .leaf3 {
   bottom: 125px;
   left: 45px;
-
   width: 21px;
   height: 47px;
-
   background: #76b446;
-
   transform: rotate(-45deg);
 }
-
-
-/* =====================================================
-   REMOVE DOWNLOAD BUTTON
-===================================================== */
 
 .card-top-btn {
   display: none !important;
 }
 
-
-/* =====================================================
-   TABLET
-===================================================== */
-
 @media (max-width: 950px) {
-
   .register-container {
     padding: 20px;
   }
@@ -681,38 +421,26 @@ body {
   }
 }
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
 @media (max-width: 700px) {
-
   .register-container {
     padding: 15px;
   }
 
   .register-box {
     width: 100%;
-
     max-width: 450px;
-
     min-height: auto;
-
     flex-direction: column;
   }
 
   .register-art-side {
     width: 100%;
-
     height: 270px;
-
     order: -1;
   }
 
   .register-form-side {
     width: 100%;
-
     padding: 30px 25px 32px;
   }
 
@@ -726,7 +454,6 @@ body {
 
   .subtitle {
     font-size: 13px;
-
     margin-bottom: 22px;
   }
 
@@ -737,43 +464,31 @@ body {
 
   .register-form-side button[type="submit"] {
     height: 52px;
-
     font-size: 15px;
   }
 
   .avocado-image {
     width: 255px;
     height: 255px;
-
     margin-right: 0;
   }
 
   .organic-blob {
     width: 270px;
     height: 290px;
-
     right: 50%;
-
-    transform:
-      translate(50%, -50%);
+    transform: translate(50%, -50%);
   }
 
   .organic-blob-small {
     width: 210px;
     height: 210px;
-
     right: 50px;
     top: 30px;
   }
 }
 
-
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
-
 @media (max-width: 420px) {
-
   .register-form-side {
     padding: 25px 20px 28px;
   }

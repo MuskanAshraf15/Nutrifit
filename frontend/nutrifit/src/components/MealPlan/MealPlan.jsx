@@ -15,16 +15,10 @@ function MealPlan() {
   const [changing, setChanging] = useState(false);
   const [changeIndex, setChangeIndex] = useState(0);
   const [error, setError] = useState("");
-
   const [savingRecommendation, setSavingRecommendation] = useState(false);
 
   const token = localStorage.getItem("token");
-
   const mealNames = ["Breakfast", "Lunch", "Dinner"];
-
-  // =========================================================
-  // KEEP SEPARATE HISTORY FOR EACH MEAL
-  // =========================================================
 
   const [mealHistory, setMealHistory] = useState({
     Breakfast: [],
@@ -32,27 +26,17 @@ function MealPlan() {
     Dinner: [],
   });
 
-  // =========================================================
-  // FEEDBACK STATES
-  // =========================================================
-
   const [feedback, setFeedback] = useState("");
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [submittingFeedback, setSubmittingFeedback] = useState(false);
-
   const [followed, setFollowed] = useState("");
   const [feedbackMeal, setFeedbackMeal] = useState("Breakfast");
-
-  // =========================================================
-  // GET RECOMMENDATION FROM BACKEND
-  // =========================================================
 
   const getRecommendation = async (meal, excludeIds = []) => {
     let url = `https://nutrifit.alwaysdata.net/recommend_food?meal=${encodeURIComponent(
       meal
     )}`;
 
-    // Send ALL previously shown food IDs for this meal
     if (excludeIds.length > 0) {
       url += `&exclude_ids=${excludeIds.join(",")}`;
     }
@@ -76,10 +60,6 @@ function MealPlan() {
     return data;
   };
 
-  // =========================================================
-  // LOAD ALL MEALS
-  // =========================================================
-
   const loadMeals = async () => {
     if (!token) {
       navigate("/login");
@@ -102,8 +82,6 @@ function MealPlan() {
         Dinner: dinner,
       });
 
-      // First food of every meal becomes the beginning
-      // of that meal's cycle.
       setMealHistory({
         Breakfast: breakfast?.recommendation?.food_id
           ? [breakfast.recommendation.food_id]
@@ -129,18 +107,10 @@ function MealPlan() {
     loadMeals();
   }, []);
 
-  // =========================================================
-  // AUTO SCROLL TO THE ACTUAL MEAL PLAN
-  // =========================================================
-
   useEffect(() => {
     if (
       !loading &&
-      (
-        meals.Breakfast ||
-        meals.Lunch ||
-        meals.Dinner
-      )
+      (meals.Breakfast || meals.Lunch || meals.Dinner)
     ) {
       const planSection =
         document.getElementById("my-full-plan");
@@ -156,15 +126,6 @@ function MealPlan() {
     }
   }, [loading]);
 
-  // =========================================================
-  // CHANGE RECOMMENDATION
-  //
-  // Breakfast -> Lunch -> Dinner -> Breakfast
-  //
-  // IMPORTANT:
-  // Every meal has its own history.
-  // =========================================================
-
   const changeRecommendation = async (selectedMealName = null) => {
     if (changing) {
       return;
@@ -172,6 +133,7 @@ function MealPlan() {
 
     const currentMealName =
       selectedMealName || mealNames[changeIndex];
+
     const currentMeal = meals[currentMealName];
 
     if (!currentMeal?.recommendation?.food_id) {
@@ -187,11 +149,6 @@ function MealPlan() {
     setError("");
 
     try {
-      // -------------------------------------------------------
-      // FIRST TRY:
-      // Ask backend for a food that has NOT been shown before
-      // -------------------------------------------------------
-
       let newMeal = await getRecommendation(
         currentMealName,
         history
@@ -199,19 +156,11 @@ function MealPlan() {
 
       let newFoodId = newMeal?.recommendation?.food_id;
 
-      // -------------------------------------------------------
-      // SAFETY CHECK
-      //
-      // If backend somehow returns a food already in history,
-      // don't silently accept it.
-      // -------------------------------------------------------
-
       if (newFoodId && history.includes(newFoodId)) {
         console.warn(
           `${currentMealName}: backend returned an already used food.`
         );
 
-        // Try once again with the complete history.
         newMeal = await getRecommendation(
           currentMealName,
           history
@@ -219,15 +168,6 @@ function MealPlan() {
 
         newFoodId = newMeal?.recommendation?.food_id;
       }
-
-      // -------------------------------------------------------
-      // IF WE STILL RECEIVE SAME FOOD
-      //
-      // This means backend has exhausted available unique foods
-      // and has started the cycle again.
-      //
-      // Reset this meal's history and accept the new cycle.
-      // -------------------------------------------------------
 
       if (newFoodId && history.includes(newFoodId)) {
         console.log(
@@ -239,11 +179,6 @@ function MealPlan() {
           [currentMealName]: [newFoodId],
         }));
       } else if (newFoodId) {
-        // -----------------------------------------------------
-        // NORMAL CASE:
-        // Add new food to this meal's history
-        // -----------------------------------------------------
-
         setMealHistory((previous) => ({
           ...previous,
           [currentMealName]: [
@@ -253,18 +188,10 @@ function MealPlan() {
         }));
       }
 
-      // -------------------------------------------------------
-      // UPDATE CURRENT MEAL
-      // -------------------------------------------------------
-
       setMeals((previous) => ({
         ...previous,
         [currentMealName]: newMeal,
       }));
-
-      // -------------------------------------------------------
-      // NEXT CLICK -> NEXT MEAL
-      // -------------------------------------------------------
 
       if (!selectedMealName) {
         setChangeIndex((previous) => {
@@ -285,10 +212,6 @@ function MealPlan() {
       setChanging(false);
     }
   };
-
-  // =========================================================
-  // SAVE CURRENT MEAL PLAN TO USER DEVICE
-  // =========================================================
 
   const saveAllRecommendations = () => {
     const currentMeals = mealNames
@@ -337,6 +260,7 @@ function MealPlan() {
         document.createElement("a");
 
       link.href = downloadUrl;
+
       link.download =
         `NutriFit_Meal_Plan_${new Date()
           .toISOString()
@@ -360,11 +284,6 @@ function MealPlan() {
       setSavingRecommendation(false);
     }
   };
-
-
-  // =========================================================
-  // SUBMIT FEEDBACK
-  // =========================================================
 
   const submitFeedback = async () => {
     const comment = feedback.trim();
@@ -408,12 +327,10 @@ function MealPlan() {
         "https://nutrifit.alwaysdata.net/feedback",
         {
           method: "POST",
-
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-
           body: JSON.stringify({
             followed: followed,
             comment: comment,
@@ -452,10 +369,6 @@ function MealPlan() {
       setSubmittingFeedback(false);
     }
   };
-
-  // =========================================================
-  // BACK TO CALORIES SUMMARY WITH EXISTING RECORD
-  // =========================================================
 
   const goBackToCaloriesSummary = async () => {
     if (!token) {
@@ -501,7 +414,6 @@ function MealPlan() {
             user.food_preference ?? "",
           budget_level:
             user.budget_level ?? "",
-
           bmi: health.bmi ?? "",
           category:
             health.bmi_category ?? "",
@@ -524,11 +436,6 @@ function MealPlan() {
       );
     }
   };
-
-
-  // =========================================================
-  // MEAL CARD
-  // =========================================================
 
   const MealCard = ({
     mealName,
@@ -553,10 +460,7 @@ function MealPlan() {
 
     return (
       <div className="meal-card">
-
-        {/* Meal Header */}
         <div className="meal-card-header">
-
           <div className="meal-icon">
             {icon}
           </div>
@@ -568,17 +472,13 @@ function MealPlan() {
 
             <h2>{mealName}</h2>
           </div>
-
         </div>
 
-        {/* Description */}
         <p className="meal-description">
           {description}
         </p>
 
-        {/* Target */}
         <div className="target-box">
-
           <span>MEAL TARGET</span>
 
           <strong>
@@ -588,42 +488,31 @@ function MealPlan() {
           <small>
             kcal · {mealInfo?.percentage || 0}%
           </small>
-
         </div>
 
-        {/* Food Name */}
         <div className="food-name-box">
-
           <span>RECOMMENDED FOOD</span>
 
           <h3>
             {food.food_name || "Food"}
           </h3>
-
         </div>
 
-        {/* Serving */}
         <div className="serving-box">
-
           <span>🍽️</span>
 
           <div>
-
             <small>
-              SERVING / PORTION
+              PORTION
             </small>
 
             <strong>
               {food.portion_grams || 0} g
             </strong>
-
           </div>
-
         </div>
 
-        {/* Calories */}
         <div className="main-calories">
-
           <strong>
             {food.calories || 0}
           </strong>
@@ -631,14 +520,10 @@ function MealPlan() {
           <span>
             kcal
           </span>
-
         </div>
 
-        {/* Nutrition */}
         <div className="nutrition-list">
-
           <div className="nutrition-row">
-
             <span>
               💪 Protein
             </span>
@@ -646,11 +531,9 @@ function MealPlan() {
             <strong>
               {food.protein_g || 0} g
             </strong>
-
           </div>
 
           <div className="nutrition-row">
-
             <span>
               🌾 Carbs
             </span>
@@ -658,11 +541,9 @@ function MealPlan() {
             <strong>
               {food.carbs_g || 0} g
             </strong>
-
           </div>
 
           <div className="nutrition-row">
-
             <span>
               🥑 Fat
             </span>
@@ -670,11 +551,9 @@ function MealPlan() {
             <strong>
               {food.fat_g || 0} g
             </strong>
-
           </div>
 
           <div className="nutrition-row cost-row">
-
             <span>
               💰 Estimated Cost
             </span>
@@ -682,12 +561,9 @@ function MealPlan() {
             <strong>
               Rs. {food.estimated_cost || 0}
             </strong>
-
           </div>
-
         </div>
 
-        {/* Change This Meal Recommendation */}
         <button
           type="button"
           className="submit-feedback-btn meal-change-btn"
@@ -700,21 +576,14 @@ function MealPlan() {
             ? "Finding Another Meal..."
             : "Change Recommendation"}
         </button>
-
       </div>
     );
   };
 
-  // =========================================================
-  // LOADING
-  // =========================================================
-
   if (loading) {
     return (
       <section className="meal-plan-page">
-
         <div className="meal-loading">
-
           <div className="loading-spinner"></div>
 
           <h2>
@@ -724,16 +593,10 @@ function MealPlan() {
           <p>
             Finding personalized meals for you...
           </p>
-
         </div>
-
       </section>
     );
   }
-
-  // =========================================================
-  // ERROR
-  // =========================================================
 
   if (
     error &&
@@ -743,9 +606,7 @@ function MealPlan() {
   ) {
     return (
       <section className="meal-plan-page">
-
         <div className="meal-error">
-
           <div className="error-icon">
             🥗
           </div>
@@ -764,23 +625,14 @@ function MealPlan() {
           >
             Try Again
           </button>
-
         </div>
-
       </section>
     );
   }
 
-  // =========================================================
-  // MAIN PAGE
-  // =========================================================
-
   return (
     <section className="meal-plan-page">
-
       <div className="meal-plan-container">
-
-        {/* Back */}
         <button
           className="back-summary-btn"
           onClick={goBackToCaloriesSummary}
@@ -788,9 +640,7 @@ function MealPlan() {
           ← Back to Calories Summary
         </button>
 
-        {/* Header */}
         <div className="meal-plan-header">
-
           <div className="header-icon">
             🥗
           </div>
@@ -808,25 +658,18 @@ function MealPlan() {
             your calorie target, food preference,
             activity level, goal and budget.
           </p>
-
         </div>
 
-        {/* Error */}
         {error && (
           <div className="small-error">
             {error}
           </div>
         )}
 
-        {/* =================================================
-            THREE HORIZONTAL MEALS
-        ================================================= */}
-
         <div
           id="my-full-plan"
           className="meals-grid"
         >
-
           <MealCard
             mealName="Breakfast"
             mealData={meals.Breakfast}
@@ -847,24 +690,16 @@ function MealPlan() {
             icon="🌙"
             description="A nourishing end to your day."
           />
-
         </div>
 
-        {/* =================================================
-            SAVE MEAL PLAN TO DEVICE
-        ================================================= */}
-
         <div className="change-section">
-
           <p className="change-hint">
-
             Like your current meal plan?
 
             <span>
               {" "}Save your Breakfast, Lunch and Dinner
               recommendations directly to your device.
             </span>
-
           </p>
 
           <button
@@ -872,7 +707,6 @@ function MealPlan() {
             onClick={saveAllRecommendations}
             disabled={savingRecommendation}
           >
-
             {savingRecommendation ? (
               <>
                 <span className="small-spinner"></span>
@@ -880,28 +714,19 @@ function MealPlan() {
               </>
             ) : (
               <>
-                 Save Recommendation
+                Save Recommendation
               </>
             )}
-
           </button>
-
         </div>
 
-        {/* =================================================
-            FEEDBACK SECTION
-        ================================================= */}
-
         <div className="feedback-section">
-
           <div className="feedback-header">
-
             <div className="feedback-icon">
               💬
             </div>
 
             <div>
-
               <span>
                 HELP US PERSONALIZE YOUR PLAN
               </span>
@@ -915,15 +740,10 @@ function MealPlan() {
                 whether you followed it, and what you
                 liked or didn't like.
               </p>
-
             </div>
-
           </div>
 
-          {/* SELECT MEAL */}
-
           <div className="feedback-meal-select">
-
             <label>
               Which recommendation are you reviewing?
             </label>
@@ -935,7 +755,6 @@ function MealPlan() {
                 setFeedbackMessage("");
               }}
             >
-
               <option value="Breakfast">
                 🌅 Breakfast —{" "}
                 {meals.Breakfast?.recommendation?.food_name ||
@@ -953,21 +772,15 @@ function MealPlan() {
                 {meals.Dinner?.recommendation?.food_name ||
                   "Recommendation"}
               </option>
-
             </select>
-
           </div>
 
-          {/* YES / NO */}
-
           <div className="followed-section">
-
             <label>
               Did you follow this recommendation?
             </label>
 
             <div className="followed-buttons">
-
               <button
                 type="button"
                 className={
@@ -997,12 +810,8 @@ function MealPlan() {
               >
                 ✕ No
               </button>
-
             </div>
-
           </div>
-
-          {/* COMMENT */}
 
           <textarea
             className="feedback-input"
@@ -1015,10 +824,7 @@ function MealPlan() {
             maxLength="2000"
           />
 
-          {/* FEEDBACK BOTTOM */}
-
           <div className="feedback-bottom">
-
             <span className="character-count">
               {feedback.length}/2000
             </span>
@@ -1028,16 +834,11 @@ function MealPlan() {
               onClick={submitFeedback}
               disabled={submittingFeedback}
             >
-
               {submittingFeedback
                 ? "Submitting..."
                 : "Submit Feedback →"}
-
             </button>
-
           </div>
-
-          {/* MESSAGE */}
 
           {feedbackMessage && (
             <div
@@ -1050,18 +851,14 @@ function MealPlan() {
               {feedbackMessage}
             </div>
           )}
-
         </div>
 
-        {/* Footer */}
         <div className="plan-footer">
-
           <div className="footer-icon">
             ✓
           </div>
 
           <div>
-
             <strong>
               Your plan is personalized for you
             </strong>
@@ -1070,13 +867,9 @@ function MealPlan() {
               All recommendations are generated from
               your profile and food dataset.
             </p>
-
           </div>
-
         </div>
-
       </div>
-
     </section>
   );
 }

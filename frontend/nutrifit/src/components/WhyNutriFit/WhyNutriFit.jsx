@@ -1,4 +1,4 @@
-                                                                                                        import React, { useState } from "react";
+import React, { useState } from "react";
 import "./WhyNutriFit.css";
 
 const features = [
@@ -93,43 +93,30 @@ function WhyNutriFit() {
 
   return (
     <section className="why-section" id="why-nutrifit">
-
-      {/* ===== Header ===== */}
       <div className="why-header">
-
         <span className="why-eyebrow">
           WHY NUTRIFIT?
         </span>
-
         <h2 className="why-heading">
           Nutrition That Fits Your Life
         </h2>
-
         <p className="why-subheading">
           Smart nutrition made simple, personalized, and practical for you.
         </p>
 
       </div>
-
-
-      {/* ===== Feature Cards ===== */}
       <div className="why-grid">
-
         {features.map((item, index) => (
           <div className="why-card" key={index}>
-
             <div className="why-icon">
               {item.icon}
             </div>
-
             <h3 className="why-title">
               {item.title}
             </h3>
-
             <p className="why-desc">
               {item.desc}
             </p>
-
             <button
               type="button"
               className="why-learn-more-btn"
@@ -142,9 +129,6 @@ function WhyNutriFit() {
         ))}
 
       </div>
-
-
-      {/* ===== Modal ===== */}
       {activeFeature && (
         <div
           className="modal-overlay"
@@ -156,8 +140,6 @@ function WhyNutriFit() {
             className="modal-box"
             onClick={(e) => e.stopPropagation()}
           >
-
-            {/* Close Button */}
             <button
               type="button"
               className="modal-close"
@@ -166,33 +148,18 @@ function WhyNutriFit() {
             >
               ×
             </button>
-
-
-            {/* Modal Icon */}
             <div className="modal-icon">
               {activeFeature.icon}
             </div>
-
-
-            {/* Modal Title */}
             <h3 className="modal-title">
               {activeFeature.modal.title}
             </h3>
-
-
-            {/* Modal Description */}
             <p className="modal-text">
               {activeFeature.modal.text}
             </p>
-
-
-            {/* List Label */}
             <p className="modal-list-label">
               {activeFeature.modal.listLabel}
             </p>
-
-
-            {/* Modal List */}
             <ul className="modal-list">
 
               {activeFeature.modal.list.map((point, index) => (
@@ -210,9 +177,6 @@ function WhyNutriFit() {
               ))}
 
             </ul>
-
-
-            {/* Modal Button */}
             <button
               type="button"
               className="modal-btn"

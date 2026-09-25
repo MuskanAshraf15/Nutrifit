@@ -1,10 +1,5 @@
-/* =====================================================
-   FONT IMPORT — Poppins (NutriFit logo jaisi feel)
-   ===================================================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
-/* Apply globally */
 * {
   font-family: 'Poppins', sans-serif;
 }
@@ -24,10 +19,6 @@
   background-color: #ffffff;
 }
 
-/* =====================================================
-   NUTRIFIT LOGO — SVG icon + two-tone text
-   ===================================================== */
-
 .navbar-logo a {
   text-decoration: none;
   display: flex;
@@ -35,7 +26,6 @@
   gap: 0px;
 }
 
-/* SVG leaf icon — exactly like your image */
 .navbar-logo a::before {
   content: '';
   display: inline-block;
@@ -47,7 +37,6 @@
   flex-shrink: 0;
 }
 
-/* "Nutri" — dark green */
 .navbar-logo a .logo-nutri {
   font-size: 24px;
   font-weight: 800;
@@ -55,15 +44,12 @@
   letter-spacing: -0.3px;
 }
 
-/* "Fit" — lighter green */
 .navbar-logo a .logo-fit {
   font-size: 24px;
   font-weight: 800;
   color: #43a047;
   letter-spacing: -0.3px;
 }
-
-/* Navigation */
 
 .navbar-links {
   display: flex;
@@ -88,8 +74,6 @@
   font-weight: 600;
 }
 
-/* Profile */
-
 .navbar-profile {
   display: flex;
   align-items: center;
@@ -110,8 +94,6 @@
   font-size: 20px;
 }
 
-/* Hamburger */
-
 .hamburger {
   display: none;
   border: none;
@@ -130,13 +112,7 @@
   transition: 0.3s;
 }
 
-
-/* =====================================================
-   TABLET / MOBILE
-   ===================================================== */
-
 @media (max-width: 768px) {
-
   .navbar {
     height: 55px;
     padding: 0 20px;
@@ -196,13 +172,7 @@
   }
 }
 
-
-/* =====================================================
-   SMALL MOBILE
-   ===================================================== */
-
 @media (max-width: 480px) {
-
   .navbar {
     padding: 0 15px;
   }

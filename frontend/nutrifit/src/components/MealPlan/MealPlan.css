@@ -1,7 +1,3 @@
-/* =========================================================
-   NUTRIFIT - MEAL PLAN
-========================================================= */
-
 .meal-plan-page {
   min-height: calc(100vh - 75px);
   background: #f8f6ee;
@@ -14,10 +10,6 @@
   max-width: 1260px;
   margin: 0 auto;
 }
-
-/* =========================================================
-   BACK
-========================================================= */
 
 .back-summary-btn {
   border: none;
@@ -35,10 +27,6 @@
   color: #2d5939;
   transform: translateX(-4px);
 }
-
-/* =========================================================
-   HEADER
-========================================================= */
 
 .meal-plan-header {
   text-align: center;
@@ -84,20 +72,12 @@
   line-height: 1.55;
 }
 
-/* =========================================================
-   THREE HORIZONTAL CARDS
-========================================================= */
-
 .meals-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   align-items: stretch;
 }
-
-/* =========================================================
-   MEAL CARD
-========================================================= */
 
 .meal-card {
   background: #ffffff;
@@ -107,7 +87,6 @@
   box-shadow: 0 8px 28px rgba(48, 78, 56, 0.06);
   transition: 0.3s ease;
   min-width: 0;
-
   display: grid;
   grid-template-rows:
     60px
@@ -125,10 +104,6 @@
   transform: translateY(-3px);
   box-shadow: 0 12px 32px rgba(48, 78, 56, 0.09);
 }
-
-/* =========================================================
-   MEAL HEADER
-========================================================= */
 
 .meal-card-header {
   display: flex;
@@ -162,10 +137,6 @@
   font-size: 22px;
 }
 
-/* =========================================================
-   DESCRIPTION
-========================================================= */
-
 .meal-description {
   margin: 0;
   color: #8a928c;
@@ -174,10 +145,6 @@
   display: flex;
   align-items: center;
 }
-
-/* =========================================================
-   TARGET
-========================================================= */
 
 .target-box {
   padding: 13px 15px;
@@ -210,10 +177,6 @@
   font-size: 10px;
 }
 
-/* =========================================================
-   FOOD NAME
-========================================================= */
-
 .food-name-box {
   margin-top: 0;
   padding-top: 15px;
@@ -234,16 +197,11 @@
   font-size: 20px;
   line-height: 1.3;
   overflow-wrap: anywhere;
-
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
-/* =========================================================
-   SERVING
-========================================================= */
 
 .serving-box {
   display: inline-flex;
@@ -277,10 +235,6 @@
   font-size: 14px;
 }
 
-/* =========================================================
-   CALORIES
-========================================================= */
-
 .main-calories {
   display: flex;
   align-items: center;
@@ -297,10 +251,6 @@
   color: #89918b;
   font-size: 11px;
 }
-
-/* =========================================================
-   NUTRITION
-========================================================= */
 
 .nutrition-list {
   border-top: 1px solid #edf0eb;
@@ -333,10 +283,6 @@
 .cost-row strong {
   color: #4a7654;
 }
-
-/* =========================================================
-   CHANGE SECTION
-========================================================= */
 
 .change-section {
   margin-top: 30px;
@@ -378,10 +324,6 @@
   cursor: not-allowed;
 }
 
-/* =========================================================
-   SPINNER
-========================================================= */
-
 .small-spinner {
   display: inline-block;
   width: 13px;
@@ -399,10 +341,6 @@
     transform: rotate(360deg);
   }
 }
-
-/* =========================================================
-   FOOTER
-========================================================= */
 
 .plan-footer {
   max-width: 700px;
@@ -439,10 +377,6 @@
   color: #7f8c81;
   font-size: 11px;
 }
-
-/* =========================================================
-   LOADING
-========================================================= */
 
 .meal-loading,
 .meal-error {
@@ -499,10 +433,6 @@
   cursor: pointer;
 }
 
-/* =========================================================
-   ERROR
-========================================================= */
-
 .small-error {
   margin-bottom: 18px;
   padding: 11px 14px;
@@ -513,10 +443,6 @@
   font-size: 12px;
   text-align: center;
 }
-
-/* =========================================================
-   EMPTY
-========================================================= */
 
 .empty-meal-card {
   display: flex;
@@ -542,10 +468,6 @@
   color: #8b938d;
   font-size: 12px;
 }
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
 
 @media (max-width: 1050px) {
   .meals-grid {
@@ -582,7 +504,6 @@
     font-size: 21px;
     margin-bottom: 7px;
   }
-
 
   .meals-grid {
     grid-template-columns: 1fr;
@@ -637,9 +558,6 @@
     align-items: flex-start;
   }
 }
-/* =========================================================
-   USER FEEDBACK
-========================================================= */
 
 .feedback-section {
   max-width: 850px;
@@ -750,21 +668,6 @@
   cursor: not-allowed;
 }
 
-
-/* =========================================================
-   MEAL CARD CHANGE BUTTON
-   Keeps all three buttons aligned and hides any old icon
- 
-
-.meal-card > .submit-feedback-btn,
-.meal-change-btn {
-  width: 100%;
-  min-height: 46px;
-  align-self: end;
-  margin: 0;
-}
-
-/* If old JSX still contains ↻, replace visible text cleanly */
 .meal-card > .submit-feedback-btn {
   font-size: 0;
 }
@@ -797,12 +700,7 @@
   font-size: 11px;
 }
 
-/* =========================================================
-   FEEDBACK RESPONSIVE
-========================================================= */
-
 @media (max-width: 600px) {
-
   .feedback-section {
     padding: 21px 18px;
     border-radius: 17px;
@@ -829,9 +727,6 @@
     padding: 10px 15px;
   }
 }
-/* =========================================================
-   FEEDBACK MEAL SELECTION
-========================================================= */
 
 .feedback-meal-select {
   margin-bottom: 22px;
@@ -865,10 +760,6 @@
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(95, 139, 103, 0.08);
 }
-
-/* =========================================================
-   FOLLOWED YES / NO
-========================================================= */
 
 .followed-section {
   margin-bottom: 20px;
@@ -918,12 +809,7 @@
   border-color: #8a625b;
 }
 
-/* =========================================================
-   FEEDBACK MOBILE
-========================================================= */
-
 @media (max-width: 600px) {
-
   .feedback-meal-select select {
     font-size: 12px;
     padding: 11px 12px;
